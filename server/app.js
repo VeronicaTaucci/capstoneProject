@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 const port = 3001;
 
-// app.use(require('./routes/authentication'))
+app.use(require('./routes/authentication'))
 
 app.get('/', (req, res) => {
     res.send("Hello World")
