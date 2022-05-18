@@ -1,2 +1,3 @@
 node_modules
 secrets.js
+server/config/config.json
