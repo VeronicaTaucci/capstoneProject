@@ -1,9 +1,9 @@
 {
   "development": {
-    "username": "postgres",
-    "password": null,
-    "database": "capstone",
-    "host": "127.0.0.1",
+    "username": "tnurxkvv",
+    "password": "vdOAkZWEFY6LbFeXSn70-FIPe6uuIp5m",
+    "database": "tnurxkvv",
+    "host": "drona.db.elephantsql.com",
     "dialect": "postgres"
   }
 }
