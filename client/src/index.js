@@ -4,6 +4,8 @@ import App from './App';
 import Signin from './components/auth/Signin';
 import Signout from './components/auth/Signout';
 import Signup from './components/auth/Signup';
+import Albums from './components/Albums';
+import Album from './components/Album';
 import BaseLayout from './components/layout/BaseLayout';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { createStore, compose, applyMiddleware } from 'redux';
@@ -44,6 +46,8 @@ ReactDOM.render(
                         <Route path='/signup' element={<Signup />} />
                         <Route path='/signout' element={<Signout />} />
                         <Route path='/signin' element={<Signin />} />
+                        <Route path='/albums' element={<Albums />} />
+                        <Route path='/album' element={<Album />} />
                     </Routes>
 
                 </BaseLayout>
