@@ -1,8 +1,13 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 
 const Albums = () => {
+
+  useEffect(() => {
+    document.title = "All Albums"
+  }, [])
+
   return (
-    <div>Albums</div>
+    <h2>All Albums</h2>
   )
 }
 

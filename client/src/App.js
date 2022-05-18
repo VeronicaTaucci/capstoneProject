@@ -19,7 +19,7 @@ const App = () => {
           <Route path="/register" element={<Register />} />
           <Route path="/home" element={<Home />} />
           <Route path="/albums" element={<Albums />} />
-          <Route path="/:id" element={<Album />} />
+          <Route path="/album/:albumID" element={<Album />} />
         </Routes>
       </BaseLayout>
     </Router>

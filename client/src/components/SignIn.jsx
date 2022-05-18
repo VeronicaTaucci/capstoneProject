@@ -1,6 +1,11 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 
 const SignIn = () => {
+
+  useEffect(() => {
+    document.title = "Sign In"
+  }, [])
+
   return (
     <div>SignIn</div>
   )
