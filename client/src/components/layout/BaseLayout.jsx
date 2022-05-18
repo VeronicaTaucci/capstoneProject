@@ -8,6 +8,10 @@ const BaseLayout = (props) => {
 
         {props.children}
 
+        <br /><br />
+
+        Footer Information
+
     </>
   )
 }

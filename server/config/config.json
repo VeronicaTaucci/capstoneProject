@@ -1,9 +1,0 @@
-{
-  "development": {
-    "username": "tnurxkvv",
-    "password": "vdOAkZWEFY6LbFeXSn70-FIPe6uuIp5m",
-    "database": "tnurxkvv",
-    "host": "drona.db.elephantsql.com",
-    "dialect": "postgres"
-  }
-}
