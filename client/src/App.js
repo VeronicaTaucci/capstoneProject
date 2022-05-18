@@ -1,16 +1,7 @@
-import React from 'react'
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
+import React from 'react';
+import SignIn from "./components/auth/Signin";
 
-import SignIn from './components/SignIn';
-import Register from './components/Register';
-import Home from './components/Home';
-import Albums from './components/Albums';
-import Album from './components/Album';
-
-import BaseLayout from './components/layout/BaseLayout';
-
-
-const App = () => {
+function App() {
   return (
     <Router>
       <BaseLayout>
@@ -26,4 +17,4 @@ const App = () => {
   )
 }
 
-export default App
+export default App;
