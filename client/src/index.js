@@ -6,6 +6,7 @@ import Signout from './components/auth/Signout';
 import Signup from './components/auth/Signup';
 import Albums from './components/Albums';
 import Album from './components/Album';
+import Home from './components/Home';
 import BaseLayout from './components/layout/BaseLayout';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { createStore, compose, applyMiddleware } from 'redux';
@@ -15,6 +16,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import reduxThunk from 'redux-thunk'
 import RequireAuth from './components/RequireAuth'
 import { checkToken } from './actions'
+import Comment from './components/Comment'
 
 // initializing redux store
 // requires a reducer. Second argument is for redux dev-tools extension.
@@ -44,10 +46,12 @@ ReactDOM.render(
                     <Routes>
                         <Route path='/' element={<App />} />
                         <Route path='/signup' element={<Signup />} />
+                        <Route path='/home' element={<RequireAuth><Home /></RequireAuth>} />
                         <Route path='/signout' element={<Signout />} />
                         <Route path='/signin' element={<Signin />} />
                         <Route path='/albums' element={<Albums />} />
                         <Route path='/album' element={<Album />} />
+                        <Route path='/comment' element={<RequireAuth><Comment /></RequireAuth>} />
                     </Routes>
 
                 </BaseLayout>
