@@ -7,7 +7,8 @@ const bcrypt = require('bcryptjs'); //used to encrypt passwords
 const secrets = require('../secrets'); // secrets object inside of secrets.js file in root directory
 
 const passport = require('passport');
-const { NOEXPAND } = require("sequelize/types/table-hints");
+// const { SELECT } = require("sequelize/types/query-types");
+// const { NOEXPAND } = require("sequelize/types/table-hints");
 
 //must initialize passport for it to work 
 router.use(passport.initialize());
@@ -114,14 +115,15 @@ router.get('/profile/:id', requireJwt, (req, res) => {
     
 })
 
-router.post('/comment', async (req, res) => {
 
+
+//! all media routes 
+router.post('/comment', async (req, res) => {
     // collect info from header 
     let { comment, userId, userProfileId } = req.body;
     try {
         //create db entry 
         let newComment = await db.media.create({ comment, userId, userProfileId })
-        
     }
     catch (err) {
         return res.status(423).json({ error: "Can't access database" })
@@ -129,5 +131,22 @@ router.post('/comment', async (req, res) => {
 
 })
 
+
+
+
+router.get('/comment', async (req, res) => {
+    try {
+        //create db entry 
+        let allComments = await db.media.findAll()
+            .then((results) => {
+                res.send(results)
+            
+        })
+    }
+    catch (err) {
+        return res.status(423).json({ error: "Can't access database" })
+    }
+
+})
 
 module.exports = router;

@@ -51,7 +51,7 @@ ReactDOM.render(
                         <Route path='/signin' element={<Signin />} />
                         <Route path='/albums' element={<Albums />} />
                         <Route path='/album' element={<Album />} />
-                        <Route path='/comment' element={<RequireAuth><Comment /></RequireAuth>} />
+                        <Route path='/comment' element={<Comment />} />
                     </Routes>
 
                 </BaseLayout>
