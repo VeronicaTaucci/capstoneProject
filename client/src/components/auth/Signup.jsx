@@ -13,9 +13,7 @@ const Signup = () => {
     const navigate = useNavigate()
 
     const handleSubmit = (e) => {
-
         e.preventDefault();
-
         //dispatch an action 
         //action is going to make the api call
 
@@ -23,10 +21,7 @@ const Signup = () => {
         dispatch(signUp({ email, password }, () => {
             navigate('/')
         }))
-
-
     }
-
     return (
         <div className="mt-5">
             <div className="grid align__item">

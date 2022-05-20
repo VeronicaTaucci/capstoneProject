@@ -1,4 +1,3 @@
-server/.env
-/node_modules
-/config
-/server/secrets*
+node_modules
+secrets.js
+config.json

@@ -2,6 +2,16 @@ import actionTypes from './actionTypes';
 import axios from 'axios'
 
 
+export const addComment = (formData) => async dispatch => { //this is thunk, function returning another function
+    try {
+        //make api call to backend
+        let response = await axios.post('/comment',formData)
+        console.log("add comment in index.js",response)
+    } catch (error) {
+        console.log("add comment in index.js",error)
+    }
+ }
+
 /**
  ** Registering a user 
  * {email, password}
@@ -19,7 +29,7 @@ export const signUp = (formData, cb) => async dispatch=>{
         //setting our token inside of global storage
         dispatch({
             type: actionTypes.AUTH_USER, 
-            data: response.data.token
+            data: response.data //{userId:sasas, token: token}
         })
 
         cb()
@@ -38,8 +48,6 @@ export const signUp = (formData, cb) => async dispatch=>{
             data: error
         })
     }
-
-    
 }
 
 

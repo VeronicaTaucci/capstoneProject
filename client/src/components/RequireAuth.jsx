@@ -10,7 +10,7 @@ const RequireAuth = (props) => {
     const navigate = useNavigate();
 
     useEffect(() => {
-
+            console.log(auth);
         if (!auth) {  //if string is empty then not logged in properly
 
             navigate('/')
@@ -22,5 +22,7 @@ const RequireAuth = (props) => {
     return props.children
 
 }
+
+
 
 export default RequireAuth

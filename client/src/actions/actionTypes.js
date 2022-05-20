@@ -1,6 +1,7 @@
 const actionTypes = {
     AUTH_USER: "AUTH_USER",
-    ERROR: "ERROR"
+    ERROR: "ERROR",
+    ADD_MEDIA: "ADD_MEDIA",
 };
 
 export default actionTypes;

@@ -11,8 +11,10 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      models.users.hasMany(models.media, { foreignKey: 'userId' })
     }
-  }
+    }
+  
   users.init({
     email: DataTypes.STRING,
     password: DataTypes.STRING

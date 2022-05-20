@@ -7,6 +7,8 @@ const bcrypt = require('bcryptjs'); //used to encrypt passwords
 const secrets = require('../secrets'); // secrets object inside of secrets.js file in root directory
 
 const passport = require('passport');
+// const { SELECT } = require("sequelize/types/query-types");
+// const { NOEXPAND } = require("sequelize/types/table-hints");
 
 //must initialize passport for it to work 
 router.use(passport.initialize());
@@ -19,17 +21,12 @@ require('../auth/passAuth');
 let requireLogin = passport.authenticate('local', { session: false })
 let requireJwt = passport.authenticate('jwt', { session: false })
 
-router.use(express.urlencoded({ extended: false })) // scrape email and pwd from request header 
-router.use(express.json())  //req.body
 
 
-
-//this function return a JWT
+//this function return a JWT & user.Id
 const token = (userRecord) => {
-
     let timestamp = new Date().getTime(); // current time
-
-    return jwt.encode({ sub: userRecord.id, iat: timestamp }, secrets.secrets)//first argument is the payload, second arg is secret
+    return { JWT: jwt.encode({ sub: userRecord.id, iat: timestamp }, secrets.secrets), UserId: userRecord.id }//first argument is the payload, second arg is secret
 
 }
 
@@ -71,13 +68,16 @@ router.post('/register', async (req, res) => {
 
 
             //create jwt
-
-            let jwtToken = token(newUserRecord)
+            
+             
+            let jwtTokenObj = token(newUserRecord)
+            let jwtToken = jwtTokenObj.JWT
+            let userId = jwtTokenObj.UserId
 
 
             //return our jwt
 
-            return res.json({ token: jwtToken })
+            return res.json({ token: jwtToken, userId: userId})
         }
         else {
             //user's email already exists in our db, so send back an error message to react 
@@ -109,6 +109,44 @@ router.get('/protected', requireJwt, (req, res) => {
     console.log('passed protected page');
 
     res.json({ isValid: true })
+})
+
+router.get('/profile/:id', requireJwt, (req, res) => {
+    
+})
+
+
+
+//! all media routes 
+router.post('/comment', async (req, res) => {
+    // collect info from header 
+    let { comment, userId, userProfileId } = req.body;
+    try {
+        //create db entry 
+        let newComment = await db.media.create({ comment, userId, userProfileId })
+    }
+    catch (err) {
+        return res.status(423).json({ error: "Can't access database" })
+    }
+
+})
+
+
+
+
+router.get('/comment', async (req, res) => {
+    try {
+        //create db entry 
+        let allComments = await db.media.findAll()
+            .then((results) => {
+                res.send(results)
+            
+        })
+    }
+    catch (err) {
+        return res.status(423).json({ error: "Can't access database" })
+    }
+
 })
 
 module.exports = router;
