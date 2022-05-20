@@ -3,7 +3,8 @@ import actionTypes from '../actions/actionTypes';
 const initialState = {
     auth: "",
     error: "",
-    comments: ""
+    comments: "",
+    media:""
     
 }
 
@@ -23,12 +24,21 @@ const reducerTemplate = (state = initialState, action) => {
                 ...state,
                 error: action.data
             }
-        case actionTypes.ADD_MEDIA:
+        case actionTypes.ADD_MEDIA: //this is for comments
+            console.log(action.data.data)
             let newComment = [...state.comments, action.data.comment]
             console.log("newComment", newComment)
             return {
                 ...state,
                 comments:newComment
+            }
+        case actionTypes.ADD_OTHER_MEDIA: //this is for pics or videos (cloudinary)
+            let newMedia = [...state.media, action.data.data.mediaData]
+            console.log ("src/reducer 6" ,action.data)
+            console.log("newMedia", newMedia)
+            return {
+                ...state,
+                media: newMedia
             }
         default:
             return state;
