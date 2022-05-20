@@ -1,9 +1,14 @@
 import React from 'react';
 import SignIn from "./components/auth/Signin";
+import Cloudinary from './components/Cloudinary';
 
 function App() {
   return (
-    <SignIn/>
+    <>
+    App.js
+      <SignIn/>
+      <Cloudinary />
+    </>
   )
 }
 
