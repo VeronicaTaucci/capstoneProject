@@ -7,12 +7,12 @@ const Cloudinary = () => {
     const [ url, setUrl ] = useState("");
     const [mediaFormat, setMediaFormat ] = useState("");
     const userId = useSelector(state => state.userId)
-    
-    
+
+
     const showWidget = (widget) => {
         widget.open()
     }
- 
+
 
     let widget = window.cloudinary.createUploadWidget({
         cloud_name: 'dc-capstone2022',

@@ -3,15 +3,17 @@ import { addAudio } from '../actions';
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from 'react-router-dom';
 import { storage } from '../firebase/firebase';
-import axios from 'axios';
-//Importing
-
+import { ref, getDownloadURL, uploadBytesResumable } from "firebase/storage";
+import axios from 'axios'
+import ProgressBar from 'react-bootstrap/ProgressBar'
 
 //Calling the function (You can call it normally then)
 const Recorder = () => {
     
     const [recording, setRecording] = useState("")
     const [clipName, setClipName] = useState("");
+    const [isLoading, setIsLoading] = useState(false)
+    const [progressPercent, setProgressPercent] = useState(0)
 
     const userId = useSelector(state => state.userId)
     const [recordingURL, setRecordingURL] = useState()
@@ -99,14 +101,15 @@ const Recorder = () => {
                     clipContainer.appendChild(deleteButton);
                     soundClips.appendChild(clipContainer);
 
+                    //! BLOB
                     audio.controls = true;
-                    const blob = new Blob(chunks, { 'type': 'audio/ogg; codecs=opus' });
+                    const blob = new Blob(chunks, { 'type': 'audio/mpeg; codecs=mp3' });
+                    console.log(blob)
+                    setRecording(blob)
                     chunks = [];
                     const audioURL = window.URL.createObjectURL(blob);
                     audio.src = audioURL;
                     console.log(audioURL)
-                    setRecording(audioURL)
-                    console.log(recording)
                     console.log("recorder stopped");
 
                     deleteButton.onclick = function (e) {
@@ -208,32 +211,35 @@ const Recorder = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        const audioFile = recording
-        console.log("audioFile",audioFile);
-        if (!audioFile) return;
+        setIsLoading(true);
+        console.log('audioFile', recording)
+        if (!recording) return;
 
-        const uploadTask = storage.ref(`audio/${clipName}`).put(audioFile);
+        const storageRef = ref(storage, `audio/${clipName}`);
+        const uploadTask = uploadBytesResumable(storageRef, recording);
+
         uploadTask.on(
             "state_changed",
-            snapshot => { },
-            (error) => { },
+            (snapshot) => {
+                const progress =
+                    Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
+                    setProgressPercent(progress);
+                    setIsLoading(false);
+            },
+            (error) => { console.log(error) },
             () => {
-                storage
-                    .ref("audio")
-                    .child(clipName)
-                    .getDownloaddURL()
-                    
-                    .then(async (url,) => {
-                        console.log(url);
-                        // let formData = { recording: url, userId: userId, comment: clipName, mediaFormat: 'audio' }
-                        // let response = await axios.post('/recorder',formData)
-                        // console.log(response);
-                        // setRecordingURL(url)
+                    getDownloadURL(uploadTask.snapshot.ref)
+                    .then(async (url) => {
+                        console.log('firebase url', url)
+                        let formData = { mediaUrl: url, userId: userId, comment: clipName, mediaFormat: 'audio' }
+                        let response = await axios.post('/recorder',formData)
+                        console.log('response', response)
+                        setRecordingURL(response.data.mediaUrl)
                     })
             }
         )
-      
-      
+
+
 
     }
 
@@ -251,10 +257,14 @@ const Recorder = () => {
             </form>
 
             <section className="sound-clips"></section>
-            <div>
-                you just recorded this:
-                <audio src={recordingURL}> test1</audio>
-            </div>
+            
+            <h3>Saved Files</h3>
+
+            {isLoading ? (<ProgressBar now={progressPercent} label={`${progressPercent}%`} />) : null}
+
+            <audio src={recordingURL}>
+            </audio>
+
         </>
     )
 }
