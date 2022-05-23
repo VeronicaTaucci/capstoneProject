@@ -7,16 +7,16 @@ import { ref, getDownloadURL, uploadBytesResumable } from "firebase/storage";
 import axios from 'axios'
 import ProgressBar from 'react-bootstrap/ProgressBar'
 
+//Calling the function (You can call it normally then)
 const Recorder = () => {
-
+    
     const [recording, setRecording] = useState("")
     const [clipName, setClipName] = useState("");
-    const [recordingURL, setRecordingURL] = useState("")
     const [isLoading, setIsLoading] = useState(false)
     const [progressPercent, setProgressPercent] = useState(0)
 
     const userId = useSelector(state => state.userId)
-
+    const [recordingURL, setRecordingURL] = useState()
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
@@ -64,7 +64,7 @@ const Recorder = () => {
 
                 stop.onclick = function () {
                     mediaRecorder.stop();
-                    console.log(mediaRecorder.state);
+                    // console.log(mediaRecorder.state);
                     console.log("recorder stopped");
                     record.style.background = "";
                     record.style.color = "";
