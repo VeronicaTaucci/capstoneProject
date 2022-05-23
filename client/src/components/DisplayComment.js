@@ -8,7 +8,6 @@ const DisplayComment = () => {
     useEffect(() => {
         let getData = async () => {
             try {
-                //make api call to backend
                 let response = await axios.get('/comment')
                 let result = response.data
                 // console.log(result)
@@ -22,7 +21,7 @@ const DisplayComment = () => {
         getData()
         
 
-    },[comments])
+    },[])
         
 
 

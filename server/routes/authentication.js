@@ -111,13 +111,15 @@ router.get('/protected', requireJwt, (req, res) => {
     res.json({ isValid: true })
 })
 
-router.get('/profile/:id', requireJwt, (req, res) => {
+// router.get('/profile/:id', requireJwt, (req, res) => {
     
-})
+// })
 
 
 
 //! all media routes 
+
+//add comment
 router.post('/comment', async (req, res) => {
     // collect info from header 
     let { comment, userId, userProfileId } = req.body;
@@ -126,22 +128,33 @@ router.post('/comment', async (req, res) => {
         let newComment = await db.media.create({ comment, userId, userProfileId })
     }
     catch (err) {
-        return res.status(423).json({ error: "Can't access database" })
+        return res.status(423).json({ err })
     }
 
 })
 
 
 
-
+// display comment 
 router.get('/comment', async (req, res) => {
     try {
-        //create db entry 
         let allComments = await db.media.findAll()
             .then((results) => {
                 res.send(results)
-            
         })
+    }
+    catch (err) {
+        return res.status(423).json({ err })
+    }
+
+})
+//! add cloudinary media 
+router.post('/media', async (req, res) => {
+    let { mediaUrl, mediaFormat, userId } = req.body;
+    try {
+        //create db entry 
+        await db.media.create({ mediaUrl: mediaUrl, userId: userId, mediaFormat: mediaFormat
+})
     }
     catch (err) {
         return res.status(423).json({ error: "Can't access database" })
