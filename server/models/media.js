@@ -18,11 +18,6 @@ module.exports = (sequelize, DataTypes) => {
   }
   media.init({
     comment: DataTypes.STRING,
-<<<<<<< HEAD
-=======
-    mediaUrl: DataTypes.STRING,
-    mediaFormat: DataTypes.STRING,
->>>>>>> main
     recording: DataTypes.STRING,
     userId: DataTypes.INTEGER,
     userProfileId: DataTypes.INTEGER,
