@@ -14,10 +14,12 @@ module.exports = (sequelize, DataTypes) => {
       models.users.hasMany(models.media, { foreignKey: 'userId' })
     }
     }
-  
+
   users.init({
     email: DataTypes.STRING,
-    password: DataTypes.STRING
+    password: DataTypes.STRING,
+    name: DataTypes.STRING
+    
   }, {
     sequelize,
     modelName: 'users',

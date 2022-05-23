@@ -13,15 +13,16 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       models.media.belongsTo(models.users, { foreignKey: 'userId' }),
       models.media.belongsTo(models.users, { foreignKey: 'userProfileId' })
-        
+
     }
   }
   media.init({
     comment: DataTypes.STRING,
-    video: DataTypes.STRING,
     recording: DataTypes.STRING,
     userId: DataTypes.INTEGER,
     userProfileId: DataTypes.INTEGER,
+    mediaUrl: DataTypes.STRING,
+    mediaFormat: DataTypes.STRING
 
   }, {
     sequelize,
