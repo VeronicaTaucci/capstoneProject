@@ -20,14 +20,8 @@ const DisplayComment = () => {
         }
         getData()
 
-<<<<<<< HEAD
-
-    }, [])
-
-=======
     },[])
-        
->>>>>>> main
+
 
 
 
