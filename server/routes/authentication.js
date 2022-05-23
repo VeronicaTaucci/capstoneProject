@@ -163,10 +163,11 @@ router.post('/media', async (req, res) => {
 
 router.post('/recorder', async (req, res) => {
 
-    let { recording, userId, comment } = req.body;
+    let { userId, comment, mediaFormat, mediaUrl } = req.body;
 
     try {
-        let newAudio = await db.media.create({ recording, userId, comment })
+        let newAudio = await db.media.create({ userId, comment, mediaFormat, mediaUrl })
+        res.json(newAudio)
     } catch (error) {
         return res.status(423).json({ error: "Can't access database" })
     }
