@@ -19,10 +19,15 @@ const DisplayComment = () => {
 
         }
         getData()
-        
 
+<<<<<<< HEAD
+
+    }, [])
+
+=======
     },[])
         
+>>>>>>> main
 
 
 
@@ -33,11 +38,11 @@ const DisplayComment = () => {
                 comments display:
                 <ul>
                     {comments.map((comment) => {
-                      
+
                         return (
                             <li key={comment.id}>{comment.comment}</li>
                         )
-                  })}
+                })}
 
                 </ul>
             </div>

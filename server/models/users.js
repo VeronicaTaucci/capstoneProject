@@ -14,11 +14,17 @@ module.exports = (sequelize, DataTypes) => {
       models.users.hasMany(models.media, { foreignKey: 'userId' })
     }
     }
-  
+
   users.init({
     email: DataTypes.STRING,
+<<<<<<< HEAD
+    password: DataTypes.STRING,
+    name: DataTypes.STRING
+    
+=======
     name: DataTypes.STRING,
     password: DataTypes.STRING
+>>>>>>> main
   }, {
     sequelize,
     modelName: 'users',

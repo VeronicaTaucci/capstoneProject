@@ -7,6 +7,7 @@ import Signup from './components/auth/Signup';
 import Albums from './components/Albums';
 import Album from './components/Album';
 import Home from './components/Home';
+import Recorder from './components/Recorder';
 import BaseLayout from './components/layout/BaseLayout';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { createStore, compose, applyMiddleware } from 'redux';
@@ -35,7 +36,7 @@ let store = createStore(reducer, {},
 
 store.dispatch(checkToken())
 
-//provider hooks react to redux.  
+//provider hooks react to redux.
 //Must pass redux instance to provider via "store" prop.
 
 ReactDOM.render(
@@ -52,6 +53,7 @@ ReactDOM.render(
                         <Route path='/albums' element={<Albums />} />
                         <Route path='/album' element={<Album />} />
                         <Route path='/comment' element={<Comment />} />
+                        <Route path='/recorder' element={<Recorder />} />
                     </Routes>
 
                 </BaseLayout>

@@ -10,13 +10,13 @@ const passport = require('passport');
 // const { SELECT } = require("sequelize/types/query-types");
 // const { NOEXPAND } = require("sequelize/types/table-hints");
 
-//must initialize passport for it to work 
+//must initialize passport for it to work
 router.use(passport.initialize());
 
 //import all of the passAuth code from ../auth/passAuth.js file
 require('../auth/passAuth');
 
-//must call authenticate method on passport instance 
+//must call authenticate method on passport instance
 //* this our gatekeeper
 let requireLogin = passport.authenticate('local', { session: false })
 let requireJwt = passport.authenticate('jwt', { session: false })
@@ -38,12 +38,12 @@ router.get('/', (req, res) => {
     res.send('home page')
 })
 
-//when react sends us info from form, and we send back a JWT to be saved on the client side - 
+//when react sends us info from form, and we send back a JWT to be saved on the client side -
 //because token is what authenticates the user and persists their login.
 router.post('/register', async (req, res) => {
 
-    // collect info from header 
-    //email, password 
+    // collect info from header
+    //email, password
 
     let { email, password } = req.body;
 
@@ -61,15 +61,15 @@ router.post('/register', async (req, res) => {
 
             password = bcrypt.hashSync(password, 8)
 
-            //create db entry 
+            //create db entry
 
             let newUserRecord = await db.users.create({ email, password }) //user is an object that we just created
             //user => {id, email, password, createdAt, updatedAt}
 
 
             //create jwt
-            
-             
+
+
             let jwtTokenObj = token(newUserRecord)
             let jwtToken = jwtTokenObj.JWT
             let userId = jwtTokenObj.UserId
@@ -80,7 +80,7 @@ router.post('/register', async (req, res) => {
             return res.json({ token: jwtToken, userId: userId})
         }
         else {
-            //user's email already exists in our db, so send back an error message to react 
+            //user's email already exists in our db, so send back an error message to react
 
             return res.status(422).json({ error: "Email already exists" })
         }
@@ -95,7 +95,7 @@ router.post('/register', async (req, res) => {
 
 router.post('/login', requireLogin, (req, res) => {
 
-    //when they have logged successfully 
+    //when they have logged successfully
     //req.user => set by passport when a user has successfully logged in
 
 
@@ -112,30 +112,28 @@ router.get('/protected', requireJwt, (req, res) => {
 })
 
 // router.get('/profile/:id', requireJwt, (req, res) => {
-    
+
 // })
 
 
-
-//! all media routes 
+//! all media routes
 
 //add comment
 router.post('/comment', async (req, res) => {
-    // collect info from header 
+    // collect info from header
     let { comment, userId, userProfileId } = req.body;
     try {
-        //create db entry 
+        //create db entry
         let newComment = await db.media.create({ comment, userId, userProfileId })
     }
     catch (err) {
         return res.status(423).json({ err })
     }
-
 })
 
 
 
-// display comment 
+// display comment
 router.get('/comment', async (req, res) => {
     try {
         let allComments = await db.media.findAll()
@@ -148,11 +146,12 @@ router.get('/comment', async (req, res) => {
     }
 
 })
-//! add cloudinary media 
+
+//! add cloudinary media
 router.post('/media', async (req, res) => {
     let { mediaUrl, mediaFormat, userId } = req.body;
     try {
-        //create db entry 
+        //create db entry
         await db.media.create({ mediaUrl: mediaUrl, userId: userId, mediaFormat: mediaFormat
 })
     }
@@ -161,5 +160,17 @@ router.post('/media', async (req, res) => {
     }
 
 })
+
+router.post('/recorder', async (req, res) => {
+
+    let { recording, userId, comment } = req.body;
+
+    try {
+        let newAudio = await db.media.create({ recording, userId, comment })
+    } catch (error) {
+        return res.status(423).json({ error: "Can't access database" })
+    }
+})
+
 
 module.exports = router;
