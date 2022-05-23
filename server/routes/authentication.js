@@ -121,10 +121,10 @@ router.get('/protected', requireJwt, (req, res) => {
 //add comment
 router.post('/comment', async (req, res) => {
     // collect info from header
-    let { comment, userId, userProfileId } = req.body;
+    let { comment, userId, userProfileId,mediaFormat } = req.body;
     try {
         //create db entry
-        let newComment = await db.media.create({ comment, userId, userProfileId })
+        let newComment = await db.media.create({ comment, userId, userProfileId,mediaFormat})
     }
     catch (err) {
         return res.status(423).json({ err })

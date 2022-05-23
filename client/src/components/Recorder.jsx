@@ -2,15 +2,19 @@ import React, { useEffect, useState } from 'react';
 import { addAudio } from '../actions';
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from 'react-router-dom';
+import { storage } from '../firebase/firebase';
+import axios from 'axios';
+//Importing
 
 
+//Calling the function (You can call it normally then)
 const Recorder = () => {
-
+    
     const [recording, setRecording] = useState("")
     const [clipName, setClipName] = useState("");
 
     const userId = useSelector(state => state.userId)
-
+    const [recordingURL, setRecordingURL] = useState()
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
@@ -58,7 +62,7 @@ const Recorder = () => {
 
                 stop.onclick = function () {
                     mediaRecorder.stop();
-                    console.log(mediaRecorder.state);
+                    // console.log(mediaRecorder.state);
                     console.log("recorder stopped");
                     record.style.background = "";
                     record.style.color = "";
@@ -204,11 +208,32 @@ const Recorder = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(clipName)
-        let formData = { recording: recording, userId: userId, comment: clipName }
-        dispatch(addAudio(formData, () => {
-            navigate('/')
-        }))
+        const audioFile = recording
+        console.log("audioFile",audioFile);
+        if (!audioFile) return;
+
+        const uploadTask = storage.ref(`audio/${clipName}`).put(audioFile);
+        uploadTask.on(
+            "state_changed",
+            snapshot => { },
+            (error) => { },
+            () => {
+                storage
+                    .ref("audio")
+                    .child(clipName)
+                    .getDownloaddURL()
+                    
+                    .then(async (url,) => {
+                        console.log(url);
+                        // let formData = { recording: url, userId: userId, comment: clipName, mediaFormat: 'audio' }
+                        // let response = await axios.post('/recorder',formData)
+                        // console.log(response);
+                        // setRecordingURL(url)
+                    })
+            }
+        )
+      
+      
 
     }
 
@@ -226,6 +251,10 @@ const Recorder = () => {
             </form>
 
             <section className="sound-clips"></section>
+            <div>
+                you just recorded this:
+                <audio src={recordingURL}> test1</audio>
+            </div>
         </>
     )
 }

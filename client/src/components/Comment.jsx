@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from "react-redux"
 
 import { useNavigate } from 'react-router-dom'
 import { addComment } from "../actions/index"
-import DisplayComment from "./DisplayComment"
 const Comment = () => {
     const [comment, setComment] = useState("")
     const  userId = useSelector(state=> state.userId)
@@ -16,7 +15,7 @@ const Comment = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        dispatch(addComment({ comment, userId, userProfileId }, () => {
+        dispatch(addComment({ comment: comment, userId: userId, userProfileId: userProfileId, mediaFormat:"text" }, () => {
             navigate('/')
         }))
     }
@@ -28,7 +27,7 @@ const Comment = () => {
                     <input type="submit" value="Add Comment" />
                 </div>
             </form>
-            <DisplayComment/>
+            
         </>
     )
 }
