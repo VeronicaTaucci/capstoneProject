@@ -1,8 +1,8 @@
 import React, {useState} from "react"
 import { useDispatch, useSelector } from "react-redux"
-
 import { useNavigate } from 'react-router-dom'
 import { addComment } from "../actions/index"
+import "./styles/signInPage.css"
 const Comment = () => {
     const [comment, setComment] = useState("")
     const  userId = useSelector(state=> state.userId)
