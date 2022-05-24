@@ -39,7 +39,7 @@ const DisplayMedia = () => {
                                 return <img key={media.id} src={media.mediaUrl} width='200px'></img>
                             case 'audio':
                                 return <figure>
-                                    <figcaption>Listen to the Recording:</figcaption> <audio controls src={media.mediaUrl}> Your browser does not support the <code>audio</code> element. </audio> </figure>
+                                    <figcaption>{media.createdAt}</figcaption> <audio controls src={media.mediaUrl}> Your browser does not support the <code>audio</code> element. </audio> </figure>
                             default:
                                 break;
                         }

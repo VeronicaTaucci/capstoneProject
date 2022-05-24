@@ -18,7 +18,7 @@ import reduxThunk from 'redux-thunk'
 import RequireAuth from './components/RequireAuth'
 import { checkToken } from './actions'
 import Comment from './components/Comment'
-
+// import 'bootstrap/dist/css/bootstrap.min.css';
 // initializing redux store
 // requires a reducer. Second argument is for redux dev-tools extension.
 // let store = createStore(reducer,  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
