@@ -6,7 +6,7 @@ import DisplayMedia from './DisplayMedia'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
-
+import Navbar from './layout/Navbar'
 const Home = () => {
 
   const [showText, setShowText] = useState(false);
@@ -19,7 +19,8 @@ const Home = () => {
 
   return (
     <>
-        <Container>
+      <Navbar />
+        <Container className='mt-5'>
         <Row>
           <Col xs lg="2" className='justify-content-center'>
             <img src='../../profileplaceholder.jpeg'/><br/>
