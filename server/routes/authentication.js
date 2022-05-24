@@ -140,7 +140,7 @@ router.get('/comment', async (req, res) => {
 
 //! add cloudinary media
 router.post('/media', async (req, res) => {
-    let { mediaUrl, mediaFormat, userId } = req.body;
+    let { mediaUrl, userId, mediaFormat} = req.body;
     try {
         //create db entry
         let newCloudinary = await db.media.create({ mediaUrl: mediaUrl, userId: userId, mediaFormat: mediaFormat })

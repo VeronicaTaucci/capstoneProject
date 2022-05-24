@@ -9,7 +9,7 @@ import ProgressBar from 'react-bootstrap/ProgressBar'
 
 //Calling the function (You can call it normally then)
 const Recorder = () => {
-    
+
     const [recording, setRecording] = useState("")
     const [clipName, setClipName] = useState("");
     const [isLoading, setIsLoading] = useState(false)
@@ -257,8 +257,6 @@ const Recorder = () => {
             </form>
 
             <section className="sound-clips"></section>
-            
-            <h3>Saved Files</h3>
 
             {isLoading ? (<ProgressBar now={progressPercent} label={`${progressPercent}%`} />) : null}
 

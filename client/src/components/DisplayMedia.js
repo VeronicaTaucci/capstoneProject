@@ -45,10 +45,8 @@ const DisplayMedia = () => {
                         }
                         // return (
                         //     <>
-                             
-                               
                         //          {/* <li key={comment.id}>{comment.comment}</li>
-                                
+
                         //         <li key={comment.id}>{comment.mediaUrl}</li>  */}
                         //     </>
                         // )
