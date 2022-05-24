@@ -10,7 +10,7 @@ const DisplayMedia = () => {
             try {
                 let response = await axios.get('/comment')
                 let result = response.data
-                // console.log(result)
+                console.log(result)
                 setMedia(result)
                 return result
             } catch (error) {
@@ -36,9 +36,10 @@ const DisplayMedia = () => {
                             case 'text':
                                 return <li key={media.id}>{media.comment}</li>
                             case 'image':
-                                return <img src={media.mediaUrl} width='200px'></img>
+                                return <img key={media.id} src={media.mediaUrl} width='200px'></img>
                             case 'audio':
-                                return <audio controls="" src={media.mediaUrl}></audio>
+                                return <figure>
+                                    <figcaption>Listen to the Recording:</figcaption> <audio controls src={media.mediaUrl}> Your browser does not support the <code>audio</code> element. </audio> </figure>
                             default:
                                 break;
                         }

@@ -104,12 +104,12 @@ router.post('/login', requireLogin, (req, res) => {
 })
 
 
-router.get('/protected', requireJwt, (req, res) => {
+// router.get('/protected', requireJwt, (req, res) => {
 
-    console.log('passed protected page');
+//     console.log('passed protected page');
 
-    res.json({ isValid: true })
-})
+//     res.json({ isValid: true })
+// })
 
 // router.get('/profile/:id', requireJwt, (req, res) => {
 
@@ -152,8 +152,8 @@ router.post('/media', async (req, res) => {
     let { mediaUrl, mediaFormat, userId } = req.body;
     try {
         //create db entry
-        await db.media.create({ mediaUrl: mediaUrl, userId: userId, mediaFormat: mediaFormat
-})
+        let newCloudinary = await db.media.create({ mediaUrl: mediaUrl, userId: userId, mediaFormat: mediaFormat })
+        res.json(newCloudinary)
     }
     catch (err) {
         return res.status(423).json({ error: "Can't access database" })
