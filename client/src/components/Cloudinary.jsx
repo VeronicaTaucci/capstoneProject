@@ -18,8 +18,8 @@ const Cloudinary = () => {
         cloud_name: 'dc-capstone2022',
         upload_preset: 'test2022'}, (error, result) => {
         if (!error && result && result.event === 'success') {
+            // console.log(result.info)
             console.log(result.info)
-            // console.log(result.info.url)
             // console.log(result.info.format)
             setUrl(result.info.url)
             setMediaFormat(result.info.resource_type)
