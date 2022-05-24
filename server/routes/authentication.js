@@ -44,29 +44,18 @@ router.post('/register', async (req, res) => {
 
     // collect info from header
     //email, password
-
     let { email, password } = req.body;
-
-
     //*determine if email already exists in our db
     try {
-
         //if anything is returned from this query, it means that the user's email already exits
         //in out database
         let records = await db.users.findAll({ where: { email } })
-
         if (records.length === 0) { //no record exits, must create new user record
-
             // encrypt our password
-
             password = bcrypt.hashSync(password, 8)
-
             //create db entry
-
             let newUserRecord = await db.users.create({ email, password }) //user is an object that we just created
             //user => {id, email, password, createdAt, updatedAt}
-
-
             //create jwt
 
 
@@ -77,11 +66,10 @@ router.post('/register', async (req, res) => {
 
             //return our jwt
 
-            return res.json({ token: jwtToken, userId: userId})
+            return res.json({ token: jwtToken, userId: userId })
         }
         else {
             //user's email already exists in our db, so send back an error message to react
-
             return res.status(422).json({ error: "Email already exists" })
         }
 
@@ -93,14 +81,17 @@ router.post('/register', async (req, res) => {
 })
 
 
-router.post('/login', requireLogin, (req, res) => {
-
-    //when they have logged successfully
-    //req.user => set by passport when a user has successfully logged in
-
-
-    res.json({ token: token(req.user) })
-
+router.post('/login',requireLogin, (req, res) => { //add async
+    // try {
+    //     let records = await db.users.findAll({ where: { email } })
+    //     if (records.length === 0) {
+    //         return res.status(422).json({ error: "User doesn't exist in the data base" })
+    //     } else {
+            res.json({ token: token(req.user) })
+    //     }
+    // } catch (err) {
+    //     return res.status(423).json({ error: "Can't access database" })
+    // }
 })
 
 
@@ -121,10 +112,10 @@ router.post('/login', requireLogin, (req, res) => {
 //add comment
 router.post('/comment', async (req, res) => {
     // collect info from header
-    let { comment, userId, userProfileId,mediaFormat } = req.body;
+    let { comment, userId, userProfileId, mediaFormat } = req.body;
     try {
         //create db entry
-        let newComment = await db.media.create({ comment, userId, userProfileId,mediaFormat})
+        let newComment = await db.media.create({ comment, userId, userProfileId, mediaFormat })
     }
     catch (err) {
         return res.status(423).json({ err })
@@ -139,7 +130,7 @@ router.get('/comment', async (req, res) => {
         let allComments = await db.media.findAll()
             .then((results) => {
                 res.send(results)
-        })
+            })
     }
     catch (err) {
         return res.status(423).json({ err })

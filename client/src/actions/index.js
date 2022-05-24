@@ -98,7 +98,6 @@ export const signIn = (formData, cb) => async dispatch =>{
 
     try{
         //make an api call to /login
-
         let response = await axios.post('/login', formData)
 
         console.log("logging in", response.data.token);

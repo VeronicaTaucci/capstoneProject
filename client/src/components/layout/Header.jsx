@@ -1,8 +1,10 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
-
+import NavbarComponent from './Navbar'
 const Header = () => {
   return (
+    <>
+      <NavbarComponent />
     <ul>
       <li> <Link to='/signout'>Sign Out</Link></li>
       <li> <Link to='/signin'>Sign In</Link></li>
@@ -12,6 +14,7 @@ const Header = () => {
         <li> <Link to='/album'>Album Title</Link></li>
         <li> <Link to='/comment'>Comment</Link></li>
     </ul>
+    </>
   )
 }
 

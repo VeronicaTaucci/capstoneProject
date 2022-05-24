@@ -1,0 +1,9 @@
+.signInForm{
+    width: 35vw;
+    margin: auto;
+    font-size: 1.5rem
+}
+
+.form-control{
+    height: 55px;
+}
