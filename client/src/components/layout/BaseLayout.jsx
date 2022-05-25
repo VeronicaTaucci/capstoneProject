@@ -1,16 +1,19 @@
 import React from 'react'
-import Home from '../Home'
+import Signin from '../auth/Signin'
+import Footer from './Footer'
 import Header from './Header'
+import NavbarComponent from './Navbar'
 
 
 const BaseLayout = (props) => {
   return (
     <>
+      {/* <Signin/> */}
+      {/* <NavbarComponent />
         <Header />
-        <Home />
-
-        Footer Information
-
+      <Footer/> */}
+       {props.children}
+       
     </>
   )
 }
