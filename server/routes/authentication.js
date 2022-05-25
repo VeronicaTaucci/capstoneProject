@@ -9,10 +9,8 @@ const secrets = require('../secrets'); // secrets object inside of secrets.js fi
 const passport = require('passport');
 // const { SELECT } = require("sequelize/types/query-types");
 // const { NOEXPAND } = require("sequelize/types/table-hints");
-
 //must initialize passport for it to work
 router.use(passport.initialize());
-
 //import all of the passAuth code from ../auth/passAuth.js file
 require('../auth/passAuth');
 
@@ -32,12 +30,21 @@ const token = (userRecord) => {
 
 
 // console.log(token({id: 1}))
-
 router.get('/', (req, res) => {
-
     res.send('home page')
 })
 
+
+//! delete media
+// router.post('/delete', async (req, res) => {
+//     // console.log(req.body)
+//     let { id } = req.body
+//     try {
+//         db.deleteAll({ where: id = media.id})
+//     } catch (err) {
+//         console.log(err)
+//     }
+// })
 //when react sends us info from form, and we send back a JWT to be saved on the client side -
 //because token is what authenticates the user and persists their login.
 router.post('/register', async (req, res) => {
@@ -57,22 +64,16 @@ router.post('/register', async (req, res) => {
             let newUserRecord = await db.users.create({ email, password }) //user is an object that we just created
             //user => {id, email, password, createdAt, updatedAt}
             //create jwt
-
-
             let jwtTokenObj = token(newUserRecord)
             let jwtToken = jwtTokenObj.JWT
             let userId = jwtTokenObj.UserId
-
-
             //return our jwt
-
             return res.json({ token: jwtToken, userId: userId })
         }
         else {
             //user's email already exists in our db, so send back an error message to react
             return res.status(422).json({ error: "Email already exists" })
         }
-
     }
     catch (err) {
         return res.status(423).json({ error: "Can't access database" })
@@ -81,17 +82,8 @@ router.post('/register', async (req, res) => {
 })
 
 
-router.post('/login',requireLogin, (req, res) => { //add async
-    // try {
-    //     let records = await db.users.findAll({ where: { email } })
-    //     if (records.length === 0) {
-    //         return res.status(422).json({ error: "User doesn't exist in the data base" })
-    //     } else {
+router.post('/login',requireLogin, (req, res) => { 
             res.json({ token: token(req.user) })
-    //     }
-    // } catch (err) {
-    //     return res.status(423).json({ error: "Can't access database" })
-    // }
 })
 
 
@@ -112,10 +104,10 @@ router.post('/login',requireLogin, (req, res) => { //add async
 //add comment
 router.post('/comment', async (req, res) => {
     // collect info from header
-    let { comment, userId, userProfileId, mediaFormat } = req.body;
+    let { comment, userId,  mediaFormat } = req.body;
     try {
         //create db entry
-        let newComment = await db.media.create({ comment, userId, userProfileId, mediaFormat })
+        let newComment = await db.media.create({ comment, userId, mediaFormat })
     }
     catch (err) {
         return res.status(423).json({ err })

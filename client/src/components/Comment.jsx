@@ -8,7 +8,6 @@ import Accordion from 'react-bootstrap/Accordion'
 const Comment = () => {
     const [comment, setComment] = useState("")
     const userId = useSelector(state => state.userId)
-    const userProfileId = 4;
     const dispatch = useDispatch();
 
 
@@ -17,7 +16,7 @@ const Comment = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        dispatch(addComment({ comment: comment, userId: userId, userProfileId: userProfileId, mediaFormat: "text" }, () => {
+        dispatch(addComment({ comment: comment, userId: userId, mediaFormat: "text" }, () => {
             navigate('/')
         }))
     }

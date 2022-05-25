@@ -3,15 +3,15 @@ import { AiOutlineZoomIn } from 'react-icons/ai';
 import Modal from 'react-bootstrap/Modal'
 import Button from 'react-bootstrap/Button'
 const PictureModal = (pictureLink) => {
-    // console.log("pictureLink",pictureLink)
     const [show, setShow] = useState(false);
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
-
+    
     return (
         <>
-            <Button variant="outline-primary"><AiOutlineZoomIn size={30}onClick={handleShow} /></Button> 
+            <Button variant="outline-primary"><AiOutlineZoomIn size={30} onClick={handleShow} /></Button> 
+             
             
 
             <Modal show={show} onHide={handleClose} animation={false} size="lg"

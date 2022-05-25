@@ -15,13 +15,6 @@ module.exports = {
           key: 'id'
         }
       },
-      userProfileId: {
-        type: Sequelize.INTEGER,
-        references: {
-          model: 'users',
-          key: 'id'
-        }
-      },
       comment: {
         type: Sequelize.STRING
       },
