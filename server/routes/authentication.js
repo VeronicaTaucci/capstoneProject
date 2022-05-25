@@ -140,11 +140,11 @@ router.get('/comment', async (req, res) => {
 
 //! add cloudinary media
 router.post('/media', async (req, res) => {
-    let { mediaUrl, userId, mediaFormat} = req.body;
+    let { mediaUrl, mediaFormat,  userId } = req.body;
     try {
         //create db entry
-        let newCloudinary = await db.media.create({ mediaUrl: mediaUrl, userId: userId, mediaFormat: mediaFormat })
-        res.json(newCloudinary)
+        let newCloud = await db.media.create({ mediaUrl: mediaUrl, userId: userId, mediaFormat: mediaFormat })
+        res.json(newCloud)
     }
     catch (err) {
         return res.status(423).json({ error: "Can't access database" })

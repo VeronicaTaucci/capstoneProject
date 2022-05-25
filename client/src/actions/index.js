@@ -7,7 +7,7 @@ export const addComment = (formData) => async dispatch => { //this is thunk, fun
     try {
         //make api call to backend
         let response = await axios.post('/comment',formData)
-        console.log("add comment in index.js", response)
+        // console.log("add comment in index.js", response)
         dispatch({
             type: actionTypes.ADD_MEDIA,
             data: {
@@ -36,7 +36,7 @@ export const addComment = (formData) => async dispatch => { //this is thunk, fun
 
 export const mediaUpload = (mediaData) => async dispatch => {
     try {
-        let response = await axios.post('/media', mediaData)
+        // let response = await axios.post('/media', mediaData)
         // console.log("src/actions/index.js 27", response)
         dispatch({
             type: actionTypes.ADD_OTHER_MEDIA,
