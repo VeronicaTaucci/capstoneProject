@@ -1,14 +1,14 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useSelector } from 'react-redux'
-import { mediaUpload } from '../actions/index'
-import { useDispatch } from 'react-redux'
 import Button from 'react-bootstrap/Button'
+import axios from 'axios'
 
-const Cloudinary = () => {
-    const dispatch = useDispatch()
-    const [ url, setUrl ] = useState("");
-    const [mediaFormat, setMediaFormat ] = useState("");
+const Cloudinary = (props) => {
+    const { triggerDisplay, setTriggerDisplay } = props;
+    const [url, setUrl] = useState("");
+    const [mediaFormat, setMediaFormat] = useState("");
     const userId = useSelector(state => state.userId)
+    const [mediaUpload, setMediaUpload] = useState(false)
 
     const showWidget = (widget) => {
         widget.open()
@@ -16,28 +16,35 @@ const Cloudinary = () => {
 
     let widget = window.cloudinary.createUploadWidget({
         cloud_name: 'dc-capstone2022',
-        upload_preset: 'test2022'}, (error, result) => {
+        upload_preset: 'test2022'
+    }, async (error, result) => {
         if (!error && result && result.event === 'success') {
-            // console.log(result.info)
-            console.log(result.info)
-            // console.log(result.info.format)
             setUrl(result.info.url)
+            console.log(result)
             setMediaFormat(result.info.resource_type)
+            setMediaUpload(true)
+        } else {
+            if (error) {
+                console.log('error', error)
+            }
+        }
+        });
+    useEffect(() => {
+        console.log("useEffect loaded")
+        if (mediaUpload) {
+            console.log("media upload fired");
             let mediaData = {
-                mediaUrl: url,
                 mediaFormat: mediaFormat,
+                mediaUrl: url,
                 userId: userId,
             }
-            dispatch(mediaUpload(mediaData))}
-            else{
-                if(error){
-                    console.log('error', error)
-                }
-                else{
-
-                }
-            }
-        });
+            console.log("mediaData", mediaData);
+            const response =  axios.post('/media', mediaData)
+            console.log("response", response);
+            setMediaUpload(false)
+            setTriggerDisplay(true)
+        }else return
+        }, [mediaUpload])
 
     return (
         <>

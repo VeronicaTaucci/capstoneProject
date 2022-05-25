@@ -26,7 +26,7 @@ const Comment = () => {
             <form onSubmit={handleSubmit}>
                 <Accordion defaultActiveKey="1">
                     <Accordion.Item eventKey="0">
-                        <Accordion.Header>Click to Add A Comment</Accordion.Header>
+                        <Accordion.Header>Click to Add A Message</Accordion.Header>
                         <Accordion.Body>
                             <input type="text" value={comment} onChange={(e) => setComment(e.target.value)} />
                             <div className="form__field">
