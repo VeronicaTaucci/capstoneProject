@@ -25,10 +25,8 @@ const DisplayMedia = (props) => {
             } catch (error) {
                 console.log(error)
             }
-            
         }
         getData()
-        
     }, [triggerDisplay])
     
         // const handleDelete = (media) => {
@@ -58,6 +56,7 @@ const DisplayMedia = (props) => {
                                     <>
                                         {/* <li key={media.id}>{media.comment}</li> */}
                                         <ListGroup.Item className="commentLi">{media.comment}</ListGroup.Item>
+                                        <ListGroup.Item className="commentLi">{media.comment}</ListGroup.Item>
                                     </>
                                 )
                             case 'image':
@@ -75,9 +74,7 @@ const DisplayMedia = (props) => {
                             case 'audio':
                                 return (
                                     <>
-
                                         <ListGroup.Item className="commentLi"><figure> <audio className="audio" controls src={media.mediaUrl}> Your browser does not support the <code>audio</code> element. </audio> </figure></ListGroup.Item>
-
                                     </>)
                             default:
                                 break;

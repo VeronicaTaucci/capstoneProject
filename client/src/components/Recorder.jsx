@@ -9,15 +9,18 @@ import ProgressBar from 'react-bootstrap/ProgressBar'
 import Alert from 'react-bootstrap/Alert'
 
 //Calling the function (You can call it normally then)
-const Recorder = () => {
+const Recorder = (props) => {
+
+    const { triggerDisplay, setTriggerDisplay } = props;
 
     const [recording, setRecording] = useState("")
     const [clipName, setClipName] = useState("");
     const [isLoading, setIsLoading] = useState(false)
     const [progressPercent, setProgressPercent] = useState(0)
+    const [recordingURL, setRecordingURL] = useState()
 
     const userId = useSelector(state => state.userId)
-    const [recordingURL, setRecordingURL] = useState()
+
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
@@ -213,6 +216,7 @@ const Recorder = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         setIsLoading(true);
+        setTriggerDisplay(true);
         // handleClose();
         console.log('audioFile', recording)
         if (!recording) return;
