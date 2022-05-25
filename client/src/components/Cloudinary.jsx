@@ -2,17 +2,17 @@ import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
 import { mediaUpload } from '../actions/index'
 import { useDispatch } from 'react-redux'
+import Button from 'react-bootstrap/Button'
+
 const Cloudinary = () => {
     const dispatch = useDispatch()
     const [ url, setUrl ] = useState("");
     const [mediaFormat, setMediaFormat ] = useState("");
     const userId = useSelector(state => state.userId)
 
-
     const showWidget = (widget) => {
         widget.open()
     }
-
 
     let widget = window.cloudinary.createUploadWidget({
         cloud_name: 'dc-capstone2022',
@@ -41,9 +41,9 @@ const Cloudinary = () => {
 
     return (
         <>
-            <div id='media upload'>
-                <button onClick={() => showWidget(widget)}>Upload Media</button>
-            </div>
+            <Button variant="primary" onClick={() => showWidget(widget)}>
+                Upload Media
+            </Button>
         </>
     )
 }

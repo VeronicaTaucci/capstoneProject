@@ -5,7 +5,7 @@ const initialState = {
     error: "",
     comments: "",
     media:""
-    
+
 }
 
 const reducerTemplate = (state = initialState, action) => {
@@ -33,11 +33,10 @@ const reducerTemplate = (state = initialState, action) => {
                 comments:newComment
             }
         case actionTypes.ADD_OTHER_MEDIA: //this is for pics or videos (cloudinary)
-            let newMedia = [...state.media, action.data.data.mediaData]
-            console.log ("src/reducer 6" ,action.data)
+            let newMedia = [action.data.mediaData]
+            console.log ("src/reducer 6", action.data)
             console.log("newMedia", newMedia)
             return {
-                ...state,
                 media: newMedia
             }
         default:

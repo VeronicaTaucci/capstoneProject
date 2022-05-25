@@ -37,7 +37,7 @@ export const addComment = (formData) => async dispatch => { //this is thunk, fun
 export const mediaUpload = (mediaData) => async dispatch => {
     try {
         let response = await axios.post('/media', mediaData)
-        // console.log("src/actions/index.js 27", response)
+        console.log("src/actions/index.js 27", response)
         dispatch({
             type: actionTypes.ADD_OTHER_MEDIA,
             data: {
@@ -45,7 +45,7 @@ export const mediaUpload = (mediaData) => async dispatch => {
             }
         })
     } catch (error) {
-        console.log( error)
+        console.log(error)
     }
 }
 
