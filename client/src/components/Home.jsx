@@ -20,10 +20,10 @@ const Home = () => {
   return (
     <>
         <Container>
-        <Row>
-          <Col xs lg="2" className='justify-content-center'>
+        <Row className='m-5'>
+          <Col xs lg="2" className='justify-content-center m-3'>
             <img src='../../profileplaceholder.jpeg'/><br/>
-            The Animal Lady
+            <h5>The Animal Lady</h5>
           </Col>
           <Col xs lg="2">
             <Cloudinary/><br/>
