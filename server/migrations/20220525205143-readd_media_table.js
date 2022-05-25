@@ -1,7 +1,14 @@
 'use strict';
+
 module.exports = {
-  async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('media', {
+  async up (queryInterface, Sequelize) {
+    /**
+     * Add altering commands here.
+     *
+     * Example:
+     * await queryInterface.createTable('users', { id: Sequelize.INTEGER });
+     */
+    await queryInterface.createTable('Media', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -18,10 +25,10 @@ module.exports = {
       comment: {
         type: Sequelize.STRING
       },
-      video: {
+      mediaUrl: {
         type: Sequelize.STRING
       },
-      recording: {
+      mediaFormat: {
         type: Sequelize.STRING
       },
       createdAt: {
@@ -33,8 +40,14 @@ module.exports = {
         type: Sequelize.DATE
       }
     });
-  },
-  async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('media');
+  }, 
+
+  async down (queryInterface, Sequelize) {
+    /**
+     * Add reverting commands here.
+     *
+     * Example:
+     * await queryInterface.dropTable('users');
+     */
   }
 };
