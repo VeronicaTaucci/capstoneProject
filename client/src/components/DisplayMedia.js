@@ -1,8 +1,11 @@
-import { useDispatch, useSelector } from "react-redux"
 import React, { useState, useEffect } from "react"
 import axios from 'axios'
-
-const DisplayMedia = () => {
+import "./styles/displayMedia.css"
+import Card from 'react-bootstrap/Card'
+import ListGroup from 'react-bootstrap/ListGroup'
+import PictureModal from "./PictureModal"
+const DisplayMedia = (props) => {
+    const { triggerDisplay, setTriggerDisplay } = props;
     const [media, setMedia] = useState([]);
 
     useEffect(() => {
@@ -12,6 +15,7 @@ const DisplayMedia = () => {
                 let result = response.data
                 console.log(result)
                 setMedia(result)
+                setTriggerDisplay(false)
                 return result
             } catch (error) {
                 console.log(error)
@@ -20,41 +24,50 @@ const DisplayMedia = () => {
         }
         getData()
 
-    },[])
+    }, [triggerDisplay])
 
 
 
 
     return (
         <>
-            <div>
-
+            <div >
                 Media display:
-                <ul>
+                <ul className="display">
                     {media.map((media) => {
                         switch (media.mediaFormat) {
                             case 'text':
-                                return <li key={media.id}>{media.comment}</li>
+                                return (
+                                    <>
+                                        {/* <li key={media.id}>{media.comment}</li> */}
+                                        <ListGroup.Item className="commentLi">{media.comment}</ListGroup.Item>
+                                    </>
+                                )
                             case 'image':
-                                return <img key={media.id} src={media.mediaUrl} width='200px'></img>
+                                return (
+                                    <>
+                                        {/* <img key={media.id} src={media.mediaUrl} width='200px'></img> */}
+                                        <Card className="imgCard" >
+                                            <Card.Body >
+                                            <Card.Img  variant="top" src={media.mediaUrl} /> 
+                                                <PictureModal pictureLink={media.mediaUrl} />
+                                            </Card.Body>
+                                        </Card>
+                                    </>)
                             case 'audio':
-                                return <figure>
-                                    <figcaption>{media.createdAt}</figcaption> <audio controls src={media.mediaUrl}> Your browser does not support the <code>audio</code> element. </audio> </figure>
+                                return (
+                                    <>
+                                        
+                                        <ListGroup.Item className="commentLi"><figure> <audio className="audio" controls src={media.mediaUrl}> Your browser does not support the <code>audio</code> element. </audio> </figure></ListGroup.Item>
+
+                                    </>)
                             default:
                                 break;
                         }
-                        // return (
-                        //     <>
-                        //          {/* <li key={comment.id}>{comment.comment}</li>
-
-                        //         <li key={comment.id}>{comment.mediaUrl}</li>  */}
-                        //     </>
-                        // )
-                })}
-
+                    })}
                 </ul>
             </div>
         </>
     )
 }
-    export default DisplayMedia
+export default DisplayMedia
