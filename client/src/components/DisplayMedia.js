@@ -49,7 +49,7 @@ const DisplayMedia = (props) => {
                                         {/* <img key={media.id} src={media.mediaUrl} width='200px'></img> */}
                                         <Card className="imgCard" >
                                             <Card.Body >
-                                            <Card.Img  variant="top" src={media.mediaUrl} /> 
+                                            <Card.Img  variant="top" src={media.mediaUrl} />
                                                 <PictureModal pictureLink={media.mediaUrl} />
                                             </Card.Body>
                                         </Card>
@@ -57,7 +57,7 @@ const DisplayMedia = (props) => {
                             case 'audio':
                                 return (
                                     <>
-                                        
+
                                         <ListGroup.Item className="commentLi"><figure> <audio className="audio" controls src={media.mediaUrl}> Your browser does not support the <code>audio</code> element. </audio> </figure></ListGroup.Item>
 
                                     </>)

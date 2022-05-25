@@ -45,7 +45,7 @@ export const mediaUpload = (mediaData) => async dispatch => {
             }
         })
     } catch (error) {
-        console.log( error)
+        console.log(error)
     }
 }
 

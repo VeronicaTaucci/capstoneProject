@@ -3,6 +3,7 @@ import {Link} from 'react-router-dom'
 import Signin from '../auth/Signin'
 import Footer from './Footer'
 import NavbarComponent from './Navbar'
+
 const Header = () => {
   return (
     <>

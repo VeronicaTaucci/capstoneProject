@@ -6,6 +6,7 @@ import { storage } from '../firebase/firebase';
 import { ref, getDownloadURL, uploadBytesResumable } from "firebase/storage";
 import axios from 'axios'
 import ProgressBar from 'react-bootstrap/ProgressBar'
+import Alert from 'react-bootstrap/Alert'
 
 //Calling the function (You can call it normally then)
 const Recorder = () => {
@@ -212,6 +213,7 @@ const Recorder = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         setIsLoading(true);
+        // handleClose();
         console.log('audioFile', recording)
         if (!recording) return;
 
@@ -239,8 +241,6 @@ const Recorder = () => {
             }
         )
 
-
-
     }
 
     return (
@@ -250,19 +250,21 @@ const Recorder = () => {
                     <canvas className="visualizer" height="60vh"></canvas>
                     <div id="buttons">
                         <button className="record">Record</button>
-                        <button className="stop">Stop</button>
+                        <button className="stop">Stop</button><br/>
+                        <section className="sound-clips"></section><br/>
                         <button className='submit'>Submit Audio</button>
                     </div>
                 </section>
             </form>
 
-            <section className="sound-clips"></section>
-
-            {isLoading ? (<ProgressBar now={progressPercent} label={`${progressPercent}%`} />) : null}
+            {/* {isLoading ? (<ProgressBar now={progressPercent} label={`${progressPercent}%`} />) : null} */}
 
             <audio src={recordingURL}>
             </audio>
 
+            {/* <Alert variant='success'>
+                Success!
+            </Alert> */}
         </>
     )
 }

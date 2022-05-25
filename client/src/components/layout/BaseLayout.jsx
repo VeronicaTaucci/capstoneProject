@@ -4,7 +4,6 @@ import Footer from './Footer'
 import Header from './Header'
 import NavbarComponent from './Navbar'
 
-
 const BaseLayout = (props) => {
   return (
     <>
@@ -13,7 +12,7 @@ const BaseLayout = (props) => {
         <Header />
       <Footer/> */}
        {props.children}
-       
+
     </>
   )
 }

@@ -149,7 +149,6 @@ router.post('/media', async (req, res) => {
     catch (err) {
         return res.status(423).json({ error: "Can't access database" })
     }
-
 })
 
 router.post('/recorder', async (req, res) => {

@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { useSelector } from 'react-redux'
+import Button from 'react-bootstrap/Button'
 import axios from 'axios'
+
 const Cloudinary = (props) => {
     const { triggerDisplay, setTriggerDisplay } = props;
     const [url, setUrl] = useState("");
@@ -11,7 +13,6 @@ const Cloudinary = (props) => {
     const showWidget = (widget) => {
         widget.open()
     }
-
 
     let widget = window.cloudinary.createUploadWidget({
         cloud_name: 'dc-capstone2022',
@@ -44,12 +45,12 @@ const Cloudinary = (props) => {
             setTriggerDisplay(true)
         }else return
         }, [mediaUpload])
-        
+
     return (
         <>
-            <div id='media upload'>
-                <button onClick={() => showWidget(widget)}>Upload Media</button>
-            </div>
+            <Button variant="primary" onClick={() => showWidget(widget)}>
+                Upload Media
+            </Button>
         </>
     )
 }
