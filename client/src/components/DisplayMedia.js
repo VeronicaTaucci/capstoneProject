@@ -21,11 +21,7 @@ const DisplayMedia = (props) => {
             try {
                 let response = await axios.get('/comment')
                 let result = response.data
-<<<<<<< HEAD
-                console.log(result[0].createdAt)
-=======
                 // console.log(result)
->>>>>>> main
                 setMedia(result)
                 setTriggerDisplay(false)
                 return result
