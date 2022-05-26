@@ -5,12 +5,13 @@ import Card from 'react-bootstrap/Card'
 import ListGroup from 'react-bootstrap/ListGroup'
 import PictureModal from "./PictureModal"
 import { RiDeleteBin2Line } from 'react-icons/ri';
+import { GrFavorite } from 'react-icons/gr';
 import Button from 'react-bootstrap/Button'
 
 const DisplayMedia = (props) => {
     const { triggerDisplay, setTriggerDisplay } = props;
     const [media, setMedia] = useState([]);
-
+    const [changeFavouriteColor, setChangeFavouriteColor] = useState("outline-danger")
     
     
     useEffect(() => {
@@ -38,7 +39,16 @@ const DisplayMedia = (props) => {
                     console.log(err)
                 }
         }
-
+    const handleFavourite = (media) => {
+        console.log(media)
+        if (changeFavouriteColor === "outline-danger") {
+            setChangeFavouriteColor("outline-warning")
+            axios.post('/favourite', (media, "true"))
+        } else if (changeFavouriteColor === "outline-warning"){
+            setChangeFavouriteColor("outline-danger")
+            axios.post('/favourite', (media, "false"))
+        }
+        }
 
 
 
@@ -53,7 +63,11 @@ const DisplayMedia = (props) => {
                                 return (
                                     <>
                                         {/* <li key={media.id}>{media.comment}</li> */}
-                                        <ListGroup.Item className="commentLi"><Button variant="outline-danger" onClick={() => handleDelete(media)} ><RiDeleteBin2Line  size={30}/></Button>{media.comment} </ListGroup.Item>
+                                        <ListGroup.Item className="commentLi">
+                                            <Button variant="outline-danger" onClick={() => handleDelete(media)} >
+                                                <RiDeleteBin2Line size={30} /></Button>
+                                            <Button variant={changeFavouriteColor} onClick={()=> handleFavourite(media)}>
+                                                <GrFavorite size={30} /></Button>{media.comment} </ListGroup.Item>
                                        
                                     </>
                                 )

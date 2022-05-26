@@ -47,6 +47,14 @@ router.post('/delete', async (req, res) => {
         console.log(err)
     }
 })
+
+//! add/delete from favourites
+router.post('/favourite', async (req, res) => {
+    let response = req.body
+    console.log(response)
+
+})
+
 //when react sends us info from form, and we send back a JWT to be saved on the client side -
 //because token is what authenticates the user and persists their login.
 router.post('/register', async (req, res) => {
