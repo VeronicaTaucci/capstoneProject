@@ -8,6 +8,7 @@ import Form from 'react-bootstrap/Form'
 import "../styles/signInPage.css"
 const Signup = () => {
 
+    const [name, setName] = useState("")
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
 
@@ -16,51 +17,27 @@ const Signup = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        //dispatch an action 
+        //dispatch an action
         //action is going to make the api call
 
         //signUp(1, 2)
-        dispatch(signUp({ email, password }, () => {
+        dispatch(signUp({ name, email, password }, () => {
             navigate('/')
         }))
     }
     return (
-        // <div className="mt-5">
-        //     <div className="grid align__item">
-        //         <div className="register">
-        //             <h2>Sign Up</h2>
-        //             <form onSubmit={handleSubmit} className="form">
-        //                 <div className="form__field">
-        //                     <input type="email" value={email}
-        //                         onChange={e => setEmail(e.target.value)}
-        //                         placeholder="enter email address" />
-        //                 </div>
-        //                 <div className="form__field">
-        //                     <input type="password"
-        //                         onChange={e => setPassword(e.target.value)}
-        //                         value={password} placeholder="enter password" />
-        //                 </div>
-
-        //                 <div className="form__field">
-        //                     <input type="submit" value="Sign Up" />
-        //                 </div>
-
-        //             </form>
-
-        //             <p>Already have an account? <Link to="/signin">Log in</Link></p>
-
-        //         </div>
-
-        //     </div>
-
-        // </div>
 
         <Form className="signInForm"
             onSubmit={handleSubmit}>
+            <Form.Group className="mb-3" controlId="name">
+                <Form.Label>Name</Form.Label>
+                <Form.Control className="form-control" type="name" value={name}
+            onChange={e => setName(e.target.value)} placeholder="Enter Name" />
+            </Form.Group>
             <Form.Group className="mb-3" controlId="formBasicEmail">
                 <Form.Label>Email address</Form.Label>
                 <Form.Control className="form-control" type="email" value={email}
-        onChange={e => setEmail(e.target.value)} placeholder="Enter email" />
+            onChange={e => setEmail(e.target.value)} placeholder="Enter Email" />
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="formBasicPassword">
@@ -72,7 +49,7 @@ const Signup = () => {
             </Button>
             <p>Already have an account? <Link to="/signin">Log in</Link></p>
         </Form>
-    
+
     );
 };
 

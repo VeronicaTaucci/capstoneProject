@@ -29,6 +29,7 @@ const Cloudinary = (props) => {
             }
         }
         });
+        
     useEffect(() => {
         console.log("useEffect loaded")
         if (mediaUpload) {

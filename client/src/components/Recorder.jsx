@@ -242,9 +242,8 @@ const Recorder = (props) => {
                         console.log('response', response)
                         setRecordingURL(response.data.mediaUrl)
                     })
-            }
-        )
-
+                }
+                )
     }
 
     return (
