@@ -36,14 +36,11 @@ const Home = () => {
                   <img src="https://static.independent.co.uk/2021/07/09/11/newFile-6.jpg?quality=75&width=982&height=726&auto=webp" className="img-fluid" alt=""></img>
                 </div>
 
-                <p className="text-secondary">Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio ex accusantium in a possimus, mollitia aspernatur molestiae harum, doloribus omnis porro dolorem repudiandae saepe id corrupti aliquam maiores magnam. Voluptates!</p>
+                <p className="text-secondary" contenteditable="true">you can change this text if you click on it</p>
               </div>
-              {/*
-            <img src='https://static.independent.co.uk/2021/07/09/11/newFile-6.jpg?quality=75&width=982&height=726&auto=webp'/><br/>
-          The Animal Lady  */}
               <Cloudinary triggerDisplay={triggerDisplay} setTriggerDisplay={setTriggerDisplay} /><br /><br />
               <Button variant="primary" onClick={handleShow}>Record Audio Message</Button><br /><br />
-              <Comments />
+              <Comments triggerDisplay={triggerDisplay} setTriggerDisplay={setTriggerDisplay} />
             </div>
           </Col>
 
@@ -53,7 +50,7 @@ const Home = () => {
             </Modal.Header>
             <Modal.Body>
               Please select 'Record' to start recording a message.  Preview, delete, re-record message (if necessary) and when you are satisfied with the message, click 'Submit Audio'.
-              <Record handleClose={handleClose} triggerDisplay={triggerDisplay} setTriggerDisplay={setTriggerDisplay} />
+              <Recorder handleClose={handleClose} triggerDisplay={triggerDisplay} setTriggerDisplay={setTriggerDisplay}  />
             </Modal.Body>
             <Modal.Footer>
               <Button variant="primary" onClick={handleClose}>
@@ -65,56 +62,6 @@ const Home = () => {
           <Col className='col' xs lg="8">
             <DisplayMedia triggerDisplay={triggerDisplay} setTriggerDisplay={setTriggerDisplay} />
           </Col>
-          {/* <Col className='col' xs lg="2">
-              ALBUMS:
-            <Figure>
-              <Figure.Image
-                width={171}
-                height={180}
-                alt="171x180"
-                src="https://static.independent.co.uk/2021/07/09/11/newFile-6.jpg?quality=75&width=982&height=726&auto=webp"
-              />
-              <Figure.Caption>
-               album name
-              </Figure.Caption>
-            </Figure>
-            <Figure>
-              <Figure.Image
-                width={171}
-                height={180}
-                alt="171x180"
-                src="https://static.independent.co.uk/2021/07/09/11/newFile-6.jpg?quality=75&width=982&height=726&auto=webp"
-              />
-              <Figure.Caption>
-                album name
-              </Figure.Caption>
-            </Figure>
-            <Figure>
-              <Figure.Image
-                width={171}
-                height={180}
-                alt="171x180"
-                src="https://static.independent.co.uk/2021/07/09/11/newFile-6.jpg?quality=75&width=982&height=726&auto=webp"
-              />
-              <Figure.Caption>
-                album name
-              </Figure.Caption>
-            </Figure>
-            <ul>
-              <li>vero</li>
-              <li>violet</li>
-              <li>chloe</li>
-              <li>violet</li>
-              <a href='/'>create new album</a>
-            </ul>
-            display/sort:
-            <ul>
-              <li>pictures</li>
-              <li>recordings</li>
-              <li>comments</li>
-
-            </ul>
-          </Col> */}
         </Row>
       </Container>
 
@@ -123,6 +70,6 @@ const Home = () => {
   )
 }
 
-const Record = () => <Recorder />;
+
 
 export default Home
