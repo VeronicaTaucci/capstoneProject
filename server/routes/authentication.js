@@ -9,8 +9,6 @@ const db = require('../models'); //access to all db models
 const users = require("../models/users");
 const Media = require("../models/media");
 
-// const { SELECT } = require("sequelize/types/query-types");
-// const { NOEXPAND } = require("sequelize/types/table-hints");
 //must initialize passport for it to work
 router.use(passport.initialize());
 //import all of the passAuth code from ../auth/passAuth.js file
@@ -26,15 +24,12 @@ let requireJwt = passport.authenticate('jwt', { session: false })
 const token = (userRecord) => {
     let timestamp = new Date().getTime(); // current time
     return { JWT: jwt.encode({ sub: userRecord.id, iat: timestamp }, secrets.secrets), UserId: userRecord.id }//first argument is the payload, second arg is secret
-
 }
-
 
 // console.log(token({id: 1}))
 router.get('/', (req, res) => {
     res.send('home page')
 })
-
 
 //! delete media
 router.post('/delete', async (req, res) => {
@@ -48,11 +43,21 @@ router.post('/delete', async (req, res) => {
     }
 })
 
+router.post('/deletealbum', async (req, res) => {
+    let album = req.body
+    let id = album.id
+    try {
+        await db.album.destroy( {where: {id:id}})
+    } catch (error) {
+        console.log(error)
+    }
+})
+
+
 //! add/delete from favourites
 router.post('/favourite', async (req, res) => {
     let response = req.body
     console.log(response)
-
 })
 
 //when react sends us info from form, and we send back a JWT to be saved on the client side -
@@ -77,10 +82,6 @@ router.post('/register', async (req, res) => {
             let jwtTokenObj = token(newUserRecord)
             let jwtToken = jwtTokenObj.JWT
             let userId = jwtTokenObj.UserId
-<<<<<<< HEAD
-
-=======
->>>>>>> main
             //return our jwt
             return res.json({ token: jwtToken, userId: userId })
         }
@@ -96,29 +97,16 @@ router.post('/register', async (req, res) => {
 })
 
 
-<<<<<<< HEAD
-router.post('/login', requireLogin, (req, res) => { //add async
-    // try {
-    //     let records = await db.users.findAll({ where: { email } })
-    //     if (records.length === 0) {
-    //         return res.status(422).json({ error: "User doesn't exist in the data base" })
-    //     } else {
-=======
-router.post('/login',requireLogin, (req, res) => { 
->>>>>>> main
+router.post('/login',requireLogin, (req, res) => {
             res.json({ token: token(req.user) })
 })
 
 
 // router.get('/protected', requireJwt, (req, res) => {
-
 //     console.log('passed protected page');
-
 //     res.json({ isValid: true })
 // })
-
 // router.get('/profile/:id', requireJwt, (req, res) => {
-
 // })
 
 
@@ -137,8 +125,6 @@ router.post('/comment', async (req, res) => {
     }
 })
 
-
-
 // display comment
 router.get('/comment', async (req, res) => {
     try {
@@ -153,12 +139,13 @@ router.get('/comment', async (req, res) => {
     catch (err) {
         return res.status(423).json({ err })
     }
-
 })
 
 //! add cloudinary media
 router.post('/media', async (req, res) => {
+
     let { mediaUrl, userId, mediaFormat} = req.body;
+    
     try {
         //create db entry
         let newCloud = await db.Media.create({ mediaUrl: mediaUrl, userId: userId, mediaFormat: mediaFormat })
