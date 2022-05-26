@@ -26,7 +26,6 @@ const Signup = () => {
         }))
     }
     return (
-
         <Form className="signInForm"
             onSubmit={handleSubmit}>
             <Form.Group className="mb-3" controlId="name">
@@ -39,7 +38,6 @@ const Signup = () => {
                 <Form.Control className="form-control" type="email" value={email}
             onChange={e => setEmail(e.target.value)} placeholder="Enter Email" />
             </Form.Group>
-
             <Form.Group className="mb-3" controlId="formBasicPassword">
                 <Form.Label>Password</Form.Label>
                 <Form.Control type="password" onChange={e => setPassword(e.target.value)} value={password} placeholder="Password" />

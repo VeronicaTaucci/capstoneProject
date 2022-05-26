@@ -6,17 +6,26 @@ import "./styles/displayMedia.css"
 import Card from 'react-bootstrap/Card'
 import ListGroup from 'react-bootstrap/ListGroup'
 import PictureModal from "./PictureModal"
+import { RiDeleteBin2Line } from 'react-icons/ri';
+import { GrFavorite } from 'react-icons/gr';
+import Button from 'react-bootstrap/Button'
 
 const DisplayMedia = (props) => {
     const { triggerDisplay, setTriggerDisplay } = props;
     const [media, setMedia] = useState([]);
+    const [changeFavouriteColor, setChangeFavouriteColor] = useState("outline-danger")
+
 
     useEffect(() => {
         let getData = async () => {
             try {
                 let response = await axios.get('/comment')
                 let result = response.data
+<<<<<<< HEAD
                 console.log(result[0].createdAt)
+=======
+                // console.log(result)
+>>>>>>> main
                 setMedia(result)
                 setTriggerDisplay(false)
                 return result
@@ -27,6 +36,25 @@ const DisplayMedia = (props) => {
         getData()
     }, [triggerDisplay])
 
+        const handleDelete = (media) => {
+            console.log(media)
+                try {
+                    axios.post('/delete', media);
+                    setTriggerDisplay(true)
+                } catch (err){
+                    console.log(err)
+                }
+        }
+    const handleFavourite = (media) => {
+        console.log(media)
+        if (changeFavouriteColor === "outline-danger") {
+            setChangeFavouriteColor("outline-warning")
+            axios.post('/favourite', (media, "true"))
+        } else if (changeFavouriteColor === "outline-warning"){
+            setChangeFavouriteColor("outline-danger")
+            axios.post('/favourite', (media, "false"))
+        }
+        }
 
 
 
