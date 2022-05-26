@@ -43,11 +43,10 @@ router.post('/createalbum', async (req, res) => {
 })
 //! get album
 router.get('/getalbum', async (req, res) => {
-    let album = req.body
-    let id = album.id
     try {
-        let getAlbum = await db.albums.findAll({ where: { id: id } })
-        return getAlbum
+        let getAlbum = await db.albums.findAll({})
+        // console.log(getAlbum)
+        res.json(getAlbum)
     } catch (err) {
         console.log(err)
     }

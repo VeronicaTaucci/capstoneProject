@@ -5,7 +5,6 @@ import Signin from './components/auth/Signin';
 import Signout from './components/auth/Signout';
 import Signup from './components/auth/Signup';
 import Albums from './components/Albums';
-import Album from './components/Album';
 import Home from './components/Home';
 import Recorder from './components/Recorder';
 import BaseLayout from './components/layout/BaseLayout';
@@ -51,7 +50,6 @@ ReactDOM.render(
                         <Route path='/signout' element={<Signout />} />
                         <Route path='/signin' element={<Signin />} />
                         <Route path='/albums' element={<Albums />} />
-                        <Route path='/album' element={<Album />} />
                         <Route path='/comment' element={<Comment />} />
                         <Route path='/recorder' element={<Recorder />} />
                     </Routes>
