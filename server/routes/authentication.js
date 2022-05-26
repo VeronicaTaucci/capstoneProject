@@ -43,9 +43,10 @@ router.post('/createalbum', async (req, res) => {
 })
 //! get album
 router.get('/getalbum', async (req, res) => {
+    // let album = req.body
+    // let id = album.id
     try {
-        let getAlbum = await db.albums.findAll({})
-        // console.log(getAlbum)
+        let getAlbum = await db.albums.findAll()
         res.json(getAlbum)
     } catch (err) {
         console.log(err)
@@ -58,19 +59,33 @@ router.post('/updatealbum', async (req, res) => {
         let result = await db.media_albums.findOrCreate({
             where: { mediaId: mediaId, albumId: albumId }
         });
-        console.log(result);
+        // console.log(result);
         res.json(result)
     } catch (error) {
         console.log(error);
         res.json({message: "there was an error", error:error})
     }
- })
+})
+
+//! remove from album
+router.post('/removefromalbum', async (req, res) => {
+    let { mediaId, albumId } = req.body
+    try {
+        let result = await db.media_albums.destroy({
+            where: { mediaId: mediaId, albumId: albumId }
+        });
+        res.json(result)
+    } catch (error) {
+        console.log(error);
+        res.json({message: "there was an error", error:error})
+    }
+})
 
 //! delete media
 router.post('/delete', async (req, res) => {
     let media = req.body //{id:1}
     let id = media.id
-    console.log(id)
+    // console.log(id)
     try {
         await db.Media.destroy( {where: {id:id}})
     } catch (err) {
@@ -167,7 +182,7 @@ router.get('/comment', async (req, res) => {
             include: db.users
         })
             .then((results) => {
-                console.log(results)
+                // console.log(results)
                 res.send(results)
             })
     }

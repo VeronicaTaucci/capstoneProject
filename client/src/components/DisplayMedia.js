@@ -6,6 +6,8 @@ import "./styles/displayMedia.css"
 import Card from 'react-bootstrap/Card'
 import ListGroup from 'react-bootstrap/ListGroup'
 import PictureModal from "./PictureModal"
+import Dropdown from 'react-bootstrap/Dropdown'
+import DropdownButton from 'react-bootstrap/DropdownButton'
 import { RiDeleteBin2Line } from 'react-icons/ri';
 import { GrFavorite } from 'react-icons/gr';
 import Button from 'react-bootstrap/Button'
@@ -13,6 +15,7 @@ import Button from 'react-bootstrap/Button'
 const DisplayMedia = (props) => {
     const { triggerDisplay, setTriggerDisplay } = props;
     const [media, setMedia] = useState([]);
+    const [albums, setAlbums] = useState([])
     const [changeFavouriteColor, setChangeFavouriteColor] = useState("outline-danger")
 
 
@@ -32,31 +35,51 @@ const DisplayMedia = (props) => {
         getData()
     }, [triggerDisplay])
 
-        const handleDelete = (media) => {
-            console.log(media)
-                try {
-                    axios.post('/delete', media);
-                    setTriggerDisplay(true)
-                } catch (err){
-                    console.log(err)
-                }
+    useEffect(() => {
+        const getAlbums = async () => {
+            try {
+                let response = await axios.get('/getalbum')
+                let result = response.data
+                console.log(result)
+                setAlbums(result)
+            } catch (error) {
+                console.log(error)
+            }
         }
-    const handleFavourite = (media) => {
-        console.log(media)
-        if (changeFavouriteColor === "outline-danger") {
-            setChangeFavouriteColor("outline-warning")
-            axios.post('/favourite', (media, "true"))
-        } else if (changeFavouriteColor === "outline-warning"){
-            setChangeFavouriteColor("outline-danger")
-            axios.post('/favourite', (media, "false"))
-        }
-        }
+        getAlbums()
+    }, [])
 
+
+    const handleDelete = (media) => {
+        console.log(media)
+        try {
+            axios.post('/delete', media);
+            setTriggerDisplay(true)
+        } catch (err) {
+            console.log(err)
+        }
+    }
+
+    // const handleFavourite = (media) => {
+    //     console.log(media)
+    //     if (changeFavouriteColor === "outline-danger") {
+    //         setChangeFavouriteColor("outline-warning")
+    //         axios.post('/favourite', (media, "true"))
+    //     } else if (changeFavouriteColor === "outline-warning") {
+    //         setChangeFavouriteColor("outline-danger")
+    //         axios.post('/favourite', (media, "false"))
+    //     }
+    // }
+
+    const handleAddToAlbum = (mediaId, albumId) => {
+        console.log(mediaId, albumId)
+        axios.post('/updatealbum', {mediaId, albumId})
+    }
 
 
     return (
         <>
-            <div >
+            <div className="row">
                 <ul className="display">
                     {media.map((media) => {
                         const date = new Date(media.createdAt);
@@ -68,9 +91,19 @@ const DisplayMedia = (props) => {
                                 return (
                                     <>
                                         <ListGroup.Item className="commentLi">
-                                            {media.comment}<br/><br/>
-                                            Posted by: {media.user.name}<br/>
+                                            {media.comment}<br /><br />
+                                            Posted by: {media.user.name}<br />
                                             Post Date: {finalDt}
+                                            <DropdownButton id="dropdown-basic-button" title="Add to Album...">
+                                            {albums.map((album) => {
+                                                return (
+                                                    <>
+                                                        <Dropdown.Item href="#/action-1" onClick={() => handleAddToAlbum(media.id, album.id)}>{album.name}</Dropdown.Item>
+                                                    </>
+                                                )
+                                            })}
+                                            </DropdownButton>
+
                                         </ListGroup.Item>
                                     </>
                                 )
@@ -79,9 +112,9 @@ const DisplayMedia = (props) => {
                                     <>
                                         <Card className="imgCard" >
                                             <Card.Body >
-                                            <Card.Img  variant="top" src={media.mediaUrl} />
+                                                <Card.Img variant="top" src={media.mediaUrl} />
                                                 <PictureModal pictureLink={media.mediaUrl} />
-                                                Posted by: {media.user.name}<br/>
+                                                Posted by: {media.user.name}<br />
                                                 Post Date: {finalDt}
                                             </Card.Body>
                                         </Card>
@@ -94,7 +127,7 @@ const DisplayMedia = (props) => {
                                                 <audio className="audio" controls src={media.mediaUrl}>
                                                     Your browser does not support the <code>audio</code> element.
                                                 </audio>
-                                                Posted by: {media.user.name}<br/>
+                                                Posted by: {media.user.name}<br />
                                                 Post Date: {finalDt}
                                             </figure></ListGroup.Item>
                                     </>)
