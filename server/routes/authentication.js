@@ -31,9 +31,45 @@ router.get('/', (req, res) => {
     res.send('home page')
 })
 
+
+//! create album
+router.post('/createalbum', async (req, res) => {
+    let {name,description, userId} = req.body
+    try {
+        await db.albums.create({ name, description, userId })
+    } catch (err) {
+        console.log(err)
+    }
+})
+//! get album
+router.get('/getalbum', async (req, res) => {
+    let album = req.body
+    let id = album.id
+    try {
+        let getAlbum = await db.albums.findAll({ where: { id: id } })
+        return getAlbum
+    } catch (err) {
+        console.log(err)
+    }
+})
+ //!update album
+router.post('/updatealbum', async (req, res) => {
+    let { mediaId, albumId } = req.body
+    try {
+        let result = await db.media_albums.findOrCreate({
+            where: { mediaId: mediaId, albumId: albumId }
+        });
+        console.log(result);
+        res.json(result)
+    } catch (error) {
+        console.log(error);
+        res.json({message: "there was an error", error:error})
+    }
+ })
+
 //! delete media
 router.post('/delete', async (req, res) => {
-    let media = req.body
+    let media = req.body //{id:1}
     let id = media.id
     console.log(id)
     try {
@@ -145,7 +181,7 @@ router.get('/comment', async (req, res) => {
 router.post('/media', async (req, res) => {
 
     let { mediaUrl, userId, mediaFormat} = req.body;
-    
+
     try {
         //create db entry
         let newCloud = await db.Media.create({ mediaUrl: mediaUrl, userId: userId, mediaFormat: mediaFormat })

@@ -7,3 +7,4 @@
 # sequelize migration:create --name drop_media_table
 # sequelize migration:create --name readd_media_table
 # sequelize migration:create --name drop_users_table
+# sequelize model:generate --name albums --attributes name:string,userID:integer,description:string
