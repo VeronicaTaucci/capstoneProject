@@ -8,6 +8,7 @@ import Form from 'react-bootstrap/Form'
 import "../styles/signInPage.css"
 const Signup = () => {
 
+    const [name, setName] = useState("")
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
 
@@ -16,17 +17,26 @@ const Signup = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        dispatch(signUp({ email, password }, () => {
+        //dispatch an action
+        //action is going to make the api call
+
+        //signUp(1, 2)
+        dispatch(signUp({ name, email, password }, () => {
             navigate('/')
         }))
     }
     return (
         <Form className="signInForm"
             onSubmit={handleSubmit}>
+            <Form.Group className="mb-3" controlId="name">
+                <Form.Label>Name</Form.Label>
+                <Form.Control className="form-control" type="name" value={name}
+            onChange={e => setName(e.target.value)} placeholder="Enter Name" />
+            </Form.Group>
             <Form.Group className="mb-3" controlId="formBasicEmail">
                 <Form.Label>Email address</Form.Label>
                 <Form.Control className="form-control" type="email" value={email}
-        onChange={e => setEmail(e.target.value)} placeholder="Enter email" />
+            onChange={e => setEmail(e.target.value)} placeholder="Enter Email" />
             </Form.Group>
             <Form.Group className="mb-3" controlId="formBasicPassword">
                 <Form.Label>Password</Form.Label>
@@ -37,7 +47,7 @@ const Signup = () => {
             </Button>
             <p>Already have an account? <Link to="/signin">Log in</Link></p>
         </Form>
-    
+
     );
 };
 

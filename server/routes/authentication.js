@@ -61,7 +61,7 @@ router.post('/register', async (req, res) => {
 
     // collect info from header
     //email, password
-    let { email, password } = req.body;
+    let { name, email, password } = req.body;
     //*determine if email already exists in our db
     try {
         //if anything is returned from this query, it means that the user's email already exits
@@ -71,12 +71,16 @@ router.post('/register', async (req, res) => {
             // encrypt our password
             password = bcrypt.hashSync(password, 8)
             //create db entry
-            let newUserRecord = await db.users.create({ email, password }) //user is an object that we just created
+            let newUserRecord = await db.users.create({ name, email, password }) //user is an object that we just created
             //user => {id, email, password, createdAt, updatedAt}
             //create jwt
             let jwtTokenObj = token(newUserRecord)
             let jwtToken = jwtTokenObj.JWT
             let userId = jwtTokenObj.UserId
+<<<<<<< HEAD
+
+=======
+>>>>>>> main
             //return our jwt
             return res.json({ token: jwtToken, userId: userId })
         }
@@ -92,7 +96,16 @@ router.post('/register', async (req, res) => {
 })
 
 
+<<<<<<< HEAD
+router.post('/login', requireLogin, (req, res) => { //add async
+    // try {
+    //     let records = await db.users.findAll({ where: { email } })
+    //     if (records.length === 0) {
+    //         return res.status(422).json({ error: "User doesn't exist in the data base" })
+    //     } else {
+=======
 router.post('/login',requireLogin, (req, res) => { 
+>>>>>>> main
             res.json({ token: token(req.user) })
 })
 
@@ -145,7 +158,7 @@ router.get('/comment', async (req, res) => {
 
 //! add cloudinary media
 router.post('/media', async (req, res) => {
-    let { mediaUrl, mediaFormat,  userId } = req.body;
+    let { mediaUrl, userId, mediaFormat} = req.body;
     try {
         //create db entry
         let newCloud = await db.Media.create({ mediaUrl: mediaUrl, userId: userId, mediaFormat: mediaFormat })

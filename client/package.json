@@ -6,6 +6,8 @@
   "dependencies": {
     "@cloudinary/react": "^1.4.0",
     "@cloudinary/url-gen": "^1.8.0",
+    "@progress/kendo-date-math": "^1.5.6",
+    "@progress/kendo-licensing": "^1.2.2",
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.2.0",
     "@testing-library/user-event": "^13.5.0",

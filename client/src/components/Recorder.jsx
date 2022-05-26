@@ -12,7 +12,7 @@ import Alert from 'react-bootstrap/Alert'
 const Recorder = (props) => {
 
     const { triggerDisplay, setTriggerDisplay } = props;
-   
+
     const [recording, setRecording] = useState("")
     const [clipName, setClipName] = useState("");
     const [isLoading, setIsLoading] = useState(false)
@@ -243,11 +243,10 @@ const Recorder = (props) => {
                         setRecordingURL(response.data.mediaUrl)
                         setTriggerDisplay(true)
                     })
-            } 
-        )
-        
+                }
+                )
     }
-    
+
 
     return (
         <>
