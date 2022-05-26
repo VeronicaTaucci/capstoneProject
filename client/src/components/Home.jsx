@@ -11,6 +11,7 @@ import Modal from 'react-bootstrap/Modal'
 import Figure from 'react-bootstrap/Figure'
 import Navbar from './layout/Navbar'
 import "./styles/homePage.css"
+import Albums from './Albums'
 const Home = () => {
 
   const [showText, setShowText] = useState(false);
@@ -36,11 +37,12 @@ const Home = () => {
                   <img src="https://static.independent.co.uk/2021/07/09/11/newFile-6.jpg?quality=75&width=982&height=726&auto=webp" className="img-fluid" alt=""></img>
                 </div>
 
-                <p className="text-secondary" contenteditable="true">you can change this text if you click on it</p>
+                <p className="text-secondary" contentEditable="true">you can change this text if you click on it</p>
               </div>
               <Cloudinary triggerDisplay={triggerDisplay} setTriggerDisplay={setTriggerDisplay} /><br /><br />
               <Button variant="primary" onClick={handleShow}>Record Audio Message</Button><br /><br />
               <Comments triggerDisplay={triggerDisplay} setTriggerDisplay={setTriggerDisplay} />
+              <Albums/>
             </div>
           </Col>
 
