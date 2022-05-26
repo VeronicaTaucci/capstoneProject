@@ -36,9 +36,44 @@ router.get('/', (req, res) => {
 })
 
 
+//! create album
+router.post('/createalbum', async (req, res) => {
+    let {name,description, userId} = req.body
+    try {
+        await db.albums.create({ name, description, userId })
+    } catch (err) {
+        console.log(err)
+    }
+})
+//! get album
+router.get('/getalbum', async (req, res) => {
+    let album = req.body
+    let id = album.id
+    try {
+        let getAlbum = await db.albums.findAll({ where: { id: id } })
+        return getAlbum
+    } catch (err) {
+        console.log(err)
+    }
+})
+ //!update album
+router.post('/updatealbum', async (req, res) => {
+    let { mediaId, albumId } = req.body
+    try {
+        let result = await db.media_albums.findOrCreate({
+            where: { mediaId: mediaId, albumId: albumId }
+        });
+        console.log(result);
+        res.json(result)
+    } catch (error) {
+        console.log(error);
+        res.json({message: "there was an error", error:error})
+    }
+ })
+
 //! delete media
 router.post('/delete', async (req, res) => {
-    let media = req.body
+    let media = req.body //{id:1}
     let id = media.id
     console.log(id)
     try {
@@ -77,10 +112,6 @@ router.post('/register', async (req, res) => {
             let jwtTokenObj = token(newUserRecord)
             let jwtToken = jwtTokenObj.JWT
             let userId = jwtTokenObj.UserId
-<<<<<<< HEAD
-
-=======
->>>>>>> main
             //return our jwt
             return res.json({ token: jwtToken, userId: userId })
         }
@@ -96,16 +127,7 @@ router.post('/register', async (req, res) => {
 })
 
 
-<<<<<<< HEAD
-router.post('/login', requireLogin, (req, res) => { //add async
-    // try {
-    //     let records = await db.users.findAll({ where: { email } })
-    //     if (records.length === 0) {
-    //         return res.status(422).json({ error: "User doesn't exist in the data base" })
-    //     } else {
-=======
 router.post('/login',requireLogin, (req, res) => { 
->>>>>>> main
             res.json({ token: token(req.user) })
 })
 
