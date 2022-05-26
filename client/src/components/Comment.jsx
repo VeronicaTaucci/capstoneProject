@@ -5,7 +5,8 @@ import { addComment } from "../actions/index"
 import "./styles/signInPage.css"
 import Accordion from 'react-bootstrap/Accordion'
 
-const Comment = () => {
+const Comment = (props) => {
+    const { triggerDisplay, setTriggerDisplay } = props;
     const [comment, setComment] = useState("")
     const userId = useSelector(state => state.userId)
     const dispatch = useDispatch();
@@ -19,6 +20,7 @@ const Comment = () => {
         dispatch(addComment({ comment: comment, userId: userId, mediaFormat: "text" }, () => {
             navigate('/')
         }))
+        setTriggerDisplay(true)
     }
     return (
         <>

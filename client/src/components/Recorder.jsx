@@ -12,7 +12,7 @@ import Alert from 'react-bootstrap/Alert'
 const Recorder = (props) => {
 
     const { triggerDisplay, setTriggerDisplay } = props;
-
+   
     const [recording, setRecording] = useState("")
     const [clipName, setClipName] = useState("");
     const [isLoading, setIsLoading] = useState(false)
@@ -23,6 +23,7 @@ const Recorder = (props) => {
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
+
 
     useEffect(() => {
 
@@ -216,7 +217,6 @@ const Recorder = (props) => {
     const handleSubmit = (e) => {
         e.preventDefault();
         setIsLoading(true);
-        setTriggerDisplay(true);
         // handleClose();
         console.log('audioFile', recording)
         if (!recording) return;
@@ -241,11 +241,13 @@ const Recorder = (props) => {
                         let response = await axios.post('/recorder',formData)
                         console.log('response', response)
                         setRecordingURL(response.data.mediaUrl)
+                        setTriggerDisplay(true)
                     })
-            }
+            } 
         )
-
+        
     }
+    
 
     return (
         <>
@@ -256,7 +258,7 @@ const Recorder = (props) => {
                         <button className="record">Record</button>
                         <button className="stop">Stop</button><br/>
                         <section className="sound-clips"></section><br/>
-                        <button className='submit'>Submit Audio</button>
+                        <button className='submit' >Submit Audio</button>
                     </div>
                 </section>
             </form>

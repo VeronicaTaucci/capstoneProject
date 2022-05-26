@@ -37,15 +37,16 @@ router.get('/', (req, res) => {
 
 
 //! delete media
-// router.post('/delete', async (req, res) => {
-//     // console.log(req.body)
-//     let { id } = req.body
-//     try {
-//         db.deleteAll({ where: id = media.id})
-//     } catch (err) {
-//         console.log(err)
-//     }
-// })
+router.post('/delete', async (req, res) => {
+    let media = req.body
+    let id = media.id
+    console.log(id)
+    try {
+        await db.Media.destroy( {where: {id:id}})
+    } catch (err) {
+        console.log(err)
+    }
+})
 //when react sends us info from form, and we send back a JWT to be saved on the client side -
 //because token is what authenticates the user and persists their login.
 router.post('/register', async (req, res) => {

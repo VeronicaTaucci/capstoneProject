@@ -29,17 +29,15 @@ const DisplayMedia = (props) => {
         getData()
     }, [triggerDisplay])
     
-        // const handleDelete = (media) => {
-        //     // console.log(media)
-        //     let deleteData = async () => {
-        //         try {
-        //             let response = await axios.post('/delete',media)
-        //         } catch (err){
-        //             console.log(err)
-        //         }
-        //     }
-        //     deleteData()
-        // }
+        const handleDelete = (media) => {
+            console.log(media)
+                try {
+                    axios.post('/delete', media);
+                    setTriggerDisplay(true)
+                } catch (err){
+                    console.log(err)
+                }
+        }
 
 
 
@@ -55,8 +53,8 @@ const DisplayMedia = (props) => {
                                 return (
                                     <>
                                         {/* <li key={media.id}>{media.comment}</li> */}
-                                        <ListGroup.Item className="commentLi">{media.comment}</ListGroup.Item>
-                                        <ListGroup.Item className="commentLi">{media.comment}</ListGroup.Item>
+                                        <ListGroup.Item className="commentLi"><Button variant="outline-danger" onClick={() => handleDelete(media)} ><RiDeleteBin2Line  size={30}/></Button>{media.comment} </ListGroup.Item>
+                                       
                                     </>
                                 )
                             case 'image':
@@ -67,14 +65,14 @@ const DisplayMedia = (props) => {
                                             <Card.Body >
                                             <Card.Img  variant="top" src={media.mediaUrl} />
                                                 <PictureModal pictureLink={media.mediaUrl} />
-                                            <Button variant="outline-danger"  ><RiDeleteBin2Line size={30} /></Button>
+                                                <Button variant="outline-danger" onClick={()=> handleDelete(media)}><RiDeleteBin2Line size={30} /></Button>
                                             </Card.Body>
                                         </Card>
                                     </>)
                             case 'audio':
                                 return (
                                     <>
-                                        <ListGroup.Item className="commentLi"><figure> <audio className="audio" controls src={media.mediaUrl}> Your browser does not support the <code>audio</code> element. </audio> </figure></ListGroup.Item>
+                                        <ListGroup.Item className="commentLi"><figure> <audio className="audio" controls src={media.mediaUrl}> Your browser does not support the <code>audio</code> element. </audio> {media.comment}<Button variant="outline-danger" onClick={() => handleDelete(media)}><RiDeleteBin2Line size={30} /></Button></figure></ListGroup.Item>
                                     </>)
                             default:
                                 break;
