@@ -4,10 +4,16 @@
     flex-wrap: wrap;
 }
 .audio{
-    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* display: block; */
     margin: 0 auto;
 }
 .imgCard{
+    display: flex;
+    align-items: center;
+    justify-content: center;
     margin: 20px;
     box-shadow: 0px 0px 10px 0px #003459 ;
     width: 330px;
@@ -16,6 +22,9 @@
 }
 
 .commentLi{
+        display: flex;
+        align-items: center;
+        justify-content: center;
         margin: 20px;
         box-shadow: 0px 0px 5px 0px #003459;
         width: 330px;
