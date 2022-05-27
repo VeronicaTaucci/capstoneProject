@@ -2,6 +2,7 @@ import axios from "axios"
 import React, { useState } from "react"
 import { useSelector } from 'react-redux'
 import Accordion from 'react-bootstrap/Accordion'
+import DisplayAlbums from "./DisplayAlbums"
 
 const CreateAlbum = (props) => {
     const [name, setName] = useState()
@@ -34,6 +35,7 @@ const CreateAlbum = (props) => {
                             placeholder="album description" onChange={(e) => setDescription(e.target.value)} /> <br />
                         <button type="submit">Create</button>
                     </form>
+                    <DisplayAlbums />
                 </Accordion.Body>
             </Accordion.Item>
         </>

@@ -90,7 +90,7 @@ const DisplayMedia = (props) => {
                             case 'text':
                                 return (
                                     <>
-                                        <ListGroup.Item className="commentLi">{media.comment}
+                                        <ListGroup.Item className="commentLi">
                                             {media.comment}<br /><br />
                                             Posted by: {media.user.name}<br />
                                             Post Date: {finalDt}
@@ -118,7 +118,6 @@ const DisplayMedia = (props) => {
                                                 <Card.Img className="imgInCard" variant="top" src={media.mediaUrl} />
                                                 Posted by: {media.user.name}<br />
                                                 Post Date: {finalDt}
-                                                <PictureModal pictureLink={media.mediaUrl} />
                                                 <br />
                                                 <DropdownButton id="dropdown-basic-button" title="Add to Album...">
                                                     {albums.map((album) => {
@@ -129,6 +128,7 @@ const DisplayMedia = (props) => {
                                                         )
                                                     })}
                                                 </DropdownButton>
+                                                <PictureModal pictureLink={media.mediaUrl} />
                                                 <Button variant="outline-danger" onClick={() => handleDelete(media)}><RiDeleteBin2Line size={30} /></Button>
                                                 <Button variant={changeFavouriteColor} onClick={() => handleFavourite(media)}>
                                                     <GrFavorite size={30} /></Button>
