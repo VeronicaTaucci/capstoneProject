@@ -214,7 +214,7 @@ const Recorder = (props) => {
 
     return (
         <>
-            <Accordion.Item eventKey="0">
+            <Accordion.Item eventKey="1">
                 <Accordion.Header>Record A Voice Message</Accordion.Header>
                 <Accordion.Body>
                     Please select 'Record' to start recording a message.  Preview or delete, and when you are satisfied with the message, click 'Submit Audio'.

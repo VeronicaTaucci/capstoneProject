@@ -35,11 +35,6 @@ const Home = () => {
 
                 <p className="text-secondary" >you can change this text if you click on it</p>
               </div>
-              <Cloudinary triggerDisplay={triggerDisplay} setTriggerDisplay={setTriggerDisplay} /><br /><br />
-              <Button variant="primary" >Record Audio Message</Button><br /><br />
-              <Comments triggerDisplay={triggerDisplay} setTriggerDisplay={setTriggerDisplay} />
-              {/* <CreateAlbum triggerDisplay={triggerDisplay} setTriggerDisplay={setTriggerDisplay}/> */}
-              <DisplayAlbums triggerDisplay={triggerDisplay} setTriggerDisplay={setTriggerDisplay}/>
             </div>
               <Accordion defaultActiveKey="0">
                 <Recorder triggerDisplay={triggerDisplay} setTriggerDisplay={setTriggerDisplay} />

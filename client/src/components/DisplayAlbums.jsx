@@ -28,30 +28,21 @@ const DisplayAlbums = (props) => {
         const id = e.target.attributes.value.value
 
         navigate(`/album/${id}`)
-        
+
     }
     return (
         <>
-            <Accordion>
-                <Accordion.Item eventKey="0">
-                    <Accordion.Header>Albums</Accordion.Header>
-                    <Accordion.Body>
-                        <CreateAlbum triggerDisplay={triggerDisplay} setTriggerDisplay={setTriggerDisplay}/>
-                        <ListGroup>
-                            {albums.map((album) => {
-                                console.log(album)
-                            return (
-                                <>
-                                    <ListGroup.Item key={album.id} value={album.id} onClick={(e)=>handleClick(e)} type="button">{album.name}</ListGroup.Item>
-                                </>
-                                
-                                )
-                        })}
-                        </ListGroup>
-                    </Accordion.Body>
-                </Accordion.Item>
-            </Accordion>
-        
+            <ListGroup>
+                {albums.map((album) => {
+                    console.log(album)
+                    return (
+                        <>
+                            <ListGroup.Item key={album.id} value={album.id} onClick={(e) => handleClick(e)} type="button">{album.name}</ListGroup.Item>
+                        </>
+
+                    )
+                })}
+            </ListGroup>
         </>
     )
 }
