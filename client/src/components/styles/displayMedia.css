@@ -3,6 +3,7 @@
     flex-direction: row;
     flex-wrap: wrap;
 }
+
 .audio{
     display: flex;
     align-items: center;
@@ -10,6 +11,7 @@
     /* display: block; */
     margin: 0 auto;
 }
+
 .imgCard{
     display: flex;
     align-items: center;
@@ -21,6 +23,12 @@
     border-radius: 10px;
 }
 
+.card-img-top {
+    width: 100%;
+    height: 10vw;
+    object-fit: contain;
+}
+
 .commentLi{
         display: flex;
         align-items: center;
@@ -30,4 +38,22 @@
         width: 330px;
         height: 370px;
         border-radius: 10px;
+}
+
+.delete {
+    width: 123px;
+    height: 40px;
+    background-color: #d9534f;
+    border: none;
+    border-radius: 5px;
+    color: white;
+}
+
+.submit {
+    width: 123px;
+    height: 40px;
+    background-color: #0275d8;
+    border: none;
+    border-radius: 5px;
+    color: white;
 }

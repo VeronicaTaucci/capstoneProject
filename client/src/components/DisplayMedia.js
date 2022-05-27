@@ -10,7 +10,6 @@ import Dropdown from 'react-bootstrap/Dropdown'
 import DropdownButton from 'react-bootstrap/DropdownButton'
 import { RiDeleteBin2Line } from 'react-icons/ri';
 import { GrFavorite } from 'react-icons/gr';
-import Button from 'react-bootstrap/Button'
 
 const DisplayMedia = (props) => {
     const { triggerDisplay, setTriggerDisplay } = props;
@@ -73,7 +72,7 @@ const DisplayMedia = (props) => {
 
     const handleAddToAlbum = (mediaId, albumId) => {
         console.log(mediaId, albumId)
-        axios.post('/updatealbum', {mediaId, albumId})
+        axios.post('/updatealbum', { mediaId, albumId })
     }
 
 
@@ -95,15 +94,14 @@ const DisplayMedia = (props) => {
                                             Posted by: {media.user.name}<br />
                                             Post Date: {finalDt}
                                             <DropdownButton id="dropdown-basic-button" title="Add to Album...">
-                                            {albums.map((album) => {
-                                                return (
-                                                    <>
-                                                        <Dropdown.Item href="#/action-1" onClick={() => handleAddToAlbum(media.id, album.id)}>{album.name}</Dropdown.Item>
-                                                    </>
-                                                )
-                                            })}
+                                                {albums.map((album) => {
+                                                    return (
+                                                        <>
+                                                            <Dropdown.Item href="#/action-1" onClick={() => handleAddToAlbum(media.id, album.id)}>{album.name}</Dropdown.Item>
+                                                        </>
+                                                    )
+                                                })}
                                             </DropdownButton>
-
                                         </ListGroup.Item>
                                     </>
                                 )
@@ -116,6 +114,15 @@ const DisplayMedia = (props) => {
                                                 <PictureModal pictureLink={media.mediaUrl} />
                                                 Posted by: {media.user.name}<br />
                                                 Post Date: {finalDt}
+                                                <DropdownButton id="dropdown-basic-button" title="Add to Album...">
+                                                    {albums.map((album) => {
+                                                        return (
+                                                            <>
+                                                                <Dropdown.Item href="#/action-1" onClick={() => handleAddToAlbum(media.id, album.id)}>{album.name}</Dropdown.Item>
+                                                            </>
+                                                        )
+                                                    })}
+                                                </DropdownButton>
                                             </Card.Body>
                                         </Card>
                                     </>)
@@ -129,6 +136,15 @@ const DisplayMedia = (props) => {
                                                 </audio>
                                                 Posted by: {media.user.name}<br />
                                                 Post Date: {finalDt}
+                                                <DropdownButton id="dropdown-basic-button" title="Add to Album...">
+                                                    {albums.map((album) => {
+                                                        return (
+                                                            <>
+                                                                <Dropdown.Item href="#/action-1" onClick={() => handleAddToAlbum(media.id, album.id)}>{album.name}</Dropdown.Item>
+                                                            </>
+                                                        )
+                                                    })}
+                                                </DropdownButton>
                                             </figure></ListGroup.Item>
                                     </>)
                             default:
