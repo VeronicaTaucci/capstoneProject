@@ -35,7 +35,6 @@ const Home = () => {
 
                 <p className="text-secondary" >you can change this text if you click on it</p>
               </div>
-
             </div>
               <Accordion defaultActiveKey="0">
                 <Recorder triggerDisplay={triggerDisplay} setTriggerDisplay={setTriggerDisplay} />
