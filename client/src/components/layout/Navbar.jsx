@@ -13,7 +13,7 @@ const NavbarComponent = () => {
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="me-auto">
                             <Nav.Link href="/home">Home</Nav.Link>
-                            <Nav.Link href="/comments">Comments</Nav.Link>
+                            <Nav.Link href="/displayalbum">Albums</Nav.Link>
                             <Nav.Link href="/signout">Sign Out</Nav.Link>
                         </Nav>
                     </Navbar.Collapse>

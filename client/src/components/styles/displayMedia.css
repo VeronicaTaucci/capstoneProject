@@ -20,7 +20,9 @@
     height: 370px;
     border-radius: 10px;
 }
-
+.imgInCard{
+    width: '18rem'
+}
 .commentLi{
         display: flex;
         align-items: center;

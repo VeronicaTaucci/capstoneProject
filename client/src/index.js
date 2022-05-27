@@ -4,7 +4,7 @@ import App from './App';
 import Signin from './components/auth/Signin';
 import Signout from './components/auth/Signout';
 import Signup from './components/auth/Signup';
-import Albums from './components/Albums';
+import CreateAlbum from './components/CreateAlbum';
 import Home from './components/Home';
 import Recorder from './components/Recorder';
 import BaseLayout from './components/layout/BaseLayout';
@@ -17,6 +17,7 @@ import reduxThunk from 'redux-thunk'
 import RequireAuth from './components/RequireAuth'
 import { checkToken } from './actions'
 import Comment from './components/Comment'
+import Album from './components/Album'
 // import 'bootstrap/dist/css/bootstrap.min.css';
 // initializing redux store
 // requires a reducer. Second argument is for redux dev-tools extension.
@@ -49,8 +50,9 @@ ReactDOM.render(
                         <Route path='/home' element={<Home />} />
                         <Route path='/signout' element={<Signout />} />
                         <Route path='/signin' element={<Signin />} />
-                        <Route path='/albums' element={<Albums />} />
+                        <Route path='/albums' element={<CreateAlbum />} />
                         <Route path='/comment' element={<Comment />} />
+                        <Route path='/album/:id' element={<Album />} />
                         <Route path='/recorder' element={<Recorder />} />
                     </Routes>
 

@@ -8,9 +8,9 @@ import ListGroup from 'react-bootstrap/ListGroup'
 import PictureModal from "./PictureModal"
 import Dropdown from 'react-bootstrap/Dropdown'
 import DropdownButton from 'react-bootstrap/DropdownButton'
+import Button from 'react-bootstrap/Button'
 import { RiDeleteBin2Line } from 'react-icons/ri';
 import { GrFavorite } from 'react-icons/gr';
-import Button from 'react-bootstrap/Button'
 
 const DisplayMedia = (props) => {
     const { triggerDisplay, setTriggerDisplay } = props;
@@ -33,14 +33,14 @@ const DisplayMedia = (props) => {
             }
         }
         getData()
-    }, [triggerDisplay])
+    }, [])
 
     useEffect(() => {
         const getAlbums = async () => {
             try {
                 let response = await axios.get('/getalbum')
                 let result = response.data
-                console.log(result)
+                // console.log(result)
                 setAlbums(result)
             } catch (error) {
                 console.log(error)
@@ -60,20 +60,20 @@ const DisplayMedia = (props) => {
         }
     }
 
-    // const handleFavourite = (media) => {
-    //     console.log(media)
-    //     if (changeFavouriteColor === "outline-danger") {
-    //         setChangeFavouriteColor("outline-warning")
-    //         axios.post('/favourite', (media, "true"))
-    //     } else if (changeFavouriteColor === "outline-warning") {
-    //         setChangeFavouriteColor("outline-danger")
-    //         axios.post('/favourite', (media, "false"))
-    //     }
-    // }
+    const handleFavourite = (media) => {
+        console.log(media)
+        if (changeFavouriteColor === "outline-danger") {
+            setChangeFavouriteColor("outline-warning")
+            axios.post('/favourite', (media, "true"))
+        } else if (changeFavouriteColor === "outline-warning") {
+            setChangeFavouriteColor("outline-danger")
+            axios.post('/favourite', (media, "false"))
+        }
+    }
 
     const handleAddToAlbum = (mediaId, albumId) => {
         console.log(mediaId, albumId)
-        axios.post('/updatealbum', {mediaId, albumId})
+        axios.post('/updatealbum', { mediaId, albumId })
     }
 
 
@@ -90,7 +90,7 @@ const DisplayMedia = (props) => {
                             case 'text':
                                 return (
                                     <>
-                                        <ListGroup.Item className="commentLi">
+                                        <ListGroup.Item className="commentLi">{media.comment} 
                                             {media.comment}<br /><br />
                                             Posted by: {media.user.name}<br />
                                             Post Date: {finalDt}
@@ -103,7 +103,10 @@ const DisplayMedia = (props) => {
                                                 )
                                             })}
                                             </DropdownButton>
-
+                                            <Button variant="outline-danger" onClick={() => handleDelete(media)} >
+                                                <RiDeleteBin2Line size={30} /></Button>
+                                            <Button variant={changeFavouriteColor} onClick={() => handleFavourite(media)}>
+                                                <GrFavorite size={30} /></Button>
                                         </ListGroup.Item>
                                     </>
                                 )
@@ -112,10 +115,23 @@ const DisplayMedia = (props) => {
                                     <>
                                         <Card className="imgCard" >
                                             <Card.Body >
-                                                <Card.Img variant="top" src={media.mediaUrl} />
-                                                <PictureModal pictureLink={media.mediaUrl} />
+                                                <Card.Img className="imgInCard" variant="top" src={media.mediaUrl} />
                                                 Posted by: {media.user.name}<br />
                                                 Post Date: {finalDt}
+                                                <PictureModal pictureLink={media.mediaUrl} />
+                                                <br />
+                                                <DropdownButton id="dropdown-basic-button" title="Add to Album...">
+                                                    {albums.map((album) => {
+                                                        return (
+                                                            <>
+                                                                <Dropdown.Item href="#/action-1" onClick={() => handleAddToAlbum(media.id, album.id)}>{album.name}</Dropdown.Item>
+                                                            </>
+                                                        )
+                                                    })}
+                                                </DropdownButton>
+                                                <Button variant="outline-danger" onClick={() => handleDelete(media)}><RiDeleteBin2Line size={30} /></Button>
+                                                <Button variant={changeFavouriteColor} onClick={() => handleFavourite(media)}>
+                                                    <GrFavorite size={30} /></Button>
                                             </Card.Body>
                                         </Card>
                                     </>)
@@ -129,7 +145,20 @@ const DisplayMedia = (props) => {
                                                 </audio>
                                                 Posted by: {media.user.name}<br />
                                                 Post Date: {finalDt}
-                                            </figure></ListGroup.Item>
+                                            </figure>
+                                            <br />
+                                            <DropdownButton id="dropdown-basic-button" title="Add to Album...">
+                                                {albums.map((album) => {
+                                                    return (
+                                                        <>
+                                                            <Dropdown.Item href="#/action-1" onClick={() => handleAddToAlbum(media.id, album.id)}>{album.name}</Dropdown.Item>
+                                                        </>
+                                                    )
+                                                })}
+                                            </DropdownButton>
+                                            <Button variant="outline-danger" onClick={() => handleDelete(media)}><RiDeleteBin2Line size={30} /></Button>
+                                            <Button variant={changeFavouriteColor} onClick={() => handleFavourite(media)}>
+                                                <GrFavorite size={30} /></Button></ListGroup.Item>
                                     </>)
                             default:
                                 break;
