@@ -31,6 +31,22 @@ router.get('/', (req, res) => {
     res.send('home page')
 })
 
+//! get album object to display //this will return an array of objects [{"mediaId": 22,"albumId": 2},{},{}]
+router.get('/displayalbum', async (req, res) => {
+    let { id } = req.body //album id
+    console.log("id",id)
+    try {
+        let albumObject = await db.media_albums.findAll({ where: { albumId: id } })
+        let mediaIds = await albumObject.map(media => media.mediaId)
+        // console.log(mediaIds) //[17,22]
+        let mediaObj = await db.Media.findAll({ where: { id: mediaIds } }) //id:[2,17]
+        console.log("mediaObj", mediaObj)
+        res.json(mediaObj)
+       
+    } catch (error) {
+        console.log(error)
+    }
+})
 
 //! create album
 router.post('/createalbum', async (req, res) => {

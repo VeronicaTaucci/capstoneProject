@@ -3,10 +3,12 @@ import React, { useState } from "react"
 import { useSelector } from 'react-redux'
 import Accordion from 'react-bootstrap/Accordion'
 
-const Albums = () => {
+const CreateAlbum = (props) => {
     const [name, setName] = useState()
+    const { triggerDisplay, setTriggerDisplay } = props;
     const [description, setDescription] = useState()
     const userId = useSelector(state => state.userId)
+
     const handleSubmit = (e) => {
         e.preventDefault()
         const newAlbum = {
@@ -15,6 +17,7 @@ const Albums = () => {
             userId,
         }
         axios.post('/createalbum', newAlbum)
+        setTriggerDisplay(true)
     }
     return (
         <>
@@ -37,4 +40,4 @@ const Albums = () => {
     )
 }
 
-export default Albums
+export default CreateAlbum
