@@ -25,9 +25,8 @@ const Comment = (props) => {
     return (
         <>
             <form onSubmit={handleSubmit}>
-                <Accordion defaultActiveKey="1">
-                    <Accordion.Item eventKey="0">
-                        <Accordion.Header>Click to Add A Message</Accordion.Header>
+                    <Accordion.Item eventKey="2">
+                        <Accordion.Header>Add A Text Message</Accordion.Header>
                         <Accordion.Body>
                             <input type="text" value={comment} onChange={(e) => setComment(e.target.value)} />
                             <div className="form__field">
@@ -35,7 +34,7 @@ const Comment = (props) => {
                             </div>
                         </Accordion.Body>
                     </Accordion.Item>
-                </Accordion>
+
             </form>
         </>
     )

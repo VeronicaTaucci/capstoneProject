@@ -5,11 +5,12 @@ import Card from 'react-bootstrap/Card'
 import ListGroup from 'react-bootstrap/ListGroup'
 import PictureModal from "./PictureModal"
 import { ZonedDate } from "@progress/kendo-date-math";
+
 const Album = () => {
     const  id  = useParams()
     const [media, setMedia] = useState([])
-    
-    
+
+
     useEffect(() => {
         let getData = async () => {
             console.log(id);
@@ -18,9 +19,9 @@ const Album = () => {
             console.log(getMedia);
         }
         getData()
-    
+
     }, [])
-    
+
     return (
         <>
             <h1>Album</h1>

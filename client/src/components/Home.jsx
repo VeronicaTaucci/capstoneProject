@@ -6,25 +6,19 @@ import DisplayMedia from './DisplayMedia'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
-import Button from 'react-bootstrap/Button'
-import Modal from 'react-bootstrap/Modal'
-import Figure from 'react-bootstrap/Figure'
 import Navbar from './layout/Navbar'
-import "./styles/homePage.css"
+import Accordion from 'react-bootstrap/Accordion'
 import CreateAlbum from './CreateAlbum'
+import "./styles/homePage.css"
 import DisplayAlbums from './DisplayAlbums'
+
 const Home = () => {
 
-  const [showText, setShowText] = useState(false);
   const [triggerDisplay, setTriggerDisplay] = useState(false)
-  const [show, setShow] = useState(false)
 
   useEffect(() => {
     document.title = "Home"
   }, [])
-
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
 
   return (
     <>
@@ -46,23 +40,13 @@ const Home = () => {
               {/* <CreateAlbum triggerDisplay={triggerDisplay} setTriggerDisplay={setTriggerDisplay}/> */}
               <DisplayAlbums triggerDisplay={triggerDisplay} setTriggerDisplay={setTriggerDisplay}/>
             </div>
+              <Accordion defaultActiveKey="0">
+                <Recorder triggerDisplay={triggerDisplay} setTriggerDisplay={setTriggerDisplay} />
+                <Cloudinary triggerDisplay={triggerDisplay} setTriggerDisplay={setTriggerDisplay} />
+                <Comments triggerDisplay={triggerDisplay} setTriggerDisplay={setTriggerDisplay} />
+                <CreateAlbum />
+              </Accordion>
           </Col>
-
-          <Modal show={show} onHide={handleClose}>
-            <Modal.Header closeButton>
-              <Modal.Title>Audio Recorder</Modal.Title>
-            </Modal.Header>
-            <Modal.Body>
-              Please select 'Record' to start recording a message.  Preview, delete, re-record message (if necessary) and when you are satisfied with the message, click 'Submit Audio'.
-              <Recorder handleClose={handleClose} triggerDisplay={triggerDisplay} setTriggerDisplay={setTriggerDisplay}  />
-            </Modal.Body>
-            <Modal.Footer>
-              <Button variant="primary" onClick={handleClose}>
-                Close
-              </Button>
-            </Modal.Footer>
-          </Modal>
-
           <Col className='col' xs lg="8">
             <DisplayMedia triggerDisplay={triggerDisplay} setTriggerDisplay={setTriggerDisplay} />
           </Col>

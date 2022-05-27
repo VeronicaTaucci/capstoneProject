@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import Button from 'react-bootstrap/Button'
+import ListGroup from 'react-bootstrap/ListGroup'
+import ListGroupItem from 'react-bootstrap/esm/ListGroupItem'
+import Accordion from 'react-bootstrap/Accordion'
 import axios from 'axios'
 
 const Cloudinary = (props) => {
@@ -28,8 +31,8 @@ const Cloudinary = (props) => {
                 console.log('error', error)
             }
         }
-        });
-        
+    });
+
     useEffect(() => {
         console.log("useEffect loaded")
         if (mediaUpload) {
@@ -40,18 +43,21 @@ const Cloudinary = (props) => {
                 userId: userId,
             }
             console.log("mediaData", mediaData);
-            const response =  axios.post('/media', mediaData)
+            const response = axios.post('/media', mediaData)
             console.log("response", response);
             setMediaUpload(false)
             setTriggerDisplay(true)
-        }else return
-        }, [mediaUpload])
+        } else return
+    }, [mediaUpload])
 
     return (
         <>
-            <Button variant="primary" onClick={() => showWidget(widget)}>
-                Upload Media
-            </Button>
+            <Accordion.Item eventKey="1">
+                <Accordion.Header>Add A Picture or Video</Accordion.Header>
+                <Accordion.Body>
+                    <Button variant="primary" onClick={() => showWidget(widget)} className='align-items-center'>Upload Media</Button>
+                </Accordion.Body>
+            </Accordion.Item>
         </>
     )
 }

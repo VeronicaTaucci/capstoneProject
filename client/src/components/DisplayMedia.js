@@ -90,18 +90,18 @@ const DisplayMedia = (props) => {
                             case 'text':
                                 return (
                                     <>
-                                        <ListGroup.Item className="commentLi">{media.comment} 
+                                        <ListGroup.Item className="commentLi">{media.comment}
                                             {media.comment}<br /><br />
                                             Posted by: {media.user.name}<br />
                                             Post Date: {finalDt}
                                             <DropdownButton id="dropdown-basic-button" title="Add to Album...">
-                                            {albums.map((album) => {
-                                                return (
-                                                    <>
-                                                        <Dropdown.Item href="#/action-1" onClick={() => handleAddToAlbum(media.id, album.id)}>{album.name}</Dropdown.Item>
-                                                    </>
-                                                )
-                                            })}
+                                                {albums.map((album) => {
+                                                    return (
+                                                        <>
+                                                            <Dropdown.Item href="#/action-1" onClick={() => handleAddToAlbum(media.id, album.id)}>{album.name}</Dropdown.Item>
+                                                        </>
+                                                    )
+                                                })}
                                             </DropdownButton>
                                             <Button variant="outline-danger" onClick={() => handleDelete(media)} >
                                                 <RiDeleteBin2Line size={30} /></Button>
