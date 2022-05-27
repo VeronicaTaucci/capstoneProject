@@ -32,9 +32,9 @@ router.get('/', (req, res) => {
 })
 
 //! get album object to display //this will return an array of objects [{"mediaId": 22,"albumId": 2},{},{}]
-router.get('/displayalbum', async (req, res) => {
-    let { id } = req.body //album id
-    console.log("id",id)
+router.get('/displayalbum/:id', async (req, res) => {
+    let { id } = req.params //album id
+    console.log(id)
     try {
         let albumObject = await db.media_albums.findAll({ where: { albumId: id } })
         let mediaIds = await albumObject.map(media => media.mediaId)
