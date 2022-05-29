@@ -90,6 +90,7 @@ const DisplayMedia = (props) => {
                             case 'text':
                                 return (
                                     <>
+                                    
                                         <ListGroup.Item className="commentLi">
                                             {media.comment}<br /><br />
                                             Posted by: {media.user.name}<br />
