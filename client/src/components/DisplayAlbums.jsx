@@ -6,6 +6,7 @@ import axios from "axios"
 import CreateAlbum from "./CreateAlbum"
 import Album from "./Album"
 import { useNavigate } from "react-router-dom";
+
 const DisplayAlbums = (props) => {
     const [albums, setAlbums] = useState([])
     const { triggerDisplay, setTriggerDisplay } = props;

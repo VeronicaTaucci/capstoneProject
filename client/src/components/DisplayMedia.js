@@ -25,19 +25,19 @@ const DisplayMedia = (props) => {
             try {
                 let response = await axios.get('/comment')
                 let result = response.data
-                console.log("result", result)
+                // console.log("result", result)
                 // setMedia(result)
                 const sortedMedia = [...result].sort((a, b) => (a.id < b.id) ? 1 : -1)
-                console.log("sorted result", sortedMedia)
+                // console.log("sorted result", sortedMedia)
                 setSortedMedia(sortedMedia)
-                setTriggerDisplay(true)
+                setTriggerDisplay(false)
                 return result
             } catch (error) {
                 console.log(error)
             }
         }
         getData()
-    }, [])
+    }, [triggerDisplay])
 
     useEffect(() => {
         const getAlbums = async () => {
@@ -54,24 +54,24 @@ const DisplayMedia = (props) => {
     }, [])
 
 
-    const handleDelete = (media) => {
-        console.log(media)
+    const handleDelete = (deleteMedia) => {
+        console.log(deleteMedia)
         try {
-            axios.post('/delete', media);
+            axios.post('/delete', deleteMedia);
             setTriggerDisplay(true)
         } catch (err) {
             console.log(err)
         }
     }
 
-    const handleFavourite = (media) => {
-        console.log(media)
+    const handleFavourite = (mediaObj) => {
+        console.log(mediaObj)
         if (changeFavouriteColor === "outline-danger") {
             setChangeFavouriteColor("outline-warning")
-            axios.post('/favourite', (media, "true"))
+            axios.post('/favourite', (mediaObj, "true"))
         } else if (changeFavouriteColor === "outline-warning") {
             setChangeFavouriteColor("outline-danger")
-            axios.post('/favourite', (media, "false"))
+            axios.post('/favourite', (mediaObj, "false"))
         }
     }
 
@@ -85,7 +85,7 @@ const DisplayMedia = (props) => {
         <>
             <div className="container-fluid">
                 <div className="row">
-                        {sortedMedia.map((media) => {
+                        {sortedMedia.map((media, index) => {
                             const date = new Date(media.createdAt);
                             const tzDate = ZonedDate.fromUTCDate(date);
                             const localDt = tzDate._localDate.toString();
@@ -95,17 +95,17 @@ const DisplayMedia = (props) => {
                                     {/* //! TEXT CARD */}
                                     return (
                                         <>
-                                            <Card key={media.id} className="imgCard justify-content-center" style={{ width: '21rem' }} >
+                                            <Card key={media.createdAt} className="imgCard justify-content-center" style={{ width: '21rem' }} >
+                                                <Card.Header>{media.comment}</Card.Header><br/>
                                                 <Card.Text variant="end" >
-                                                    <Card.Header>{media.comment}</Card.Header><br/>
                                                     Posted by: {media.user.name}<br />
                                                     Post Date: {finalDt}
                                                 </Card.Text>
                                                     <DropdownButton id="dropdown-basic-button" title="Add to Album...">
-                                                        {albums.map((album) => {
+                                                        {albums.map((album, index) => {
                                                             return (
                                                                 <>
-                                                                    <Dropdown.Item key={album.id} href="#/action-1" onClick={() => handleAddToAlbum(media.id, album.id)}>{album.name}</Dropdown.Item>
+                                                                    <Dropdown.Item key={index} href="#/action-1" onClick={() => handleAddToAlbum(media.id, album.id)}>{album.name}</Dropdown.Item>
                                                                 </>
                                                             )
                                                         })}
@@ -121,17 +121,17 @@ const DisplayMedia = (props) => {
                                 {/*//! IMAGE CARD */}
                                     return (
                                         <>
-                                            <Card key={media.id} className="imgCard justify-content-center" style={{ width: '21rem' }} >
+                                            <Card key={media.createdAt} className="imgCard justify-content-center" style={{ width: '21rem' }} >
                                                 <Card.Img className="imgInCard" variant="top" src={media.mediaUrl} />
                                                 <Card.Text variant="end" >
                                                     Posted by: {media.user.name}<br />
                                                     Post Date: {finalDt}
                                                 </Card.Text>
                                                     <DropdownButton id="dropdown-basic-button" title="Add to Album...">
-                                                        {albums.map((album) => {
+                                                        {albums.map((album, index) => {
                                                             return (
                                                                 <>
-                                                                    <Dropdown.Item key={album.id} href="#/action-1" onClick={() => handleAddToAlbum(media.id, album.id)}>{album.name}</Dropdown.Item>
+                                                                    <Dropdown.Item key={index} href="#/action-1" onClick={() => handleAddToAlbum(media.id, album.id)}>{album.name}</Dropdown.Item>
                                                                 </>
                                                             )
                                                         })}
@@ -147,7 +147,7 @@ const DisplayMedia = (props) => {
                                 {/* //! AUDIO CARD */}
                                     return (
                                         <>
-                                            <Card key={media.id} className="imgCard justify-content-center" style={{ width: '21rem' }} >
+                                            <Card key={media.createdAt} className="imgCard justify-content-center" style={{ width: '21rem' }} >
                                                 <figure>
                                                     <audio className="audio" controls src={media.mediaUrl}>
                                                         Your browser does not support the <code>audio</code> element.
@@ -159,10 +159,10 @@ const DisplayMedia = (props) => {
                                                     Post Date: {finalDt}
                                                 </Card.Text>
                                                     <DropdownButton id="dropdown-basic-button" title="Add to Album...">
-                                                        {albums.map((album) => {
+                                                        {albums.map((album, index) => {
                                                             return (
                                                                 <>
-                                                                    <Dropdown.Item key={album.id} href="#/action-1" onClick={() => handleAddToAlbum(media.id, album.id)}>{album.name}</Dropdown.Item>
+                                                                    <Dropdown.Item key={index} href="#/action-1" onClick={() => handleAddToAlbum(media.id, album.id)}>{album.name}</Dropdown.Item>
                                                                 </>
                                                             )
                                                         })}

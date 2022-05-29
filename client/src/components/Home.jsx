@@ -30,6 +30,7 @@ const Home = () => {
                 <div className="card-thumbnail">
                   <img src="https://res.cloudinary.com/dc-capstone2022/image/upload/v1652820884/cld-sample.jpg" className="img-fluid" alt=""></img>
                 </div>
+                {/* <p className="text-secondary" >you can change this text if you click on it</p> //! this was causing an error - cannot nest <p> inside of a <div> */}
               </div>
             </div>
               <Accordion defaultActiveKey="0">

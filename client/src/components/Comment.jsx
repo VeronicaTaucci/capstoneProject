@@ -29,12 +29,11 @@ const Comment = (props) => {
                         <Accordion.Header>Add A Text Message</Accordion.Header>
                         <Accordion.Body>
                             <input type="text" value={comment} onChange={(e) => setComment(e.target.value)} />
-                            {/* <div className="form__field"> */}
+                            <div className="form__field">
                                 <input type="submit" value="Add Comment" />
-                            {/* </div> */}
+                            </div>
                         </Accordion.Body>
                     </Accordion.Item>
-
             </form>
         </>
     )

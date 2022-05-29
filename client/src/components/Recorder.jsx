@@ -75,13 +75,10 @@ const Recorder = (props) => {
                     const clipLabel = document.createElement('p');
                     const audio = document.createElement('audio');
                     const deleteButton = document.createElement('button');
-                    // const submitButton = document.createElement('button');
                     clipContainer.classList.add('clip');
                     audio.setAttribute('controls', '');
                     deleteButton.textContent = 'Delete Audio';
-                    // deleteButton.textContent = 'Submit Audio';
                     deleteButton.className = 'delete';
-                    // deleteButton.className = 'submit';
                     if (clipName === null) {
                         clipLabel.textContent = 'My Clip';
                     } else {
