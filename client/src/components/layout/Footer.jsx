@@ -5,7 +5,7 @@ import Header from './Header'
 const Footer = () => {
     return (
         <>
-         <p>Footer</p>
+         Footer
         </>
     )
 }
