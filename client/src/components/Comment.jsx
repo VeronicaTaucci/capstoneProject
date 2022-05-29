@@ -34,7 +34,6 @@ const Comment = (props) => {
                             </div>
                         </Accordion.Body>
                     </Accordion.Item>
-
             </form>
         </>
     )

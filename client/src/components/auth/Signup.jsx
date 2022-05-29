@@ -45,7 +45,7 @@ const Signup = () => {
             <Button variant="outline-primary" size="lg" type="submit" value="Sign Up" >
                 Sign Up
             </Button>
-            <p>Already have an account? <Link to="/signin">Log in</Link></p>
+            Already have an account? <Link to="/signin">Log in</Link>
         </Form>
 
     );

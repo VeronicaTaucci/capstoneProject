@@ -7,7 +7,7 @@ const Register = () => {
   }, [])
 
   return (
-    <div>Register</div>
+    <>Register</>
   )
 }
 

@@ -1,10 +1,4 @@
-.display{
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-}
-
-.audio{
+.audioCard{
     display: flex;
     align-items: flex-end;
     justify-content: flex-end;
@@ -12,15 +6,20 @@
     margin: 0 auto;
 }
 
-.imgCard{
+.Card {
     display: flex;
     align-items: flex-end;
     justify-content: flex-end;
+    border: none;
     margin: 20px;
-    box-shadow: 0px 0px 10px 0px #003459 ;
+    box-shadow: 0px 0px 5px 0px #003459;
     width: 330px;
     height: 370px;
     border-radius: 10px;
+}
+
+.Card Header {
+    font-style: italic;
 }
 
 .card-img-top {
@@ -29,7 +28,7 @@
     object-fit: contain;
 }
 
-.commentLi{
+/* .commentLi{
         display: flex;
         align-items: flex-end;
         justify-content: flex-end;
@@ -38,7 +37,7 @@
         width: 330px;
         height: 370px;
         border-radius: 10px;
-}
+} */
 
 .delete {
     width: 123px;
@@ -47,6 +46,40 @@
     border: none;
     border-radius: 5px;
     color: white;
+}
+
+.display{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin: 0px;
+    border: 0px;
+    padding: 0px;
+    border: none;
+}
+
+
+.imgCard{
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    margin: 20px;
+    box-shadow: 0px 0px 10px 0px #003459 ;
+    width: 330px;
+    height: 370px;
+    border-radius: 10px;
+}
+
+.list-group-item {
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+}
+
+.style {
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
 }
 
 .submit {

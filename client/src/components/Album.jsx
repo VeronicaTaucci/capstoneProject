@@ -36,9 +36,8 @@ const Album = () => {
                             case 'text':
                                 return (
                                     <>
-                                        <ListGroup.Item className="commentLi">{media.comment}
+                                        <ListGroup.Item className="commentLi">
                                             {media.comment}<br /><br />
-                                           
                                             Post Date: {finalDt}
                                         </ListGroup.Item>
                                     </>
@@ -49,7 +48,6 @@ const Album = () => {
                                         <Card className="imgCard" >
                                             <Card.Body >
                                                 <Card.Img className="imgInCard" variant="top" src={media.mediaUrl} />
-                                               
                                                 Post Date: {finalDt}
                                                 <PictureModal pictureLink={media.mediaUrl} />
                                                 <br />
@@ -64,7 +62,7 @@ const Album = () => {
                                                 <audio className="audio" controls src={media.mediaUrl}>
                                                     Your browser does not support the <code>audio</code> element.
                                                 </audio>
-                                               
+
                                                 Post Date: {finalDt}
                                             </figure>
                                             <br />

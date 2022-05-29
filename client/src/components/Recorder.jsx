@@ -75,13 +75,10 @@ const Recorder = (props) => {
                     const clipLabel = document.createElement('p');
                     const audio = document.createElement('audio');
                     const deleteButton = document.createElement('button');
-                    // const submitButton = document.createElement('button');
                     clipContainer.classList.add('clip');
                     audio.setAttribute('controls', '');
                     deleteButton.textContent = 'Delete Audio';
-                    // deleteButton.textContent = 'Submit Audio';
                     deleteButton.className = 'delete';
-                    // deleteButton.className = 'submit';
                     if (clipName === null) {
                         clipLabel.textContent = 'My Clip';
                     } else {
@@ -214,20 +211,17 @@ const Recorder = (props) => {
 
     return (
         <>
-            <Accordion.Item eventKey="1">
+            <Accordion.Item eventKey="0">
                 <Accordion.Header>Record A Voice Message</Accordion.Header>
                 <Accordion.Body>
                     Please select 'Record' to start recording a message.  Preview or delete, and when you are satisfied with the message, click 'Submit Audio'.
                     <form onSubmit={handleSubmit}>
                         <section className="main-controls">
                             <canvas className="visualizer" width='100px' height='40px'></canvas>
-                            <div id="buttons">
                                 <Button className="record">Record</Button>
                                 <Button onClick={onClick} className="stop">Stop</Button><br/>
                                 <section className="sound-clips"></section>
                                 {showSubmit ? <Submit /> : null}
-                                {/* <Button className='submit' >Submit Audio</Button> */}
-                            </div>
                         </section>
                     </form>
 
