@@ -13,7 +13,7 @@
     float: left;
     border-radius: 10px;
     max-width: 500px;
-   
+
 }
 
 .card-box .card-thumbnail {
@@ -23,9 +23,9 @@
     transition: 1s;
 }
 
-.card-box .card-thumbnail:hover {
+/* .card-box .card-thumbnail:hover {
     transform: scale(1.2);
-}
+} */
 
 .card-box h3 a {
     font-size: 20px;

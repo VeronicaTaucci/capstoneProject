@@ -39,7 +39,6 @@ const DisplayAlbums = (props) => {
                         <>
                             <ListGroup.Item key={album.id} value={album.id} onClick={(e) => handleClick(e)} type="button">{album.name}</ListGroup.Item>
                         </>
-
                     )
                 })}
             </ListGroup>

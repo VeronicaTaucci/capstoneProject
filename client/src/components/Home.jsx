@@ -7,11 +7,9 @@ import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Navbar from './layout/Navbar'
-import Button from 'react-bootstrap/Button'
 import Accordion from 'react-bootstrap/Accordion'
 import CreateAlbum from './CreateAlbum'
 import "./styles/homePage.css"
-import DisplayAlbums from './DisplayAlbums'
 
 const Home = () => {
 
@@ -30,10 +28,8 @@ const Home = () => {
             <div className='mainCol'>
               <div className="card-box">
                 <div className="card-thumbnail">
-                  <img src="https://static.independent.co.uk/2021/07/09/11/newFile-6.jpg?quality=75&width=982&height=726&auto=webp" className="img-fluid" alt=""></img>
+                  <img src="https://res.cloudinary.com/dc-capstone2022/image/upload/v1652820884/cld-sample.jpg" className="img-fluid" alt=""></img>
                 </div>
-
-                <p className="text-secondary" >you can change this text if you click on it</p>
               </div>
             </div>
               <Accordion defaultActiveKey="0">
