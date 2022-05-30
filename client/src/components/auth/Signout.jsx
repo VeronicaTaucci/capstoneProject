@@ -7,11 +7,12 @@ import Form from 'react-bootstrap/Form'
 import "../styles/signInPage.css"
 import Navbar from '../layout/Navbar'
 import Footer from '../layout/Footer'
+
 const Signout = () => {
 
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    
+
     const logout = () => {
         dispatch(signOut(() => {
             navigate('/')

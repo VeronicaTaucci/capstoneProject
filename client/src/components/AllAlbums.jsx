@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom'
 import Navbar from './layout/Navbar'
 import Button from 'react-bootstrap/Button'
 import { RiDeleteBin2Line } from 'react-icons/ri';
+
 const AllAlbums = () => {
     const [albums, setAlbums] = useState([])
     const navigate = useNavigate()
@@ -15,6 +16,7 @@ const AllAlbums = () => {
         let getData = async () => {
             let getAlbums = await axios.get(`/displayalbum`)
             setAlbums(getAlbums.data)
+
             // console.log(albums);
         }
         getData()
@@ -25,10 +27,11 @@ const AllAlbums = () => {
         // console.log(album);
         let id = album.id
         navigate(`/album/${id}`)
-        
+
     }
     const handleDelete = (album) => {
         const id = album.id
+        // setTriggerDisplay(false)
         console.log(id);
         try {
             axios.post('/displayalbum', { id });
@@ -57,7 +60,7 @@ const AllAlbums = () => {
                         )
                     })
             }
-            
+
         </>
     )
 }

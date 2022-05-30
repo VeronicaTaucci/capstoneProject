@@ -5,10 +5,9 @@ import Nav from 'react-bootstrap/Nav';
 const NavbarComponent = () => {
     return (
         <>
-            {/* <Navbar.Brand href="#home"><img src='../../Logo.png'></img></Navbar.Brand> */}
             <Navbar bg="primary" variant="dark" expand="lg">
                 <Container fluid>
-                    <Navbar.Brand href="/home">HappyShares</Navbar.Brand>
+                <Navbar.Brand href="/home"><img src='../../Logo1.png'></img></Navbar.Brand>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="me-auto links">
