@@ -7,6 +7,7 @@ const RequireAuth = (props) => {
 
 
     const auth = useSelector(state => state.auth)
+    
     const navigate = useNavigate();
 
     useEffect(() => {

@@ -28,10 +28,11 @@ const AllAlbums = () => {
         // console.log(album);
         let id = album.id
         navigate(`/album/${id}`)
-        
+
     }
     const handleDelete = (album) => {
         const id = album.id
+        // setTriggerDisplay(false)
         console.log(id);
         try {
             axios.post('/displayalbum', { id });
@@ -63,7 +64,7 @@ const AllAlbums = () => {
                     })
             }
             </div>
-            
+
         </>
     )
 }

@@ -1,33 +1,27 @@
 import React, { useState, useEffect } from "react"
-import { ZonedDate } from "@progress/kendo-date-math";
-import '@progress/kendo-date-math/tz/all'
+import { ZonedDate } from '@progress/kendo-date-math';
+import { Alert, AlertIcon, AlertTitle, AlertDescription } from '@chakra-ui/react'
 import axios from 'axios'
 import "./styles/displayMedia.css"
 import Card from 'react-bootstrap/Card'
-import ListGroup from 'react-bootstrap/ListGroup'
 import PictureModal from "./PictureModal"
-import Dropdown from 'react-bootstrap/Dropdown'
-import DropdownButton from 'react-bootstrap/DropdownButton'
 import Button from 'react-bootstrap/Button'
 import { RiDeleteBin2Line } from 'react-icons/ri';
 import { GrFavorite } from 'react-icons/gr';
+import AlbumDropdown from "./AlbumDropdown";
 
 const DisplayMedia = (props) => {
     const { triggerDisplay, setTriggerDisplay } = props;
-    const [media, setMedia] = useState([]);
-    const [albums, setAlbums] = useState([]);
     const [sortedMedia, setSortedMedia] = useState([])
     const [changeFavouriteColor, setChangeFavouriteColor] = useState("outline-warning")
 
 
     useEffect(() => {
-        
+
         let getData = async () => {
             try {
                 let response = await axios.get('/comment')
                 let result = response.data
-                // console.log("result", result)
-                // setMedia(result)
                 const sortedMedia = [...result].sort((a, b) => (a.id < b.id) ? 1 : -1)
                 // console.log("sorted result", sortedMedia)
                 setSortedMedia(sortedMedia)
@@ -37,23 +31,8 @@ const DisplayMedia = (props) => {
                 console.log(error)
             }
         }
-        const getAlbums = async () => {
-            try {
-                let response = await axios.get('/getalbum')
-                let result = response.data
-                // console.log(result)
-                setAlbums(result)
-            } catch (error) {
-                console.log(error)
-            }
-        }
         getData()
-        getAlbums()
     }, [triggerDisplay])
-
-
-       
-
 
     const handleDelete = (deleteMedia) => {
         console.log(deleteMedia)
@@ -79,7 +58,6 @@ const DisplayMedia = (props) => {
     const handleAddToAlbum = (mediaId, albumId) => {
         console.log(mediaId, albumId)
         axios.post('/updatealbum', { mediaId, albumId })
-        
     }
 
 
@@ -104,13 +82,14 @@ const DisplayMedia = (props) => {
                                                 Post Date: {finalDt}
                                             </Card.Text>
                                             <DropdownButton id="dropdown-basic-button" title="Add to Album...">
-                                                {albums.map((album, index) => {
+                                                {/* {albums.map((album, index) => {
                                                     return (
                                                         <>
                                                             <Dropdown.Item key={index} href="#/action-1" onClick={() => handleAddToAlbum(media.id, album.id)}>{album.name}</Dropdown.Item>
                                                         </>
                                                     )
-                                                })}
+                                                })} */}
+                                                <AlbumDropdown triggerDisplay={triggerDisplay} setTriggerDisplay={setTriggerDisplay}/>
                                             </DropdownButton>
                                             <Card.Footer >
                                                 {/* <Button className='outlin-warning' onClick={(e) => handleFavourite(e)}><GrFavorite size={30} /></Button> */}
@@ -130,13 +109,7 @@ const DisplayMedia = (props) => {
                                                 Post Date: {finalDt}
                                             </Card.Text>
                                             <DropdownButton id="dropdown-basic-button" title="Add to Album...">
-                                                {albums.map((album, index) => {
-                                                    return (
-                                                        <>
-                                                            <Dropdown.Item key={index} href="#/action-1" onClick={() => handleAddToAlbum(media.id, album.id)}>{album.name}</Dropdown.Item>
-                                                        </>
-                                                    )
-                                                })}
+                                                <AlbumDropdown triggerDisplay={triggerDisplay} setTriggerDisplay={setTriggerDisplay}/>
                                             </DropdownButton>
                                             <Card.Footer >
                                                 <PictureModal modalHeading={media.comment} pictureLink={media.mediaUrl} />
@@ -161,13 +134,7 @@ const DisplayMedia = (props) => {
                                                 Post Date: {finalDt}
                                             </Card.Text>
                                             <DropdownButton id="dropdown-basic-button" title="Add to Album...">
-                                                {albums.map((album, index) => {
-                                                    return (
-                                                        <>
-                                                            <Dropdown.Item key={index} href="#/action-1" onClick={() => handleAddToAlbum(media.id, album.id)}>{album.name}</Dropdown.Item>
-                                                        </>
-                                                    )
-                                                })}
+                                                <AlbumDropdown triggerDisplay={triggerDisplay} setTriggerDisplay={setTriggerDisplay}/>
                                             </DropdownButton>
                                             <Card.Footer >
                                                 {/* <Button variant={changeFavouriteColor} onClick={() => handleFavourite(media)}><GrFavorite size={30} /></Button> */}

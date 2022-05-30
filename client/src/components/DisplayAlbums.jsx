@@ -43,7 +43,7 @@ const DisplayAlbums = (props) => {
     }
     return (
         <>
-           
+
                 {albums.map((album) => {
                     // console.log(album)
                     return (

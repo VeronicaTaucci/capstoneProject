@@ -144,7 +144,7 @@ const Recorder = (props) => {
                 const HEIGHT = canvas.height;
                 requestAnimationFrame(draw);
                 analyser.getByteTimeDomainData(dataArray);
-                canvasCtx.fillStyle = '#E3F2FD';
+                canvasCtx.fillStyle = '#E3F2FD'; //light blue
                 canvasCtx.lineWidth = 2;
                 canvasCtx.strokeStyle = 'rgb(0, 0, 0)';
                 canvasCtx.beginPath();

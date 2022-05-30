@@ -24,8 +24,8 @@ const Home = () => {
     <>
       <Navbar />
       <Container fluid={true} className='m-5'>
-        <Row >
-          <Col xs lg="4" className='col ' >
+        <Row>
+          <Col xs lg="4" className='col' >
             <div className='mainCol'>
               <div className="card-box">
                 <div className="card-thumbnail">

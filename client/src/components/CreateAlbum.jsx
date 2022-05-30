@@ -11,11 +11,8 @@ const CreateAlbum = () => {
     const [description, setDescription] = useState()
     const userId = useSelector(state => state.userId)
     const [triggerDisplay, setTriggerDisplay] = useState(false)
-   
 
 
-    
-    
     const handleSubmit = (e) => {
         e.preventDefault()
         const newAlbum = {
@@ -33,8 +30,6 @@ const CreateAlbum = () => {
             <Accordion.Item eventKey="3">
                 <Accordion.Header>Albums</Accordion.Header>
                 <Accordion.Body>
-
-
                     <Form onSubmit={handleSubmit}>
                         <Form.Group className="mb-3" >
                             <Form.Label>Create an album:</Form.Label>
@@ -43,10 +38,9 @@ const CreateAlbum = () => {
                         <Form.Group className="mb-3" >
                             <Form.Control as="textarea" placeholder="description" rows={3} value={description} onChange={(e) => setDescription(e.target.value)} />
                         </Form.Group>
-                        <Button type="submit">Create</Button> 
-                    </Form><br/>
-
-                    <DisplayAlbums triggerDisplay={triggerDisplay} setTriggerDisplay={setTriggerDisplay}/>
+                        <Button type="submit">Create</Button>
+                    </Form><br />
+                    <DisplayAlbums triggerDisplay={triggerDisplay} setTriggerDisplay={setTriggerDisplay} />
                 </Accordion.Body>
             </Accordion.Item>
         </>

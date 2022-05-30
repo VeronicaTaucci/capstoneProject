@@ -65,7 +65,7 @@ router.get('/displayalbum/:id', async (req, res) => {
         let mediaObj = await db.Media.findAll({ where: { id: mediaIds } }) //id:[2,17]
         console.log("mediaObj", mediaObj)
         res.json(mediaObj)
-       
+
     } catch (error) {
         console.log(error)
     }
@@ -192,8 +192,6 @@ router.get('/protected', requireJwt, (req, res) => {
     console.log('passed protected page');
     res.json({ isValid: true })
 })
-// router.get('/profile/:id', requireJwt, (req, res) => {
-// })
 
 
 //! all media routes
