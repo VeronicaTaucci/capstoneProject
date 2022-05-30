@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react"
 import ListGroup from 'react-bootstrap/ListGroup'
-
 import Navbar from './layout/Navbar'
 import axios from "axios"
 import { useNavigate } from "react-router-dom";
 import Button from 'react-bootstrap/Button'
 import { RiDeleteBin2Line } from 'react-icons/ri';
 import './styles/displayAlbums.css'
+
 const DisplayAlbums = (props) => {
     const [albums, setAlbums] = useState([])
     let navigate = useNavigate();
