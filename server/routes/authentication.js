@@ -144,17 +144,14 @@ router.post('/deletealbum', async (req, res) => {
 
 
 //! add/delete from favourites
-router.post('/favourite', async (req, res) => {
-    let response = req.body
-    console.log(response)
-})
+// router.post('/favourite', async (req, res) => {
+//     let response = req.body
+//     console.log(response)
+// })
 
 //when react sends us info from form, and we send back a JWT to be saved on the client side -
 //because token is what authenticates the user and persists their login.
 router.post('/register', async (req, res) => {
-
-    // collect info from header
-    //email, password
     let { name, email, password } = req.body;
     //*determine if email already exists in our db
     try {
@@ -163,7 +160,7 @@ router.post('/register', async (req, res) => {
         let records = await db.users.findAll({ where: { email } })
         if (records.length === 0) { //no record exits, must create new user record
             // encrypt our password
-            password = bcrypt.hashSync(password, 8)
+            const password = bcrypt.hashSync(password, 8)
             //create db entry
             let newUserRecord = await db.users.create({ name, email, password }) //user is an object that we just created
             //user => {id, email, password, createdAt, updatedAt}

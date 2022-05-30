@@ -5,8 +5,6 @@ import axios from 'axios'
 import "./styles/displayMedia.css"
 import Card from 'react-bootstrap/Card'
 import PictureModal from "./PictureModal"
-import Dropdown from 'react-bootstrap/Dropdown'
-import DropdownButton from 'react-bootstrap/DropdownButton'
 import Button from 'react-bootstrap/Button'
 import { RiDeleteBin2Line } from 'react-icons/ri';
 import { GrFavorite } from 'react-icons/gr';
@@ -19,6 +17,7 @@ const DisplayMedia = (props) => {
 
 
     useEffect(() => {
+
         let getData = async () => {
             try {
                 let response = await axios.get('/comment')
@@ -34,21 +33,6 @@ const DisplayMedia = (props) => {
         }
         getData()
     }, [triggerDisplay])
-
-    // useEffect(() => {
-    //     const getAlbums = async () => {
-    //         try {
-    //             let response = await axios.get('/getalbum')
-    //             let result = response.data
-    //             // console.log(result)
-    //             setAlbums(result)
-    //         } catch (error) {
-    //             console.log(error)
-    //         }
-    //     }
-    //     getAlbums()
-    // }, [])
-
 
     const handleDelete = (deleteMedia) => {
         console.log(deleteMedia)
@@ -74,7 +58,6 @@ const DisplayMedia = (props) => {
     const handleAddToAlbum = (mediaId, albumId) => {
         console.log(mediaId, albumId)
         axios.post('/updatealbum', { mediaId, albumId })
-        alert(`Added to Album`)
     }
 
 

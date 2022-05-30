@@ -34,8 +34,6 @@ const reducerTemplate = (state = initialState, action) => {
             }
         case actionTypes.ADD_OTHER_MEDIA: //this is for pics or videos (cloudinary)
             let newMedia = [action.data.mediaData]
-            console.log ("src/reducer 6", action.data)
-            console.log("newMedia", newMedia)
             return {
                 media: newMedia
             }

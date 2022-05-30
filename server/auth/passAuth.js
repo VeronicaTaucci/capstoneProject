@@ -3,15 +3,9 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;  //local strategy 
 const JwtStrategy = require('passport-jwt').Strategy; //jwt strategy, helps us to decode the jwt
 const ExtractJwt = require('passport-jwt').ExtractJwt; //
-
-// access db 
 const db = require('../models'); //access to all models in the db
-
-//bcrypt , encrypt the inputed the password and compare ti db
-const bcrypt = require('bcryptjs');
-
-//secret file for JWT
-const secrets = require('../secrets');
+const bcrypt = require('bcryptjs');//bcrypt , encrypt the inputed the password and compare ti db
+const secrets = require('../secrets');//secret file for JWT
 
 let options = {
     usernameField: 'email'

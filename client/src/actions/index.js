@@ -20,20 +20,6 @@ export const addComment = (formData) => async dispatch => { //this is thunk, fun
 }
 
 
-// adding a media link to the database
-
-// export const addAudio = (formData) => async dispatch => {
-//     console.log(formData)
-//     try {
-//         let response = await axios.post('/recorder',formData)
-//         console.log("add audio in index.js",response)
-//     } catch (error) {
-//         console.log("add audio in index.js",error)
-//     }
-// }
-
-//add a image or video
-
 export const mediaUpload = (mediaData) => async dispatch => {
     try {
         // let response = await axios.post('/media', mediaData)
