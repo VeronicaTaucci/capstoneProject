@@ -25,7 +25,11 @@ module.exports = (sequelize, DataTypes) => {
     comment: DataTypes.STRING,
     userId: DataTypes.INTEGER,
     mediaUrl: DataTypes.STRING,
-    mediaFormat: DataTypes.STRING
+    mediaFormat: DataTypes.STRING,
+    favourites: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false
+    }
   }, {
     sequelize,
     modelName: 'Media',
