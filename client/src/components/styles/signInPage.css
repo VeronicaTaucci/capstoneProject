@@ -1,5 +1,17 @@
+.signInForm {
+ 
+    width: 35vw;
+    font-size: 1.5rem;
+    margin: auto;
+    margin-top: 20%;
 
-.signInForm{
+}
+
+.form-control {
+    height: 55px;
+}
+
+.signOutForm {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -7,21 +19,7 @@
     margin: auto;
     width: 35vw;
     font-size: 1.5rem;
-}
-
-.form-control{
-    height: 55px;
-}
-
-.signOutForm {
-    position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        margin: auto;
-        width: 35vw;
-        font-size: 1.5rem;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }

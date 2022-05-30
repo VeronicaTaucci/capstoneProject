@@ -6,6 +6,7 @@ import "./styles/displayMedia.css"
 import Card from 'react-bootstrap/Card'
 import PictureModal from "./PictureModal"
 import Button from 'react-bootstrap/Button'
+import DropdownButton from 'react-bootstrap/DropdownButton'
 import { RiDeleteBin2Line } from 'react-icons/ri';
 import { GrFavorite } from 'react-icons/gr';
 import AlbumDropdown from "./AlbumDropdown";

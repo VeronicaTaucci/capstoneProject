@@ -48,13 +48,13 @@ ReactDOM.render(
                     <Routes>
                         <Route path='/' element={<App />} />
                         <Route path='/signup' element={<Signup />} />
-                        <Route path='/home' element={<RequireAuth><Home /></RequireAuth>} />
+                        <Route path='/home' element={<Home />} />
                         <Route path='/signout' element={<Signout />} />
                         <Route path='/signin' element={<Signin />} />
                         <Route path='/albums' element={<CreateAlbum />} />
                         <Route path='/comment' element={<Comment />} />
                         <Route path='/album/:id' element={<Album />} />
-                        <Route path='/displayalbum' element={<RequireAuth><AllAlbums/></RequireAuth>} />
+                        <Route path='/displayalbum' element={<AllAlbums/>} />
                         <Route path='/recorder' element={<Recorder />} />
                     </Routes>
                 </BaseLayout>
