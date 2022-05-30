@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom'
 
 const RequireAuth = (props) => {
 
-
+    console.log(props);
     const auth = useSelector(state => state.auth)
     
     const navigate = useNavigate();
