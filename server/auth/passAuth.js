@@ -1,6 +1,6 @@
-// require passport 
+// require passport
 const passport = require('passport');
-const LocalStrategy = require('passport-local').Strategy;  //local strategy 
+const LocalStrategy = require('passport-local').Strategy;  //local strategy
 const JwtStrategy = require('passport-jwt').Strategy; //jwt strategy, helps us to decode the jwt
 const ExtractJwt = require('passport-jwt').ExtractJwt; //
 const db = require('../models'); //access to all models in the db
@@ -10,15 +10,16 @@ const secrets = require('../secrets');//secret file for JWT
 let options = {
     usernameField: 'email'
 }
+
 let localLogin = new LocalStrategy(options, async (email, password, done) => {
     try {
         //check to see if email is in our db
         let records = await db.users.findAll({ where: { email } })// [{}, {}, {},{} ]
         if (records !== null) {
-            //*if the email was found, //check if password is valid 
+            //*if the email was found, //check if password is valid
             bcrypt.compare(password, records[0].password, (err, isMatch) => {
                 if (err) {
-                    return done(err) // error found by bcrypt  
+                    return done(err) // error found by bcrypt
                 }
                 if (!isMatch) {
                     return done(null, false) //no auth because passwords didn't match
@@ -33,17 +34,20 @@ let localLogin = new LocalStrategy(options, async (email, password, done) => {
         }
     }
     catch (error) {
-        // can't access db 
+        // can't access db
         return done(error)
     }
 })
 passport.use(localLogin)
+
+
 // JWT Strategy check to see if token is valid
 
 let jwtOptions = {
     jwtFromRequest: ExtractJwt.fromHeader('authorization'),
     secretOrKey: secrets.secrets,
 }
+
 let jwtLogin = new JwtStrategy(jwtOptions, async (payload, done) => {
     try {
         //check if user is in db
@@ -61,7 +65,7 @@ let jwtLogin = new JwtStrategy(jwtOptions, async (payload, done) => {
         }
     }
     catch (error) {
-        //error reading db 
+        //error reading db
         return done(error)
     }
 })

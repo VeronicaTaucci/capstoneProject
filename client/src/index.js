@@ -46,7 +46,7 @@ ReactDOM.render(
             <Router>
                 <BaseLayout>
                     <Routes>
-                        <Route path='/' element={<App />} />
+                        <Route path='/' element={<RequireAuth><App /></RequireAuth>} />
                         <Route path='/signup' element={<Signup />} />
                         <Route path='/home' element={<Home />} />
                         <Route path='/signout' element={<Signout />} />

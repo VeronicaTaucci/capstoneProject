@@ -5,6 +5,7 @@ import axios from 'axios'
 import "./styles/displayMedia.css"
 import Card from 'react-bootstrap/Card'
 import PictureModal from "./PictureModal"
+import DropdownButton from 'react-bootstrap/DropdownButton'
 import Button from 'react-bootstrap/Button'
 import DropdownButton from 'react-bootstrap/DropdownButton'
 import { RiDeleteBin2Line } from 'react-icons/ri';
