@@ -27,6 +27,7 @@ const DisplayAlbums = (props) => {
     const handleClick = (e) => {
         e.preventDefault()
         const id = e.target.attributes.value.value
+        alert('Added to Album')
 
         navigate(`/album/${id}`)
 

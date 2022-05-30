@@ -8,7 +8,7 @@ const NavbarComponent = () => {
         <>
             <Navbar bg="primary" variant="dark" expand="lg">
                 <Container>
-                    <Navbar.Brand href="#home">HappyShares</Navbar.Brand>
+                    {/* <Navbar.Brand href="#home"><img src='../../Logo.png'></img></Navbar.Brand> */}
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="me-auto">

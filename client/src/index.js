@@ -55,7 +55,6 @@ ReactDOM.render(
                         <Route path='/album/:id' element={<Album />} />
                         <Route path='/recorder' element={<Recorder />} />
                     </Routes>
-
                 </BaseLayout>
             </Router>
         </Provider>

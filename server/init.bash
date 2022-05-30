@@ -8,3 +8,4 @@
 # sequelize migration:create --name readd_media_table
 # sequelize migration:create --name drop_users_table
 # sequelize model:generate --name albums --attributes name:string,userID:integer,description:string
+# sequelize migration:create --name add_favorites_to_media_table

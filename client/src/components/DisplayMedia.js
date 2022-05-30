@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from "react"
-import { ZonedDate } from "@progress/kendo-date-math";
-import '@progress/kendo-date-math/tz/all'
+import { ZonedDate } from '@progress/kendo-date-math';
+import { Alert, AlertIcon, AlertTitle, AlertDescription } from '@chakra-ui/react'
 import axios from 'axios'
 import "./styles/displayMedia.css"
 import Card from 'react-bootstrap/Card'
-import ListGroup from 'react-bootstrap/ListGroup'
 import PictureModal from "./PictureModal"
 import Dropdown from 'react-bootstrap/Dropdown'
 import DropdownButton from 'react-bootstrap/DropdownButton'
@@ -72,12 +71,14 @@ const DisplayMedia = (props) => {
         } else if (changeFavouriteColor === "outline-warning") {
             setChangeFavouriteColor("outline-danger")
             axios.post('/favourite', (mediaObj, "false"))
+
         }
     }
 
     const handleAddToAlbum = (mediaId, albumId) => {
         console.log(mediaId, albumId)
         axios.post('/updatealbum', { mediaId, albumId })
+        alert(`Added to Album`)
     }
 
 
@@ -85,7 +86,7 @@ const DisplayMedia = (props) => {
         <>
             <div className="container-fluid">
                 <div className="row">
-                        {sortedMedia.map((media, index) => {
+                        {sortedMedia.map((media) => {
                             const date = new Date(media.createdAt);
                             const tzDate = ZonedDate.fromUTCDate(date);
                             const localDt = tzDate._localDate.toString();

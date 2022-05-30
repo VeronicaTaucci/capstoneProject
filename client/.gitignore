@@ -4,6 +4,7 @@
 /node_modules
 /.pnp
 .pnp.js
+kendo-ui-license.txt
 
 # testing
 /coverage
