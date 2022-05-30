@@ -48,7 +48,7 @@ router.post('/displayalbum', async (req, res) => {
     try {
         await db.media_albums.destroy({ where: { albumId: id } })
         await db.albums.destroy({ where: { id: id } })
-        res.send('succes')
+        res.send('success')
     } catch (error) {
         console.log(error)
     }
@@ -183,7 +183,7 @@ router.post('/register', async (req, res) => {
 })
 
 
-router.post('/login',requireLogin, (req, res) => {
+router.post('/login', requireLogin, (req, res) => {
             res.json({ token: token(req.user) })
 })
 
