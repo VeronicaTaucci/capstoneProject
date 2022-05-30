@@ -1,0 +1,9 @@
+.albumList {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.albumList:hover {
+    background-color: #e7f1ff;
+}

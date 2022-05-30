@@ -1,0 +1,16 @@
+.footer{
+    display: flex;
+    align-items: flex-start;
+    background-color: blue;
+    color: white;
+    justify-content: space-between;
+    align-items: center;
+    position: absolute;
+        bottom: auto;
+        margin: 0 auto;
+}
+ .nav-link {
+     font-family: 'Roboto', sans-serif;
+     color: white !important;
+     font-size: large;
+ }
