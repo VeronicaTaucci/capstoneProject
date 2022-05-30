@@ -32,29 +32,46 @@ router.get('/', (req, res) => {
 })
 
 
-//! all albums
-router.get('/displayalbum', async (req, res) => {
+
+router.get('/protected', requireJwt, (req, res) => {
+    console.log('passed protected page');
+    res.json({ isValid: true })
+})
+
+//! display comment
+router.get('/comment', async (req, res) => {
     try {
-        let allAlbums = await db.albums.findAll()
-        res.json(allAlbums)
-    } catch (error) {
-        console.log(error)
+        let allComments = await db.Media.findAll({
+            include: db.users
+        })
+            .then((results) => {
+                // console.log(results)
+                res.send(results)
+            })
+    }
+    catch (err) {
+        return res.status(423).json({ err })
     }
 })
 
-//! delete an album
-router.post('/displayalbum', async (req, res) => {
-    let {id} = req.body
+
+//! all albums page
+router.get('/displayalbum', async (req, res) => {
     try {
+
+        let allAlbums = await db.albums.findAll()
+        res.json(allAlbums)
+
         await db.media_albums.destroy({ where: { albumId: id } })
         await db.albums.destroy({ where: { id: id } })
         res.send('success')
+
     } catch (error) {
         console.log(error)
     }
 })
 
-//! get album object to display //this will return an array of objects [{"mediaId": 22,"albumId": 2},{},{}]
+//! display specific album with media inside
 router.get('/displayalbum/:id', async (req, res) => {
     let { id } = req.params //album id
     console.log(id)
@@ -65,7 +82,32 @@ router.get('/displayalbum/:id', async (req, res) => {
         let mediaObj = await db.Media.findAll({ where: { id: mediaIds } }) //id:[2,17]
         console.log("mediaObj", mediaObj)
         res.json(mediaObj)
+        
+    } catch (error) {
+        console.log(error)
+    }
+})
 
+//! get album
+router.get('/getalbum', async (req, res) => {
+    // let album = req.body
+    // let id = album.id
+    try {
+        let getAlbum = await db.albums.findAll()
+        res.json(getAlbum)
+    } catch (err) {
+        console.log(err)
+    }
+})
+
+
+//! delete an album
+router.post('/displayalbum', async (req, res) => {
+    let {id} = req.body
+    try {
+        await db.media_albums.destroy({ where: { albumId: id } })
+        await db.albums.destroy({ where: { id: id } })
+        res.send('succes')
     } catch (error) {
         console.log(error)
     }
@@ -80,18 +122,8 @@ router.post('/createalbum', async (req, res) => {
         console.log(err)
     }
 })
-//! get album
-router.get('/getalbum', async (req, res) => {
-    // let album = req.body
-    // let id = album.id
-    try {
-        let getAlbum = await db.albums.findAll()
-        res.json(getAlbum)
-    } catch (err) {
-        console.log(err)
-    }
-})
- //!update album
+
+ //!add items to a specific album
 router.post('/updatealbum', async (req, res) => {
     let { mediaId, albumId } = req.body
     try {
@@ -132,6 +164,8 @@ router.post('/delete', async (req, res) => {
     }
 })
 
+
+//! delete album
 router.post('/deletealbum', async (req, res) => {
     let album = req.body
     let id = album.id
@@ -141,16 +175,7 @@ router.post('/deletealbum', async (req, res) => {
         console.log(error)
     }
 })
-
-
-//! add/delete from favourites
-// router.post('/favourite', async (req, res) => {
-//     let response = req.body
-//     console.log(response)
-// })
-
-//when react sends us info from form, and we send back a JWT to be saved on the client side -
-//because token is what authenticates the user and persists their login.
+//! register user
 router.post('/register', async (req, res) => {
     let { name, email, password } = req.body;
     //*determine if email already exists in our db
@@ -160,9 +185,9 @@ router.post('/register', async (req, res) => {
         let records = await db.users.findAll({ where: { email } })
         if (records.length === 0) { //no record exits, must create new user record
             // encrypt our password
-            const password = bcrypt.hashSync(password, 8)
+            password = bcrypt.hashSync(password, 8)
             //create db entry
-            let newUserRecord = await db.users.create({ name, email, password }) //user is an object that we just created
+            let newUserRecord = await db.users.create({ name:name, email:email, password:password }) //user is an object that we just created
             //user => {id, email, password, createdAt, updatedAt}
             //create jwt
             let jwtTokenObj = token(newUserRecord)
@@ -188,11 +213,6 @@ router.post('/login', requireLogin, (req, res) => {
 })
 
 
-router.get('/protected', requireJwt, (req, res) => {
-    console.log('passed protected page');
-    res.json({ isValid: true })
-})
-
 
 //! all media routes
 
@@ -209,21 +229,7 @@ router.post('/comment', async (req, res) => {
     }
 })
 
-// display comment
-router.get('/comment', async (req, res) => {
-    try {
-        let allComments = await db.Media.findAll({
-            include: db.users
-        })
-            .then((results) => {
-                // console.log(results)
-                res.send(results)
-            })
-    }
-    catch (err) {
-        return res.status(423).json({ err })
-    }
-})
+
 
 //! add cloudinary media
 router.post('/media', async (req, res) => {

@@ -13,7 +13,9 @@ const NavbarComponent = () => {
                         <Nav className="me-auto links">
                             <Nav.Link href="/displayalbum">Albums</Nav.Link>
                         </Nav>
-                            <Nav.Link href="/signout">Sign Out</Nav.Link>
+                       
+                        <Nav.Link style={{color:'white'}} href="/signout">Sign Out</Nav.Link>
+                            
                     </Navbar.Collapse>
                 </Container>
             </Navbar>
