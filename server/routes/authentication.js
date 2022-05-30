@@ -31,6 +31,29 @@ router.get('/', (req, res) => {
     res.send('home page')
 })
 
+
+//! all albums
+router.get('/displayalbum', async (req, res) => {
+    try {
+        let allAlbums = await db.albums.findAll()
+        res.json(allAlbums)
+    } catch (error) {
+        console.log(error)
+    }
+})
+
+//! delete an album
+router.post('/displayalbum', async (req, res) => {
+    let {id} = req.body
+    try {
+        await db.media_albums.destroy({ where: { albumId: id } })
+        await db.albums.destroy({ where: { id: id } })
+        res.send('succes')
+    } catch (error) {
+        console.log(error)
+    }
+})
+
 //! get album object to display //this will return an array of objects [{"mediaId": 22,"albumId": 2},{},{}]
 router.get('/displayalbum/:id', async (req, res) => {
     let { id } = req.params //album id

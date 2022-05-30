@@ -5,6 +5,8 @@ import { signOut } from '../../actions'
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
 import "../styles/signInPage.css"
+import Navbar from '../layout/Navbar'
+import Footer from '../layout/Footer'
 const Signout = () => {
 
     const navigate = useNavigate();
@@ -18,6 +20,7 @@ const Signout = () => {
 
     return (
         <>
+            <Navbar/>
             <Form className="signOutForm">
                 <h3 className="text-warning">...sorry to see you go!</h3>
                 <Button onClick={logout} variant="outline-primary" size="lg" type="submit" value="Log In" >
