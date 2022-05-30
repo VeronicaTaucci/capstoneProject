@@ -74,7 +74,7 @@
 }
 
 .submit {
-    width: 123px;
+    width: auto;
     height: 40px;
     background-color: #0275d8;
     border: none;
