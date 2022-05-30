@@ -192,8 +192,7 @@ router.get('/protected', requireJwt, (req, res) => {
     console.log('passed protected page');
     res.json({ isValid: true })
 })
-// router.get('/profile/:id', requireJwt, (req, res) => {
-// })
+
 
 
 //! all media routes

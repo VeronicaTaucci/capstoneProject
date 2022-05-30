@@ -54,7 +54,7 @@ ReactDOM.render(
                         <Route path='/albums' element={<CreateAlbum />} />
                         <Route path='/comment' element={<Comment />} />
                         <Route path='/album/:id' element={<Album />} />
-                        <Route path='/displayalbum' element={<AllAlbums/>} />
+                        <Route path='/displayalbum' element={<RequireAuth><AllAlbums/></RequireAuth>} />
                         <Route path='/recorder' element={<Recorder />} />
                     </Routes>
 
