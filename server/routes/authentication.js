@@ -82,7 +82,7 @@ router.get('/displayalbum/:id', async (req, res) => {
         let mediaObj = await db.Media.findAll({ where: { id: mediaIds } }) //id:[2,17]
         console.log("mediaObj", mediaObj)
         res.json(mediaObj)
-        
+
     } catch (error) {
         console.log(error)
     }
@@ -222,7 +222,9 @@ router.post('/comment', async (req, res) => {
     let { comment, userId, mediaFormat } = req.body;
     try {
         //create db entry
+        console.log('comment print userid', userId)
         let newComment = await db.Media.create({ comment, userId, mediaFormat })
+        res.json(newComment)
     }
     catch (err) {
         return res.status(423).json({ err })
@@ -251,6 +253,7 @@ router.post('/recorder', async (req, res) => {
     let { userId, comment, mediaFormat, mediaUrl } = req.body;
 
     try {
+        console.log('recorder print userId', userId)
         let newAudio = await db.Media.create({ userId, comment, mediaFormat, mediaUrl })
         res.json(newAudio)
     } catch (error) {

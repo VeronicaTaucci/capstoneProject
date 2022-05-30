@@ -19,7 +19,6 @@ const Recorder = (props) => {
     const [isLoading, setIsLoading] = useState(false)
     const [progressPercent, setProgressPercent] = useState(0)
     const [recordingURL, setRecordingURL] = useState()
-    const [showSubmit, setShowSubmit] = useState(false)
 
     const userId = useSelector(state => state.userId)
 
@@ -206,7 +205,6 @@ const Recorder = (props) => {
         )
     }
 
-    const onClick = () => setShowSubmit(true);
 
 
     return (
@@ -215,13 +213,13 @@ const Recorder = (props) => {
                 <Accordion.Header>Record A Voice Message</Accordion.Header>
                 <Accordion.Body>
                     Please select 'Record' to start recording a message.  Preview or delete, and when you are satisfied with the message, click 'Submit Audio'.
-                    <form onSubmit={handleSubmit}>
+                    <form>
                         <section className="main-controls">
                             <canvas className="visualizer" width='100px' height='40px'></canvas>
                                 <Button className="record">Record</Button>
-                                <Button onClick={onClick} className="stop">Stop</Button><br/>
+                                <Button className="stop">Stop</Button>
                                 <section className="sound-clips"></section>
-                                {showSubmit ? <Submit /> : null}
+                                <Button className='submit' onClick={handleSubmit}>Submit Audio</Button>
                         </section>
                     </form>
 
@@ -235,7 +233,5 @@ const Recorder = (props) => {
         </>
     )
 }
-
-const Submit = () => <Button className='submit' >Submit Audio</Button>
 
 export default Recorder
