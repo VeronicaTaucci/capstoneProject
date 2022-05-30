@@ -12,6 +12,9 @@ const CreateAlbum = () => {
     const userId = useSelector(state => state.userId)
     const [triggerDisplay, setTriggerDisplay] = useState(false)
    
+
+
+    
     
     const handleSubmit = (e) => {
         e.preventDefault()

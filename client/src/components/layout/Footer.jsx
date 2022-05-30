@@ -6,20 +6,18 @@ import Nav from 'react-bootstrap/Nav';
 const Footer = () => {
     return (
         <>
-            <footer className="footer-txt">
                
-                <Container fluid className="footer">
-                        <div>
+                <footer className="footer">
+                <div className='contributors'>
                             Happy Shares © 2022
                         </div>
-                        <div>
-                        <Nav.Link href="https://github.com/violetmedina">Violet Medina</Nav.Link>
-                        <Nav.Link href="https://github.com/VeronicaTaucci">Veronica Taucci</Nav.Link>
-                        <Nav.Link href="https://github.com/chloeWieser">Chloe Wieser</Nav.Link> 
-                        </div>
+                        <ul className='contributors'>
+                        <li> <a href="https://github.com/violetmedina">Violet Medina</a></li>
+                        <li><a href="https://github.com/VeronicaTaucci">Veronica Taucci</a></li>
+                        <li> <a href="https://github.com/chloeWieser">Chloe Wieser</a></li> 
+                        </ul>
                         
-                </Container>
-            </footer>
+                </footer>
         </>
     )
 }
