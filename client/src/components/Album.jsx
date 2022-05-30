@@ -6,6 +6,7 @@ import ListGroup from 'react-bootstrap/ListGroup'
 import PictureModal from "./PictureModal"
 import { ZonedDate } from "@progress/kendo-date-math";
 
+import Navbar from './layout/Navbar'
 const Album = () => {
     const  {id}  = useParams()
     const [medias, setMedias] = useState([])
@@ -24,6 +25,7 @@ const Album = () => {
 
     return (
         <>
+            <Navbar/>
             <h1>Album</h1>
             <div className="row">
                 <ul className="display">

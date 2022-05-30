@@ -18,6 +18,7 @@ import RequireAuth from './components/RequireAuth'
 import { checkToken } from './actions'
 import Comment from './components/Comment'
 import Album from './components/Album'
+import AllAlbums from './components/AllAlbums';
 // import 'bootstrap/dist/css/bootstrap.min.css';
 // initializing redux store
 // requires a reducer. Second argument is for redux dev-tools extension.
@@ -53,6 +54,7 @@ ReactDOM.render(
                         <Route path='/albums' element={<CreateAlbum />} />
                         <Route path='/comment' element={<Comment />} />
                         <Route path='/album/:id' element={<Album />} />
+                        <Route path='/displayalbum' element={<AllAlbums/>} />
                         <Route path='/recorder' element={<Recorder />} />
                     </Routes>
                 </BaseLayout>

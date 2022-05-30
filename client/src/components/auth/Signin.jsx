@@ -9,6 +9,7 @@ import "../styles/signInPage.css"
 const Signin = () => {
 
 
+  const [message, setMessage] = useState("");
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const dispatch = useDispatch();

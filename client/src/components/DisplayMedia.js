@@ -16,7 +16,7 @@ const DisplayMedia = (props) => {
     const [media, setMedia] = useState([]);
     const [albums, setAlbums] = useState([]);
     const [sortedMedia, setSortedMedia] = useState([])
-    const [changeFavouriteColor, setChangeFavouriteColor] = useState("outline-danger")
+    const [changeFavouriteColor, setChangeFavouriteColor] = useState("outline-warning")
 
 
     useEffect(() => {
@@ -63,17 +63,16 @@ const DisplayMedia = (props) => {
         }
     }
 
-    const handleFavourite = (mediaObj) => {
-        console.log(mediaObj)
-        if (changeFavouriteColor === "outline-danger") {
-            setChangeFavouriteColor("outline-warning")
-            axios.post('/favourite', (mediaObj, "true"))
-        } else if (changeFavouriteColor === "outline-warning") {
-            setChangeFavouriteColor("outline-danger")
-            axios.post('/favourite', (mediaObj, "false"))
-
-        }
-    }
+    // const handleFavourite = (e) => {
+    //     console.log(e.target)
+    //     // if (changeFavouriteColor === "outline-warning") {
+    //     //     setChangeFavouriteColor("warning")
+    //     //     axios.post('/favourite', (mediaObj, "true"))
+    //     // } else if (changeFavouriteColor === "warning") {
+    //     //     setChangeFavouriteColor("outline-warning")
+    //     //     axios.post('/favourite', (mediaObj, "false"))
+    //     // }
+    // }
 
     const handleAddToAlbum = (mediaId, albumId) => {
         console.log(mediaId, albumId)
@@ -86,98 +85,98 @@ const DisplayMedia = (props) => {
         <>
             <div className="container-fluid">
                 <div className="row">
-                        {sortedMedia.map((media) => {
-                            const date = new Date(media.createdAt);
-                            const tzDate = ZonedDate.fromUTCDate(date);
-                            const localDt = tzDate._localDate.toString();
-                            const finalDt = localDt.slice(0, 15)
-                            switch (media.mediaFormat) {
-                                case 'text':
-                                    {/* //! TEXT CARD */}
-                                    return (
-                                        <>
-                                            <Card key={media.createdAt} className="imgCard justify-content-center" style={{ width: '21rem' }} >
-                                                <Card.Header>{media.comment}</Card.Header><br/>
-                                                <Card.Text variant="end" >
-                                                    Posted by: {media.user.name}<br />
-                                                    Post Date: {finalDt}
-                                                </Card.Text>
-                                                    <DropdownButton id="dropdown-basic-button" title="Add to Album...">
-                                                        {albums.map((album, index) => {
-                                                            return (
-                                                                <>
-                                                                    <Dropdown.Item key={index} href="#/action-1" onClick={() => handleAddToAlbum(media.id, album.id)}>{album.name}</Dropdown.Item>
-                                                                </>
-                                                            )
-                                                        })}
-                                                    </DropdownButton>
-                                                <Card.Footer >
-                                                    <Button variant={changeFavouriteColor} onClick={() => handleFavourite(media)}><GrFavorite size={30} /></Button>
-                                                    <Button variant="outline-danger" onClick={() => handleDelete(media)}><RiDeleteBin2Line size={30} /></Button>
-                                                </Card.Footer>
-                                            </Card>
-                                        </>
-                                    )
-                                case 'image':
-                                {/*//! IMAGE CARD */}
-                                    return (
-                                        <>
-                                            <Card key={media.createdAt} className="imgCard justify-content-center" style={{ width: '21rem' }} >
-                                                <Card.Img className="imgInCard" variant="top" src={media.mediaUrl} />
-                                                <Card.Text variant="end" >
-                                                    Posted by: {media.user.name}<br />
-                                                    Post Date: {finalDt}
-                                                </Card.Text>
-                                                    <DropdownButton id="dropdown-basic-button" title="Add to Album...">
-                                                        {albums.map((album, index) => {
-                                                            return (
-                                                                <>
-                                                                    <Dropdown.Item key={index} href="#/action-1" onClick={() => handleAddToAlbum(media.id, album.id)}>{album.name}</Dropdown.Item>
-                                                                </>
-                                                            )
-                                                        })}
-                                                    </DropdownButton>
-                                                <Card.Footer >
-                                                    <PictureModal modalHeading={media.comment} pictureLink={media.mediaUrl} />
-                                                    <Button variant={changeFavouriteColor} onClick={() => handleFavourite(media)}><GrFavorite size={30} /></Button>
-                                                    <Button variant="outline-danger" onClick={() => handleDelete(media)}><RiDeleteBin2Line size={30} /></Button>
-                                                </Card.Footer>
-                                            </Card>
-                                        </>)
-                                case 'audio':
-                                {/* //! AUDIO CARD */}
-                                    return (
-                                        <>
-                                            <Card key={media.createdAt} className="imgCard justify-content-center" style={{ width: '21rem' }} >
-                                                <figure>
-                                                    <audio className="audio" controls src={media.mediaUrl}>
-                                                        Your browser does not support the <code>audio</code> element.
-                                                    </audio>
-                                                </figure>
-                                                <Card.Text className="justify-content-center" variant="end" >
-                                                    {media.comment}<br/>
-                                                    Posted by: {media.user.name}<br/>
-                                                    Post Date: {finalDt}
-                                                </Card.Text>
-                                                    <DropdownButton id="dropdown-basic-button" title="Add to Album...">
-                                                        {albums.map((album, index) => {
-                                                            return (
-                                                                <>
-                                                                    <Dropdown.Item key={index} href="#/action-1" onClick={() => handleAddToAlbum(media.id, album.id)}>{album.name}</Dropdown.Item>
-                                                                </>
-                                                            )
-                                                        })}
-                                                    </DropdownButton>
-                                                <Card.Footer >
-                                                    <Button variant={changeFavouriteColor} onClick={() => handleFavourite(media)}><GrFavorite size={30} /></Button>
-                                                    <Button variant="outline-danger" onClick={() => handleDelete(media)}><RiDeleteBin2Line size={30} /></Button>
-                                                </Card.Footer>
-                                            </Card>
-                                        </>)
-                                default:
-                                    break;
-                            }
-                        })}
+                    {sortedMedia.map((media, index) => {
+                        const date = new Date(media.createdAt);
+                        const tzDate = ZonedDate.fromUTCDate(date);
+                        const localDt = tzDate._localDate.toString();
+                        const finalDt = localDt.slice(0, 15)
+                        switch (media.mediaFormat) {
+                            case 'text':
+                                {/* //! TEXT CARD */ }
+                                return (
+                                    <>
+                                        <Card key={media.createdAt} className="imgCard justify-content-center" style={{ width: '21rem' }} >
+                                            <Card.Header>{media.comment}</Card.Header><br />
+                                            <Card.Text variant="end" >
+                                                Posted by: {media.user.name}<br />
+                                                Post Date: {finalDt}
+                                            </Card.Text>
+                                            <DropdownButton id="dropdown-basic-button" title="Add to Album...">
+                                                {albums.map((album, index) => {
+                                                    return (
+                                                        <>
+                                                            <Dropdown.Item key={index} href="#/action-1" onClick={() => handleAddToAlbum(media.id, album.id)}>{album.name}</Dropdown.Item>
+                                                        </>
+                                                    )
+                                                })}
+                                            </DropdownButton>
+                                            <Card.Footer >
+                                                {/* <Button className='outlin-warning' onClick={(e) => handleFavourite(e)}><GrFavorite size={30} /></Button> */}
+                                                <Button variant="outline-danger" onClick={() => handleDelete(media)}><RiDeleteBin2Line size={30} /></Button>
+                                            </Card.Footer>
+                                        </Card>
+                                    </>
+                                )
+                            case 'image':
+                                {/*//! IMAGE CARD */ }
+                                return (
+                                    <>
+                                        <Card key={media.createdAt} className="imgCard justify-content-center" style={{ width: '21rem' }} >
+                                            <Card.Img className="imgInCard" variant="top" src={media.mediaUrl} />
+                                            <Card.Text variant="end" >
+                                                Posted by: {media.user.name}<br />
+                                                Post Date: {finalDt}
+                                            </Card.Text>
+                                            <DropdownButton id="dropdown-basic-button" title="Add to Album...">
+                                                {albums.map((album, index) => {
+                                                    return (
+                                                        <>
+                                                            <Dropdown.Item key={index} href="#/action-1" onClick={() => handleAddToAlbum(media.id, album.id)}>{album.name}</Dropdown.Item>
+                                                        </>
+                                                    )
+                                                })}
+                                            </DropdownButton>
+                                            <Card.Footer >
+                                                <PictureModal modalHeading={media.comment} pictureLink={media.mediaUrl} />
+                                                {/* <Button variant={changeFavouriteColor} onClick={() => handleFavourite(media)}><GrFavorite size={30} /></Button> */}
+                                                <Button variant="outline-danger" onClick={() => handleDelete(media)}><RiDeleteBin2Line size={30} /></Button>
+                                            </Card.Footer>
+                                        </Card>
+                                    </>)
+                            case 'audio':
+                                {/* //! AUDIO CARD */ }
+                                return (
+                                    <>
+                                        <Card key={media.createdAt} className="imgCard justify-content-center" style={{ width: '21rem' }} >
+                                            <figure>
+                                                <audio className="audio" controls src={media.mediaUrl}>
+                                                    Your browser does not support the <code>audio</code> element.
+                                                </audio>
+                                            </figure>
+                                            <Card.Text className="justify-content-center" variant="end" >
+                                                {media.comment}<br />
+                                                Posted by: {media.user.name}<br />
+                                                Post Date: {finalDt}
+                                            </Card.Text>
+                                            <DropdownButton id="dropdown-basic-button" title="Add to Album...">
+                                                {albums.map((album, index) => {
+                                                    return (
+                                                        <>
+                                                            <Dropdown.Item key={index} href="#/action-1" onClick={() => handleAddToAlbum(media.id, album.id)}>{album.name}</Dropdown.Item>
+                                                        </>
+                                                    )
+                                                })}
+                                            </DropdownButton>
+                                            <Card.Footer >
+                                                {/* <Button variant={changeFavouriteColor} onClick={() => handleFavourite(media)}><GrFavorite size={30} /></Button> */}
+                                                <Button variant="outline-danger" onClick={() => handleDelete(media)}><RiDeleteBin2Line size={30} /></Button>
+                                            </Card.Footer>
+                                        </Card>
+                                    </>)
+                            default:
+                                break;
+                        }
+                    })}
                 </div>
             </div>
         </>
