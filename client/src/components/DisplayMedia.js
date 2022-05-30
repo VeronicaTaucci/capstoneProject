@@ -21,6 +21,7 @@ const DisplayMedia = (props) => {
 
 
     useEffect(() => {
+        
         let getData = async () => {
             try {
                 let response = await axios.get('/comment')
@@ -36,10 +37,6 @@ const DisplayMedia = (props) => {
                 console.log(error)
             }
         }
-        getData()
-    }, [triggerDisplay])
-
-    useEffect(() => {
         const getAlbums = async () => {
             try {
                 let response = await axios.get('/getalbum')
@@ -50,8 +47,12 @@ const DisplayMedia = (props) => {
                 console.log(error)
             }
         }
+        getData()
         getAlbums()
-    }, [])
+    }, [triggerDisplay])
+
+
+       
 
 
     const handleDelete = (deleteMedia) => {
@@ -78,6 +79,7 @@ const DisplayMedia = (props) => {
     const handleAddToAlbum = (mediaId, albumId) => {
         console.log(mediaId, albumId)
         axios.post('/updatealbum', { mediaId, albumId })
+        
     }
 
 
