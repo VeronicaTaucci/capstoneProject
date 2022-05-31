@@ -20,7 +20,10 @@ const CreateAlbum = () => {
             name,
             userId,
         }
-        axios.post('/createalbum', newAlbum)
+        axios.post('/createalbum', newAlbum, {
+            headers: {
+                'authorization': localStorage.token
+            }})
         setTriggerDisplay(true)
         setDescription('')
         setName('')

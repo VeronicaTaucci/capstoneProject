@@ -12,9 +12,6 @@ const Comment = (props) => {
     const [comment, setComment] = useState("")
     const userId = useSelector(state => state.userId)
     const dispatch = useDispatch();
-
-
-
     const navigate = useNavigate()
 
     const handleSubmit = (e) => {

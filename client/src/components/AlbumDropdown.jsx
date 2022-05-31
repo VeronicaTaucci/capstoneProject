@@ -13,7 +13,10 @@ const AlbumDropdown = ({props, mediaInfo}) => {
     useEffect(() => {
         const getAlbums = async () => {
             try {
-                let response = await axios.get('/getalbum')
+                let response = await axios.get('/getalbum', {
+                    headers: {
+                        'authorization': localStorage.token
+                    }})
                 let result = response.data
                 // console.log(result)
                 setAlbums(result)
@@ -27,7 +30,10 @@ const AlbumDropdown = ({props, mediaInfo}) => {
 
     const handleAddToAlbum = (mediaId, albumId) => {
         console.log(mediaId, albumId)
-        axios.post('/updatealbum', { mediaId, albumId })
+        axios.post('/updatealbum', { mediaId, albumId }, {
+            headers: {
+                'authorization': localStorage.token
+            }})
         alert(`Added to Album`)
     }
 

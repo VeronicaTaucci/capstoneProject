@@ -15,14 +15,17 @@ const Album = (props) => {
     useEffect(() => {
         let getData = async () => {
             console.log(id); //3
-            let getMedia = await axios.get(`/displayalbum/${id}` )
+            let getMedia = await axios.get(`/displayalbum/${id}`, {
+                headers: {
+                    'authorization': localStorage.token
+                }} )
             setMedias(getMedia.data)
             console.log(getMedia.data);
         }
         getData()
 
     }, [])
- 
+
     return (
         <>
             <Navbar/>
@@ -53,10 +56,10 @@ const Album = (props) => {
                                         <Card key={media.createdAt} className="imgCard justify-content-center" style={{ width: '21rem' }} >
                                             <Card.Img className="imgInCard" variant="top" src={media.mediaUrl} />
                                             <Card.Text variant="end" >
-                                                
+
                                                 Post Date: {finalDt}
                                             </Card.Text>
-                                           
+
                                             <Card.Footer >
                                                 <PictureModal modalHeading={media.comment} pictureLink={media.mediaUrl} />
                                                 {/* <Button variant={changeFavouriteColor} onClick={() => handleFavourite(media)}><GrFavorite size={30} /></Button> */}

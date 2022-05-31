@@ -196,7 +196,10 @@ const Recorder = (props) => {
                     .then(async (url) => {
                         console.log('firebase url', url)
                         let formData = { mediaUrl: url, userId: userId, comment: clipName, mediaFormat: 'audio' }
-                        let response = await axios.post('/recorder', formData)
+                        let response = await axios.post('/recorder', formData, {
+                            headers: {
+                                'authorization': localStorage.token
+                            }})
                         console.log('response', response)
                         setRecordingURL(response.data.mediaUrl)
                         setTriggerDisplay(true)

@@ -2,20 +2,22 @@ import React from "react";
 import Navbar from 'react-bootstrap/Navbar';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
+import { Link } from "react-router-dom";
+
 const NavbarComponent = () => {
     return (
         <>
             <Navbar bg="primary" variant="dark" expand="lg">
                 <Container fluid>
-                <Navbar.Brand href="/home"><img src='../../Logo1.png'></img></Navbar.Brand>
+                <Link to='/home'><Navbar.Brand><img src='../../Logo1.png'></img></Navbar.Brand></Link>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="me-auto links">
-                            <Nav.Link href="/displayalbum">Albums</Nav.Link>
+                            <Link to="/displayalbum" color="white">Albums</Link>
                         </Nav>
-                       
-                        <Nav.Link style={{color:'white'}} href="/signout">Sign Out</Nav.Link>
-                            
+
+                        <Link to="/signout" color="white">Sign Out</Link>
+
                     </Navbar.Collapse>
                 </Container>
             </Navbar>

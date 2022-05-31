@@ -13,12 +13,19 @@ const reducerTemplate = (state = initialState, action) => {
     switch (action.type) {
 
         case actionTypes.AUTH_USER:
-            // console.log("action.data", action.data)
+            console.log("action.data", action.data)
             return {
                 ...state,
-                auth: action.data,
+                auth: action.data.JWT,
                 userId:action.data.UserId
             }
+        case actionTypes.SIGN_OUT:
+            return {
+                ...state,
+                auth: "",
+                userId: ""
+            }
+
         case actionTypes.ERROR:
             return {
                 ...state,

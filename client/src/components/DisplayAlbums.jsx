@@ -15,7 +15,10 @@ const DisplayAlbums = (props) => {
     useEffect(() => {
         const getAlbums = async () => {
             try {
-                let response = await axios.get('/getalbum')
+                let response = await axios.get('/getalbum', {
+                    headers: {
+                        'authorization': localStorage.token
+                    }})
                 let result = await response.data
                 setAlbums(result)
                 setTriggerDisplay(false)
@@ -37,7 +40,10 @@ const DisplayAlbums = (props) => {
         console.log(id);
         setTriggerDisplay(true)
         try {
-            axios.post('/displayalbum', { id });
+            axios.post('/displayalbum', { id }, {
+                headers: {
+                    'authorization': localStorage.token
+                }});
         } catch (err) {
             console.log(err)
         }
