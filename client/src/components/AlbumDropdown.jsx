@@ -4,7 +4,8 @@ import Dropdown from 'react-bootstrap/Dropdown'
 
 const AlbumDropdown = (props) => {
 
-    const { triggerDisplay, setTriggerDisplay } = props;
+    const { triggerDisplay, setTriggerDisplay, mediaId } = props;
+    
     const [albums, setAlbums] = useState([]);
     const [media, setMedia] = useState([]);
 

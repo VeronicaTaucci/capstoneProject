@@ -1,9 +1,14 @@
+.logo{
+    border: 2px solid rgb(30, 149, 200);
+        border-radius: 25px;
+        margin: auto;
+        margin-bottom: 50px;
+}
 .signInForm {
-
     width: 35vw;
     font-size: 1.5rem;
     margin: auto;
-    margin-top: 20%;
+    margin-top: 10%;
 
 }
 

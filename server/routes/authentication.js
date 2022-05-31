@@ -158,6 +158,7 @@ router.post('/delete', async (req, res) => {
     let id = media.id
     // console.log(id)
     try {
+        await db.media_albums.destroy( {where: {mediaId:id}})
         await db.Media.destroy( {where: {id:id}})
     } catch (err) {
         console.log(err)
