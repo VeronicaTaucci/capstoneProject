@@ -2,11 +2,12 @@ import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import Dropdown from 'react-bootstrap/Dropdown'
 
-const AlbumDropdown = (props) => {
+const AlbumDropdown = ({props, mediaInfo}) => {
 
-    const { triggerDisplay, setTriggerDisplay } = props;
+    const { triggerDisplay, setTriggerDisplay, mediaId } = props;
+    console.log('mediaId', mediaId)
     const [albums, setAlbums] = useState([]);
-    const [media, setMedia] = useState([]);
+    // const [media, setMedia] = useState([]);
 
     useEffect(() => {
         const getAlbums = async () => {
@@ -21,7 +22,7 @@ const AlbumDropdown = (props) => {
             }
         }
         getAlbums()
-    }, [setTriggerDisplay])
+    }, [triggerDisplay])
 
     const handleAddToAlbum = (mediaId, albumId) => {
         console.log(mediaId, albumId)
@@ -34,7 +35,7 @@ const AlbumDropdown = (props) => {
             {albums.map((album, index) => {
                 return (
                     <>
-                        <Dropdown.Item key={index} href="#/action-1" onClick={() => handleAddToAlbum(media.id, album.id)}>{album.name}</Dropdown.Item>
+                        <Dropdown.Item key={index} href="#/action-1" onClick={() => handleAddToAlbum(mediaId, album.id)}>{album.name}</Dropdown.Item>
                     </>
                 )
             })}

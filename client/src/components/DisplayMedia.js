@@ -71,6 +71,8 @@ const DisplayMedia = (props) => {
                         const tzDate = ZonedDate.fromUTCDate(date);
                         const localDt = tzDate._localDate.toString();
                         const finalDt = localDt.slice(0, 15)
+                        const mediaId = media.id
+                        const mediaInfo = {triggerDisplay, mediaId, setTriggerDisplay}
                         switch (media.mediaFormat) {
                             case 'text':
                                 {/* //! TEXT CARD */ }
@@ -90,7 +92,7 @@ const DisplayMedia = (props) => {
                                                         </>
                                                     )
                                                 })} */}
-                                                <AlbumDropdown triggerDisplay={triggerDisplay} setTriggerDisplay={setTriggerDisplay}/>
+                                                <AlbumDropdown props={mediaInfo}/>
                                             </DropdownButton>
                                             <Card.Footer >
                                                 {/* <Button className='outlin-warning' onClick={(e) => handleFavourite(e)}><GrFavorite size={30} /></Button> */}
@@ -110,7 +112,7 @@ const DisplayMedia = (props) => {
                                                 Post Date: {finalDt}
                                             </Card.Text>
                                             <DropdownButton id="dropdown-basic-button" title="Add to Album...">
-                                                <AlbumDropdown triggerDisplay={triggerDisplay} setTriggerDisplay={setTriggerDisplay}/>
+                                                <AlbumDropdown props={mediaInfo}/>
                                             </DropdownButton>
                                             <Card.Footer >
                                                 <PictureModal modalHeading={media.comment} pictureLink={media.mediaUrl} />
@@ -135,7 +137,7 @@ const DisplayMedia = (props) => {
                                                 Post Date: {finalDt}
                                             </Card.Text>
                                             <DropdownButton id="dropdown-basic-button" title="Add to Album...">
-                                                <AlbumDropdown triggerDisplay={triggerDisplay} setTriggerDisplay={setTriggerDisplay}/>
+                                                <AlbumDropdown props={mediaInfo}/>
                                             </DropdownButton>
                                             <Card.Footer >
                                                 {/* <Button variant={changeFavouriteColor} onClick={() => handleFavourite(media)}><GrFavorite size={30} /></Button> */}
