@@ -19,6 +19,8 @@ require('../auth/passAuth');
 let requireLogin = passport.authenticate('local', { session: false })
 let requireJwt = passport.authenticate('jwt', { session: false })
 
+router.use(express.urlencoded({extended: false})) // scrape email and pwd from request header
+router.use(express.json())  //req.body
 
 //this function return a JWT & user.Id
 const token = (userRecord) => {
@@ -30,7 +32,6 @@ const token = (userRecord) => {
 router.get('/', (req, res) => {
     res.send('home page')
 })
-
 
 
 router.get('/protected', requireJwt, (req, res) => {

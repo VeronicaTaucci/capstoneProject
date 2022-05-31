@@ -14,12 +14,10 @@ const reducerTemplate = (state = initialState, action) => {
     switch (action.type) {
 
         case actionTypes.AUTH_USER:
-            console.log("action.data", action.data.JWT)
-            let JWT = action.data.JWT
-            console.log(state)
+            // console.log("action.data", action.data)
             return {
                 ...state,
-                auth: JWT,
+                auth: action.data,
                 userId:action.data.UserId
             }
         case actionTypes.ERROR:

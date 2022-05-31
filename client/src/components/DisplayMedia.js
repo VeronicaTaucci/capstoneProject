@@ -7,7 +7,8 @@ import DropdownButton from 'react-bootstrap/DropdownButton'
 import PictureModal from "./PictureModal"
 import Button from 'react-bootstrap/Button'
 import { RiDeleteBin2Line } from 'react-icons/ri';
-import AlbumDropdown from './AlbumDropdown'
+import Dropdown from 'react-bootstrap/Dropdown'
+import AlbumDropdown from "./AlbumDropdown";
 
 const DisplayMedia = (props) => {
     const { triggerDisplay, setTriggerDisplay } = props;

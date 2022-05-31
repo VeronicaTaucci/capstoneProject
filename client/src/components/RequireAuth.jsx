@@ -5,14 +5,19 @@ import { useNavigate } from 'react-router-dom'
 
 const RequireAuth = (props) => {
 
-    const auth = useSelector((state) => state.auth)
-    
+    // console.log(props);
+    const auth = useSelector(state => state.auth)
+
     const navigate = useNavigate();
 
     useEffect(() => {
+
+        console.log(auth);
+
         if (!auth) {  //if string is empty then not logged in properly
 
             navigate('/')
+            console.log('inside falsy of require auth no auth')
         }
 
     }, [auth])
