@@ -1,20 +1,17 @@
 import React, { useState, useEffect } from "react"
 import { ZonedDate } from '@progress/kendo-date-math';
-import { Alert, AlertIcon, AlertTitle, AlertDescription } from '@chakra-ui/react'
 import axios from 'axios'
 import "./styles/displayMedia.css"
 import Card from 'react-bootstrap/Card'
-import PictureModal from "./PictureModal"
 import DropdownButton from 'react-bootstrap/DropdownButton'
+import PictureModal from "./PictureModal"
 import Button from 'react-bootstrap/Button'
 import { RiDeleteBin2Line } from 'react-icons/ri';
-import { GrFavorite } from 'react-icons/gr';
-import AlbumDropdown from "./AlbumDropdown";
+import Dropdown from 'react-bootstrap/Dropdown'
 
 const DisplayMedia = (props) => {
     const { triggerDisplay, setTriggerDisplay } = props;
     const [sortedMedia, setSortedMedia] = useState([])
-    const [changeFavouriteColor, setChangeFavouriteColor] = useState("outline-warning")
 
 
     useEffect(() => {
@@ -45,16 +42,22 @@ const DisplayMedia = (props) => {
         }
     }
 
-    // const handleFavourite = (e) => {
-    //     console.log(e.target)
-    //     // if (changeFavouriteColor === "outline-warning") {
-    //     //     setChangeFavouriteColor("warning")
-    //     //     axios.post('/favourite', (mediaObj, "true"))
-    //     // } else if (changeFavouriteColor === "warning") {
-    //     //     setChangeFavouriteColor("outline-warning")
-    //     //     axios.post('/favourite', (mediaObj, "false"))
-    //     // }
-    // }
+    // const [albums, setAlbums] = useState([]);
+
+    // useEffect(() => {
+    //     const getAlbums = async () => {
+    //         try {
+    //             let response = await axios.get('/getalbum')
+    //             let result = response.data
+    //             // console.log(result)
+    //             setAlbums(result)
+    //             setTriggerDisplay(false)
+    //         } catch (error) {
+    //             console.log(error)
+    //         }
+    //     }
+    //     getAlbums()
+    // }, [setTriggerDisplay])
 
     const handleAddToAlbum = (mediaId, albumId) => {
         console.log(mediaId, albumId)
@@ -85,13 +88,13 @@ const DisplayMedia = (props) => {
                                                 Post Date: {finalDt}
                                             </Card.Text>
                                             <DropdownButton id="dropdown-basic-button" title="Add to Album...">
-                                                {/* {albums.map((album, index) => {
+                                                {albums.map((album, index) => {
                                                     return (
                                                         <>
                                                             <Dropdown.Item key={index} href="#/action-1" onClick={() => handleAddToAlbum(media.id, album.id)}>{album.name}</Dropdown.Item>
                                                         </>
                                                     )
-                                                })} */}
+                                                })}
                                                 <AlbumDropdown props={mediaInfo}/>
                                             </DropdownButton>
                                             <Card.Footer >
@@ -144,7 +147,8 @@ const DisplayMedia = (props) => {
                                                 <Button variant="outline-danger" onClick={() => handleDelete(media)}><RiDeleteBin2Line size={30} /></Button>
                                             </Card.Footer>
                                         </Card>
-                                    </>)
+                                    </>
+                                    )
                             default:
                                 break;
                         }
@@ -152,6 +156,6 @@ const DisplayMedia = (props) => {
                 </div>
             </div>
         </>
-    )
+    ) //return close
 }
 export default DisplayMedia

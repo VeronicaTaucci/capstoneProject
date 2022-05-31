@@ -16,9 +16,6 @@ const Home = () => {
 
   const [triggerDisplay, setTriggerDisplay] = useState(false)
 
-  useEffect(() => {
-    document.title = "Home"
-  }, [])
 
   return (
     <>

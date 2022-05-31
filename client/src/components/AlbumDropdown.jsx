@@ -6,6 +6,7 @@ const AlbumDropdown = ({props, mediaInfo}) => {
 
     const { triggerDisplay, setTriggerDisplay, mediaId } = props;
     console.log('mediaId', mediaId)
+
     const [albums, setAlbums] = useState([]);
     // const [media, setMedia] = useState([]);
 

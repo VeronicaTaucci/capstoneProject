@@ -24,9 +24,9 @@ const Signin = () => {
 
   return (
     <>
-      <img class="fit-picture" src="../../public/logo.png"/>
       <Form className="signInForm"
         onSubmit={handleSubmit}>
+      <img class="fit-picture" src="../../logo.png" className="logo"/>
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Label>Email address</Form.Label>
           <Form.Control className="form-control" type="email" value={email}

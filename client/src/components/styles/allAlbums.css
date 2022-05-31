@@ -1,6 +1,18 @@
 .albums{
-    width: 80%;
+ 
     margin: auto;
     display: flex;
     justify-content: center;
+    flex-wrap: wrap;
+}
+
+.cardBody{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+h3{
+    background-color: rgb(220, 228, 230);
+    border-radius: 25px;
+    padding: 10px;
 }
