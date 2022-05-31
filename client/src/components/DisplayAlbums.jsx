@@ -28,6 +28,7 @@ const DisplayAlbums = (props) => {
 
     const handleClick = (e) => {
         e.preventDefault()
+        console.log(e);
         const id = e.target.attributes.value.value
         navigate(`/album/${id}`)
     }
@@ -48,8 +49,8 @@ const DisplayAlbums = (props) => {
                     // console.log(album)
                     return (
                         <>
-                            <div className="albumList" key={album.id} value={album.id} onClick={(e) => handleClick(e)} type="button">
-                                <tag className='albumName'>{album.name}</tag>
+                            <div className="albumList" key={album.id}   type="button">
+                                <tag value={album.id} onClick={(e) => handleClick(e)} className='albumName'>{album.name}</tag>
                                 <tag><Button variant="outline-danger" onClick={() => handleDelete(album)}><RiDeleteBin2Line size={30} /></Button></tag>
                             </div>
                         </>
