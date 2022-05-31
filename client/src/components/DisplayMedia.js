@@ -19,7 +19,10 @@ const DisplayMedia = (props) => {
 
         let getData = async () => {
             try {
-                let response = await axios.get('/comment')
+                let response = await axios.get('/comment', {
+                    headers: {
+                        'authorization': localStorage.token
+                    }})
                 let result = response.data
                 const sortedMedia = [...result].sort((a, b) => (a.id < b.id) ? 1 : -1)
                 // console.log("sorted result", sortedMedia)
@@ -36,35 +39,15 @@ const DisplayMedia = (props) => {
     const handleDelete = (deleteMedia) => {
         console.log(deleteMedia)
         try {
-            axios.post('/delete', deleteMedia);
+            axios.post('/delete', deleteMedia, {
+                headers: {
+                    'authorization': localStorage.token
+                }});
             setTriggerDisplay(true)
         } catch (err) {
             console.log(err)
         }
     }
-
-    // const [albums, setAlbums] = useState([]);
-
-    // useEffect(() => {
-    //     const getAlbums = async () => {
-    //         try {
-    //             let response = await axios.get('/getalbum')
-    //             let result = response.data
-    //             // console.log(result)
-    //             setAlbums(result)
-    //             setTriggerDisplay(false)
-    //         } catch (error) {
-    //             console.log(error)
-    //         }
-    //     }
-    //     getAlbums()
-    // }, [setTriggerDisplay])
-
-    const handleAddToAlbum = (mediaId, albumId) => {
-        console.log(mediaId, albumId)
-        axios.post('/updatealbum', { mediaId, albumId })
-    }
-
 
     return (
         <>

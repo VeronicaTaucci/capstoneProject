@@ -43,7 +43,10 @@ const Cloudinary = (props) => {
                 userId: userId,
             }
             console.log("mediaData", mediaData);
-            const response = axios.post('/media', mediaData)
+            const response = axios.post('/media', mediaData, {
+                headers: {
+                    'authorization': localStorage.token
+                }})
             console.log("response", response);
             setMediaUpload(false)
             setTriggerDisplay(true)

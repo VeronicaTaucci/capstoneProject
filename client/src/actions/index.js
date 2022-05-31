@@ -6,7 +6,10 @@ import axios from 'axios'
 export const addComment = (formData) => async dispatch => { //this is thunk, function returning another function
     try {
         //make api call to backend
-        let response = await axios.post('/comment',formData)
+        let response = await axios.post('/comment', formData, {
+            headers: {
+                'authorization': localStorage.token
+            }})
         // console.log("add comment in index.js", response)
         dispatch({
             type: actionTypes.ADD_MEDIA,
@@ -22,8 +25,7 @@ export const addComment = (formData) => async dispatch => { //this is thunk, fun
 
 export const mediaUpload = (mediaData) => async dispatch => {
     try {
-        // let response = await axios.post('/media', mediaData)
-        // console.log("src/actions/index.js 27", response)
+
         dispatch({
             type: actionTypes.ADD_OTHER_MEDIA,
             data: {
@@ -110,12 +112,11 @@ export const signIn = (formData, cb) => async dispatch =>{
 export const signOut = (cb) => dispatch =>{
 
     // call to backend destroy token on backend
-
+    const getToken = localStorage.getItem('token')
+    console.log('local storage before sign out - getToken', getToken)
     dispatch({
-        type: actionTypes.AUTH_USER,
-        data: ""
+        type: actionTypes.SIGN_OUT
     })
-
 
     //clear local storage
 

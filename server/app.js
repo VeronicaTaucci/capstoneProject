@@ -1,11 +1,12 @@
 const express = require('express');
 const app = express();
-const port = 3001;
 
+require('dotenv').config()
 
-app.use(express.urlencoded({ extended: false })) // scrape email and pwd from request header 
+const port = process.env.PORT || 3001;
+
+app.use(express.urlencoded({ extended: false })) // scrape email and pwd from request header
 app.use(express.json())  //req.body
-
 
 app.use(require('./routes/authentication'))
 

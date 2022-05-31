@@ -5,7 +5,7 @@ const JwtStrategy = require('passport-jwt').Strategy; //jwt strategy, helps us t
 const ExtractJwt = require('passport-jwt').ExtractJwt; //
 const db = require('../models'); //access to all models in the db
 const bcrypt = require('bcryptjs');//bcrypt , encrypt the inputed the password and compare ti db
-const secrets = require('../secrets');//secret file for JWT
+
 
 let options = {
     usernameField: 'email'
@@ -45,7 +45,7 @@ passport.use(localLogin)
 
 let jwtOptions = {
     jwtFromRequest: ExtractJwt.fromHeader('authorization'),
-    secretOrKey: secrets.secrets,
+    secretOrKey: process.env.SECRETS_KEY,
 }
 
 let jwtLogin = new JwtStrategy(jwtOptions, async (payload, done) => {
