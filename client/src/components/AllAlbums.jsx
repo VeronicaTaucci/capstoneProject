@@ -51,11 +51,12 @@ const AllAlbums = () => {
                         return (
                             <>
                                 <Card className="imgCard"  >
-                                    <Card.Body onClick={() => handleClick(album)}>
-                                        <h1>
-                                            <Badge pill bg="light" text="dark">{album.name}</Badge>
-                                        </h1>
-                                        <h4>{album.description}</h4>
+                                    <Card.Body  className="cardBody" onClick={() => handleClick(album)}>
+                                        
+                                        
+                                        <h3>{album.name}</h3>
+                                        
+                                            <h4>{album.description}</h4>
                                     </Card.Body>
                                         <Button variant="outline-danger" onClick={() => handleDelete(album)}><RiDeleteBin2Line size={30} /></Button>
                                 </Card>

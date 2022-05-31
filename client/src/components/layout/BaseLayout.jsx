@@ -7,11 +7,6 @@ import NavbarComponent from './Navbar'
 const BaseLayout = (props) => {
   return (
     <>
-      
-      {/* <Signin/> */}
-      {/* <NavbarComponent />
-        <Header />
-      <Footer/> */}
        {props.children}
     </>
   )

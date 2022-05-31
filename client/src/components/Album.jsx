@@ -2,15 +2,15 @@ import React, {useEffect, useState} from "react"
 import { useParams } from "react-router-dom"
 import axios from "axios"
 import Card from 'react-bootstrap/Card'
-import ListGroup from 'react-bootstrap/ListGroup'
 import PictureModal from "./PictureModal"
 import { ZonedDate } from "@progress/kendo-date-math";
 
 import Navbar from './layout/Navbar'
-const Album = () => {
+const Album = (props) => {
+
+    const { triggerDisplay, setTriggerDisplay } = props;
     const  {id}  = useParams()
     const [medias, setMedias] = useState([])
-
 
     useEffect(() => {
         let getData = async () => {
@@ -22,11 +22,10 @@ const Album = () => {
         getData()
 
     }, [])
-
+ 
     return (
         <>
             <Navbar/>
-            <h1>Album</h1>
             <div className="row">
                 <ul className="display">
                     {medias.map((media) => {
@@ -36,39 +35,49 @@ const Album = () => {
                         const finalDt = localDt.slice(0, 15)
                         switch (media.mediaFormat) {
                             case 'text':
+                                {/* //! TEXT CARD */ }
                                 return (
                                     <>
-                                        <ListGroup.Item className="commentLi">
-                                            {media.comment}<br /><br />
-                                            Post Date: {finalDt}
-                                        </ListGroup.Item>
+                                        <Card key={media.createdAt} className="imgCard justify-content-center" style={{ width: '21rem' }} >
+                                            <Card.Header>{media.comment}</Card.Header><br />
+                                            <Card.Text variant="end" >
+                                                Post Date: {finalDt}
+                                            </Card.Text>
+                                        </Card>
                                     </>
                                 )
                             case 'image':
+                                {/*//! IMAGE CARD */ }
                                 return (
                                     <>
-                                        <Card className="imgCard" >
-                                            <Card.Body >
-                                                <Card.Img className="imgInCard" variant="top" src={media.mediaUrl} />
+                                        <Card key={media.createdAt} className="imgCard justify-content-center" style={{ width: '21rem' }} >
+                                            <Card.Img className="imgInCard" variant="top" src={media.mediaUrl} />
+                                            <Card.Text variant="end" >
+                                                
                                                 Post Date: {finalDt}
-                                                <PictureModal pictureLink={media.mediaUrl} />
-                                                <br />
-                                            </Card.Body>
+                                            </Card.Text>
+                                           
+                                            <Card.Footer >
+                                                <PictureModal modalHeading={media.comment} pictureLink={media.mediaUrl} />
+                                                {/* <Button variant={changeFavouriteColor} onClick={() => handleFavourite(media)}><GrFavorite size={30} /></Button> */}
+                                            </Card.Footer>
                                         </Card>
                                     </>)
                             case 'audio':
+                                {/* //! AUDIO CARD */ }
                                 return (
                                     <>
-                                        <ListGroup.Item className="commentLi">
+                                        <Card key={media.createdAt} className="imgCard justify-content-center" style={{ width: '21rem' }} >
                                             <figure>
                                                 <audio className="audio" controls src={media.mediaUrl}>
                                                     Your browser does not support the <code>audio</code> element.
                                                 </audio>
-
-                                                Post Date: {finalDt}
                                             </figure>
-                                            <br />
-                                                    </ListGroup.Item>
+                                            <Card.Text className="justify-content-center" variant="end" >
+                                                {media.comment}<br />
+                                                Post Date: {finalDt}
+                                            </Card.Text>
+                                        </Card>
                                     </>)
                             default:
                                 break;
