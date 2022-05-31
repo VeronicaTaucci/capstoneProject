@@ -8,6 +8,7 @@ import PictureModal from "./PictureModal"
 import Button from 'react-bootstrap/Button'
 import { RiDeleteBin2Line } from 'react-icons/ri';
 import Dropdown from 'react-bootstrap/Dropdown'
+import AlbumDropdown from "./AlbumDropdown";
 
 const DisplayMedia = (props) => {
     const { triggerDisplay, setTriggerDisplay } = props;
@@ -88,13 +89,6 @@ const DisplayMedia = (props) => {
                                                 Post Date: {finalDt}
                                             </Card.Text>
                                             <DropdownButton id="dropdown-basic-button" title="Add to Album...">
-                                                {albums.map((album, index) => {
-                                                    return (
-                                                        <>
-                                                            <Dropdown.Item key={index} href="#/action-1" onClick={() => handleAddToAlbum(media.id, album.id)}>{album.name}</Dropdown.Item>
-                                                        </>
-                                                    )
-                                                })}
                                                 <AlbumDropdown props={mediaInfo}/>
                                             </DropdownButton>
                                             <Card.Footer >

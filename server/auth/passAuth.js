@@ -49,15 +49,18 @@ let jwtOptions = {
 }
 
 let jwtLogin = new JwtStrategy(jwtOptions, async (payload, done) => {
+
     try {
+        console.log("payload", payload)
         //check if user is in db
         let userID = payload.sub;
         let user = await db.users.findByPk(userID); //{}
+        console.log('passAuth user', user)
         //true - success
         if (user) {
             return done(null, user)  //place the user object on req.user
 
-            //req.user = {id, email, password}
+            //passport creates a new key on req.user = {id, email, password}
         }
         else {
             //else - error

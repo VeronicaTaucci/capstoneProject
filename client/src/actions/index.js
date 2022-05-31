@@ -53,7 +53,7 @@ export const signUp = (formData, cb) => async dispatch=>{
         //setting our token inside of global storage
         dispatch({
             type: actionTypes.AUTH_USER,
-            data: response.data //{userId:sasas, token: token}
+            data: response.data.token //{userId:sasas, token: token}
         })
 
         cb()
@@ -95,7 +95,7 @@ export const signIn = (formData, cb) => async dispatch =>{
         //invoke the callback function to navigate to a feature page
         cb()
 
-        localStorage.setItem('token', response.data.token)
+        localStorage.setItem('token', response.data.token.JWT)
     }
     catch(error){
 
