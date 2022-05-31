@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom'
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
 import "../styles/signInPage.css"
+
 const Signup = () => {
 
     const [name, setName] = useState("")

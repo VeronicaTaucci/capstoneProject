@@ -6,8 +6,8 @@ import { useNavigate } from 'react-router-dom'
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
 import "../styles/signInPage.css"
-const Signin = () => {
 
+const Signin = () => {
 
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
@@ -26,7 +26,8 @@ const Signin = () => {
     <>
       <Form className="signInForm"
         onSubmit={handleSubmit}>
-      <img class="fit-picture" src="../../logo.png" className="logo"/>
+      <img src="../../logo.png" className="logo"/>
+      {/* <img class="fit-picture" src="../../logo.png" className="logo"/> */}
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Label>Email address</Form.Label>
           <Form.Control className="form-control" type="email" value={email}
