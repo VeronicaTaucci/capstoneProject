@@ -34,9 +34,9 @@ const Cloudinary = (props) => {
     });
 
     useEffect(() => {
-        console.log("useEffect loaded")
+        // console.log("useEffect loaded")
         if (mediaUpload) {
-            console.log("media upload fired");
+            // console.log("media upload fired");
             let mediaData = {
                 mediaFormat: mediaFormat,
                 mediaUrl: url,
