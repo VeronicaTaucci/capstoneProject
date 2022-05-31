@@ -7,7 +7,7 @@ import DropdownButton from 'react-bootstrap/DropdownButton'
 import PictureModal from "./PictureModal"
 import Button from 'react-bootstrap/Button'
 import { RiDeleteBin2Line } from 'react-icons/ri';
-import Dropdown from 'react-bootstrap/Dropdown'
+import AlbumDropdown from './AlbumDropdown'
 
 const DisplayMedia = (props) => {
     const { triggerDisplay, setTriggerDisplay } = props;
@@ -42,22 +42,6 @@ const DisplayMedia = (props) => {
         }
     }
 
-    // const [albums, setAlbums] = useState([]);
-
-    // useEffect(() => {
-    //     const getAlbums = async () => {
-    //         try {
-    //             let response = await axios.get('/getalbum')
-    //             let result = response.data
-    //             // console.log(result)
-    //             setAlbums(result)
-    //             setTriggerDisplay(false)
-    //         } catch (error) {
-    //             console.log(error)
-    //         }
-    //     }
-    //     getAlbums()
-    // }, [setTriggerDisplay])
 
     const handleAddToAlbum = (mediaId, albumId) => {
         console.log(mediaId, albumId)
@@ -88,13 +72,6 @@ const DisplayMedia = (props) => {
                                                 Post Date: {finalDt}
                                             </Card.Text>
                                             <DropdownButton id="dropdown-basic-button" title="Add to Album...">
-                                                {albums.map((album, index) => {
-                                                    return (
-                                                        <>
-                                                            <Dropdown.Item key={index} href="#/action-1" onClick={() => handleAddToAlbum(media.id, album.id)}>{album.name}</Dropdown.Item>
-                                                        </>
-                                                    )
-                                                })}
                                                 <AlbumDropdown props={mediaInfo}/>
                                             </DropdownButton>
                                             <Card.Footer >

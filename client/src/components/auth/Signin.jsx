@@ -17,7 +17,11 @@ const Signin = () => {
   const handleSubmit = (e) => {
 
     e.preventDefault();
-    dispatch(signIn({ email, password }, () => {
+    let formData = {
+      email:email,
+      password:password,
+    }
+    dispatch(signIn(formData, () => {
       navigate('/home')
     }))
   }

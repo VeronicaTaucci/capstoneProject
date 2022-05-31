@@ -4,7 +4,8 @@ const initialState = {
     auth: "",
     error: "",
     comments: "",
-    media:""
+    media: "",
+    userId: ""
 
 }
 
@@ -13,10 +14,12 @@ const reducerTemplate = (state = initialState, action) => {
     switch (action.type) {
 
         case actionTypes.AUTH_USER:
-            console.log("action.data", action.data)
+            console.log("action.data", action.data.JWT)
+            let JWT = action.data.JWT
+            console.log(state)
             return {
                 ...state,
-                auth: action.data.JWT,
+                auth: JWT,
                 userId:action.data.UserId
             }
         case actionTypes.ERROR:
