@@ -14,4 +14,6 @@
 .albumName{
     font-weight: 500;
     padding: 0px 5px;
+    text-decoration: underline;
+    width: 100%;
 }
