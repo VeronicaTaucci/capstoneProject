@@ -1,18 +1,23 @@
 .footer{
     display: flex;
     align-items: flex-start;
-    background-color: blue;
+    /* position: fixed;
+    left: 0;
+    bottom: 0;
+    right: 0; */
+    background-color: #0d6efd;
     color: white;
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    bottom: 0;
 }
+
 .contributors a {
     color: white;
-    text-decoration: none;  
+    text-decoration: none;
     font-size: 20px
 }
+
 .contributors a:hover {
     color: black;
     text-shadow: 1px 1px rgb(8, 165, 237);
@@ -21,4 +26,12 @@
 .contributors{
     margin: 15px;
     list-style-type: none;
+}
+
+.link {
+    color: white;
+}
+
+.link:hover {
+    color: lightblue;
 }
