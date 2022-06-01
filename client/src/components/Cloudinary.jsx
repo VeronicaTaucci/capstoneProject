@@ -23,7 +23,7 @@ const Cloudinary = (props) => {
     }, async (error, result) => {
         if (!error && result && result.event === 'success') {
             setUrl(result.info.url)
-            console.log(result)
+            // console.log(result)
             setMediaFormat(result.info.resource_type)
             setMediaUpload(true)
         } else {
@@ -42,12 +42,12 @@ const Cloudinary = (props) => {
                 mediaUrl: url,
                 userId: userId,
             }
-            console.log("mediaData", mediaData);
+            // console.log("mediaData", mediaData);
             const response = axios.post('/media', mediaData, {
                 headers: {
                     'authorization': localStorage.token
                 }})
-            console.log("response", response);
+            // console.log("response", response);
             setMediaUpload(false)
             setTriggerDisplay(true)
         } else return

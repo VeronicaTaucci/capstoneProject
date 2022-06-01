@@ -18,7 +18,7 @@ export const addComment = (formData) => async dispatch => { //this is thunk, fun
             }
         })
     } catch (error) {
-        console.log("add comment in index.js", error)
+        console.log( error)
     }
 }
 
@@ -50,7 +50,7 @@ export const signUp = (formData, cb) => async dispatch => {
 
         let response = await axios.post('/register', formData)
         //response.data.token
-        console.log(response);  //token
+        // console.log(response);  //token
 
         //setting our token inside of global storage
         dispatch({
@@ -88,7 +88,7 @@ export const signIn = (formData, cb) => async dispatch => {
         //make an api call to /login
         let response = await axios.post('/login', formData)
 
-        console.log("logging in", response.data.token);
+        // console.log("logging in", response.data.token);
         dispatch({
             type: actionTypes.AUTH_USER,
             data: response.data.token
@@ -101,7 +101,7 @@ export const signIn = (formData, cb) => async dispatch => {
     }
     catch (error) {
 
-        console.log("something wrong here")
+        console.log(error)
         dispatch({
             type: actionTypes.ERROR,
             data: error
@@ -113,7 +113,7 @@ export const signOut = (cb) => dispatch => {
 
     // call to backend destroy token on backend
     const getToken = localStorage.getItem('token')
-    console.log('local storage before sign out - getToken', getToken)
+    // console.log('local storage before sign out - getToken', getToken)
     dispatch({
         type: actionTypes.SIGN_OUT
     })

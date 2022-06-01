@@ -65,7 +65,7 @@ const DisplayMedia = (props) => {
                             case 'text':
                                 return (
                                     <>
-                                        <Card className="imgCard justify-content-center" style={{ width: '21rem' }} >
+                                        <Card  className="imgCard justify-content-center" style={{ width: '21rem' }} >
                                             <Card.Header>{media.comment}</Card.Header><br />
                                             <Card.Text variant="end" >
                                                 Posted by: {media.user.name}<br />
@@ -84,7 +84,7 @@ const DisplayMedia = (props) => {
                             case 'image':
                                 return (
                                     <>
-                                        <Card className="imgCard justify-content-center" style={{ width: '21rem' }} >
+                                        <Card  className="imgCard justify-content-center" style={{ width: '21rem' }} >
                                             <Card.Img className="imgInCard" variant="top" src={media.mediaUrl} />
                                             <Card.Text variant="end" >
                                                 Posted by: {media.user.name}<br />
@@ -104,7 +104,7 @@ const DisplayMedia = (props) => {
                             case 'audio':
                                 return (
                                     <>
-                                        <Card className="imgCard justify-content-center" style={{ width: '21rem' }} >
+                                        <Card  className="imgCard justify-content-center" style={{ width: '21rem' }} >
                                             <figure>
                                                 <audio className="audio" controls src={media.mediaUrl}>
                                                     Your browser does not support the <code>audio</code> element.
