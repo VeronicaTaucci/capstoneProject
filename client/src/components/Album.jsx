@@ -8,22 +8,21 @@ import { ZonedDate } from "@progress/kendo-date-math";
 import Navbar from './layout/Navbar'
 const Album = (props) => {
 
-    const { triggerDisplay, setTriggerDisplay } = props;
     const  {id}  = useParams()
     const [medias, setMedias] = useState([])
 
     useEffect(() => {
         let getData = async () => {
-            console.log(id); //3
+            // console.log(id); //3
             let getMedia = await axios.get(`/displayalbum/${id}`, {
                 headers: {
                     'authorization': localStorage.token
                 }} )
             setMedias(getMedia.data)
-            console.log(getMedia.data);
+            // console.log(getMedia.data);
         }
         getData()
-    }, [])
+    }, [id])
 
     return (
         <>

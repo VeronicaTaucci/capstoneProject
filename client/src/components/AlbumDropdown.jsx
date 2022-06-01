@@ -26,7 +26,7 @@ const AlbumDropdown = ({props}) => {
     }, [triggerDisplay])
 
     const handleAddToAlbum = (mediaId, albumId) => {
-        console.log(mediaId, albumId)
+        // console.log(mediaId, albumId)
         axios.post('/updatealbum', { mediaId, albumId }, {
             headers: {
                 'authorization': localStorage.token
