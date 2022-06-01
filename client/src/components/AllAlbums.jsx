@@ -15,7 +15,10 @@ const AllAlbums = () => {
 
     useEffect(() => {
         let getData = async () => {
-            let getAlbums = await axios.get(`/displayalbum`)
+            let getAlbums = await axios.get(`/displayalbum`, {
+                headers: {
+                    'authorization': localStorage.token
+                }})
             setAlbums(getAlbums.data)
             setTriggerDisplay(false)
             // console.log(albums);
@@ -35,7 +38,10 @@ const AllAlbums = () => {
         // setTriggerDisplay(false)
         console.log(id);
         try {
-            axios.post('/displayalbum', { id });
+            axios.post('/displayalbum', { id }, {
+                headers: {
+                    'authorization': localStorage.token
+                }});
             setTriggerDisplay(true)
         } catch (err) {
             console.log(err)
@@ -52,10 +58,10 @@ const AllAlbums = () => {
                             <>
                                 <Card className="imgCard"  >
                                     <Card.Body  className="cardBody" onClick={() => handleClick(album)}>
-                                        
-                                        
+
+
                                         <h3>{album.name}</h3>
-                                        
+
                                             <h4>{album.description}</h4>
                                     </Card.Body>
                                         <Button variant="outline-danger" onClick={() => handleDelete(album)}><RiDeleteBin2Line size={30} /></Button>

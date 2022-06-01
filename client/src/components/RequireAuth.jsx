@@ -3,16 +3,15 @@ import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 
 
-const RequireAuth = (props) => {
+const RequireAuth = ({children}) => {
 
-    // console.log(props);
     const auth = useSelector(state => state.auth)
-
+    console.log('auth outside of useEffect', auth)
     const navigate = useNavigate();
 
     useEffect(() => {
 
-        console.log(auth);
+        console.log("auth inside of useEffect", auth);
 
         if (!auth) {  //if string is empty then not logged in properly
 
@@ -22,8 +21,8 @@ const RequireAuth = (props) => {
 
     }, [auth])
 
-
-    return props.children
+    console.log(children)
+    return children
 
 }
 

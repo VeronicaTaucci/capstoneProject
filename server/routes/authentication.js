@@ -3,7 +3,7 @@ const router = express.Router();
 const jwt = require('jwt-simple'); //allows us to create a jwt token
 const bcrypt = require('bcryptjs'); //used to encrypt passwords
 const passport = require('passport');
-const secrets = require('../secrets'); // secrets object inside of secrets.js file in root directory
+// const secrets = require('../secrets'); // secrets object inside of secrets.js file in root directory
 
 const db = require('../models'); //access to all db models
 const users = require("../models/users");
@@ -25,7 +25,7 @@ router.use(express.json())  //req.body
 //this function return a JWT & user.Id
 const token = (userRecord) => {
     let timestamp = new Date().getTime(); // current time
-    return { JWT: jwt.encode({ sub: userRecord.id, iat: timestamp }, secrets.secrets), UserId: userRecord.id }//first argument is the payload, second arg is secret
+    return { JWT: jwt.encode({ sub: userRecord.id, iat: timestamp }, process.env.SECRETS_KEY), UserId: userRecord.id }//first argument is the payload, second arg is secret
 }
 
 // console.log(token({id: 1}))
@@ -40,7 +40,7 @@ router.get('/protected', requireJwt, (req, res) => {
 })
 
 //! display comment
-router.get('/comment', async (req, res) => {
+router.get('/comment', requireJwt, async (req, res) => {
     try {
         let allComments = await db.Media.findAll({
             include: db.users
@@ -57,7 +57,7 @@ router.get('/comment', async (req, res) => {
 
 
 //! all albums page
-router.get('/displayalbum', async (req, res) => {
+router.get('/displayalbum', requireJwt, async (req, res) => {
     try {
 
         let allAlbums = await db.albums.findAll()
@@ -73,7 +73,7 @@ router.get('/displayalbum', async (req, res) => {
 })
 
 //! display specific album with media inside
-router.get('/displayalbum/:id', async (req, res) => {
+router.get('/displayalbum/:id', requireJwt, async (req, res) => {
     let { id } = req.params //album id
     console.log(id)
     try {
@@ -90,7 +90,8 @@ router.get('/displayalbum/:id', async (req, res) => {
 })
 
 //! get album
-router.get('/getalbum', async (req, res) => {
+router.get('/getalbum', requireJwt, async (req, res) => {
+
     // let album = req.body
     // let id = album.id
     try {
@@ -103,7 +104,7 @@ router.get('/getalbum', async (req, res) => {
 
 
 //! delete an album
-router.post('/displayalbum', async (req, res) => {
+router.post('/displayalbum', requireJwt, async (req, res) => {
     let {id} = req.body
     try {
         await db.media_albums.destroy({ where: { albumId: id } })
@@ -115,7 +116,7 @@ router.post('/displayalbum', async (req, res) => {
 })
 
 //! create album
-router.post('/createalbum', async (req, res) => {
+router.post('/createalbum', requireJwt, async (req, res) => {
     let {name,description, userId} = req.body
     try {
         await db.albums.create({ name, description, userId })
@@ -125,7 +126,7 @@ router.post('/createalbum', async (req, res) => {
 })
 
  //!add items to a specific album
-router.post('/updatealbum', async (req, res) => {
+router.post('/updatealbum', requireJwt, async (req, res) => {
     let { mediaId, albumId } = req.body
     try {
         let result = await db.media_albums.findOrCreate({
@@ -140,7 +141,7 @@ router.post('/updatealbum', async (req, res) => {
 })
 
 //! remove from album
-router.post('/removefromalbum', async (req, res) => {
+router.post('/removefromalbum', requireJwt, async (req, res) => {
     let { mediaId, albumId } = req.body
     try {
         let result = await db.media_albums.destroy({
@@ -154,7 +155,7 @@ router.post('/removefromalbum', async (req, res) => {
 })
 
 //! delete media
-router.post('/delete', async (req, res) => {
+router.post('/delete', requireJwt, async (req, res) => {
     let media = req.body //{id:1}
     let id = media.id
     // console.log(id)
@@ -168,7 +169,7 @@ router.post('/delete', async (req, res) => {
 
 
 //! delete album
-router.post('/deletealbum', async (req, res) => {
+router.post('/deletealbum', requireJwt, async (req, res) => {
     let album = req.body
     let id = album.id
     try {
@@ -219,7 +220,7 @@ router.post('/login', requireLogin, (req, res) => {
 //! all media routes
 
 //add comment
-router.post('/comment', async (req, res) => {
+router.post('/comment', requireJwt, async (req, res) => {
     // collect info from header
     let { comment, userId, mediaFormat } = req.body;
     try {
@@ -236,7 +237,7 @@ router.post('/comment', async (req, res) => {
 
 
 //! add cloudinary media
-router.post('/media', async (req, res) => {
+router.post('/media', requireJwt, async (req, res) => {
 
     let { mediaUrl, userId, mediaFormat} = req.body;
 
@@ -250,7 +251,7 @@ router.post('/media', async (req, res) => {
     }
 })
 
-router.post('/recorder', async (req, res) => {
+router.post('/recorder', requireJwt, async (req, res) => {
 
     let { userId, comment, mediaFormat, mediaUrl } = req.body;
 

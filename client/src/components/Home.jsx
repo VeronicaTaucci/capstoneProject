@@ -16,7 +16,6 @@ const Home = () => {
 
   const [triggerDisplay, setTriggerDisplay] = useState(false)
 
-
   return (
     <>
       <Navbar />
