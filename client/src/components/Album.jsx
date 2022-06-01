@@ -23,7 +23,6 @@ const Album = (props) => {
             console.log(getMedia.data);
         }
         getData()
-
     }, [])
 
     return (
@@ -56,10 +55,8 @@ const Album = (props) => {
                                         <Card key={media.createdAt} className="imgCard justify-content-center" style={{ width: '21rem' }} >
                                             <Card.Img className="imgInCard" variant="top" src={media.mediaUrl} />
                                             <Card.Text variant="end" >
-
                                                 Post Date: {finalDt}
                                             </Card.Text>
-
                                             <Card.Footer >
                                                 <PictureModal modalHeading={media.comment} pictureLink={media.mediaUrl} />
                                                 {/* <Button variant={changeFavouriteColor} onClick={() => handleFavourite(media)}><GrFavorite size={30} /></Button> */}

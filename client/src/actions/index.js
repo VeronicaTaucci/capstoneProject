@@ -9,7 +9,8 @@ export const addComment = (formData) => async dispatch => { //this is thunk, fun
         let response = await axios.post('/comment', formData, {
             headers: {
                 'authorization': localStorage.token
-            }})
+            }
+        })
         // console.log("add comment in index.js", response)
         dispatch({
             type: actionTypes.ADD_MEDIA,
@@ -18,7 +19,7 @@ export const addComment = (formData) => async dispatch => { //this is thunk, fun
             }
         })
     } catch (error) {
-        console.log("add comment in index.js",error)
+        console.log("add comment in index.js", error)
     }
 }
 
@@ -43,9 +44,9 @@ export const mediaUpload = (mediaData) => async dispatch => {
  * {email, password}
  */
 
-export const signUp = (formData, cb) => async dispatch=>{
+export const signUp = (formData, cb) => async dispatch => {
 
-    try{
+    try {
         //api call to our backend
 
         let response = await axios.post('/register', formData)
@@ -65,7 +66,7 @@ export const signUp = (formData, cb) => async dispatch=>{
         localStorage.setItem('token', response.data.token)
 
     }
-    catch(error){
+    catch (error) {
 
         console.log(error);
 
@@ -82,9 +83,9 @@ export const signUp = (formData, cb) => async dispatch=>{
  */
 
 
-export const signIn = (formData, cb) => async dispatch =>{
+export const signIn = (formData, cb) => async dispatch => {
 
-    try{
+    try {
         //make an api call to /login
         let response = await axios.post('/login', formData)
 
@@ -99,7 +100,7 @@ export const signIn = (formData, cb) => async dispatch =>{
 
         localStorage.setItem('token', response.data.token.JWT)
     }
-    catch(error){
+    catch (error) {
 
         console.log("something wrong here")
         dispatch({
@@ -109,8 +110,7 @@ export const signIn = (formData, cb) => async dispatch =>{
     }
 }
 
-
-export const signOut = (cb) => dispatch =>{
+export const signOut = (cb) => dispatch => {
 
     // call to backend destroy token on backend
     const getToken = localStorage.getItem('token')
@@ -127,12 +127,10 @@ export const signOut = (cb) => dispatch =>{
 
 }
 
+export const checkToken = () => async dispatch => {
 
-
-export const checkToken = () => async dispatch =>{
-
-    if(localStorage.token){
-        try{
+    if (localStorage.token) {
+        try {
             let response = await axios.get('/protected', {
 
                 headers: {
@@ -142,14 +140,14 @@ export const checkToken = () => async dispatch =>{
 
             //our token is valid
 
-            if(response.data.isValid){
+            if (response.data.isValid) {
                 dispatch({
-                    type:  actionTypes.AUTH_USER,
+                    type: actionTypes.AUTH_USER,
                     data: localStorage.token
                 })
             }
         }
-        catch(error){
+        catch (error) {
             dispatch({
                 type: actionTypes.ERROR,
                 data: error

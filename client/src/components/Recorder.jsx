@@ -200,7 +200,7 @@ const Recorder = (props) => {
                             headers: {
                                 'authorization': localStorage.token
                             }})
-                        console.log('response', response)
+                        // console.log('response', response)
                         setRecordingURL(response.data.mediaUrl)
                         setTriggerDisplay(true)
                     })
