@@ -37,7 +37,7 @@ const AllAlbums = () => {
     const handleDelete = (album) => {
         const id = album.id
         // setTriggerDisplay(false)
-        console.log(id);
+        // console.log(id);
         try {
             axios.post('/displayalbum', { id }, {
                 headers: {

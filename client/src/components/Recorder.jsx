@@ -43,7 +43,7 @@ const Recorder = (props) => {
 
         //main block for doing the audio recording
         if (navigator.mediaDevices.getUserMedia) {
-            console.log('getUserMedia supported');
+            // console.log('getUserMedia supported');
             const constraints = { audio: true };
             let chunks = [];
             let onSuccess = function (stream) {
@@ -51,8 +51,8 @@ const Recorder = (props) => {
                 visualize(stream);
                 record.onclick = function () {
                     mediaRecorder.start();
-                    console.log(mediaRecorder.state);
-                    console.log("recorder started");
+                    // console.log(mediaRecorder.state);
+                    // console.log("recorder started");
                     record.style.background = "red";
                     stop.disabled = false;
                     record.disabled = true;
@@ -60,7 +60,7 @@ const Recorder = (props) => {
                 stop.onclick = function () {
                     mediaRecorder.stop();
                     // console.log(mediaRecorder.state);
-                    console.log("recorder stopped");
+                    // console.log("recorder stopped");
                     record.style.background = "";
                     record.style.color = "";
                     // mediaRecorder.requestData();
@@ -68,7 +68,7 @@ const Recorder = (props) => {
                     record.disabled = false;
                 }
                 mediaRecorder.onstop = function (e) {
-                    console.log("data available after MediaRecorder.stop() called.");
+                    // console.log("data available after MediaRecorder.stop() called.");
                     const clipName = prompt('Enter a name for your message:', 'My audio clip');
                     const clipContainer = document.createElement('article');
                     const clipLabel = document.createElement('p');
@@ -92,13 +92,13 @@ const Recorder = (props) => {
                     //! BLOB
                     audio.controls = true;
                     const blob = new Blob(chunks, { 'type': 'audio/mpeg; codecs=mp3' });
-                    console.log(blob)
+                    // console.log(blob)
                     setRecording(blob)
                     chunks = [];
                     const audioURL = window.URL.createObjectURL(blob);
                     audio.src = audioURL;
-                    console.log(audioURL)
-                    console.log("recorder stopped");
+                    // console.log(audioURL)
+                    // console.log("recorder stopped");
                     deleteButton.onclick = function (e) {
                         let evtTgt = e.target;
                         evtTgt.parentNode.parentNode.removeChild(evtTgt.parentNode);
@@ -120,11 +120,11 @@ const Recorder = (props) => {
                 }
             }
             let onError = function (err) {
-                console.log('The following error occurred: ' + err);
+                // console.log('The following error occurred: ' + err);
             }
             navigator.mediaDevices.getUserMedia(constraints).then(onSuccess, onError);
         } else {
-            console.log('getUserMedia not supported on your browser!');
+            // console.log('getUserMedia not supported on your browser!');
         }
         function visualize(stream) {
             if (!audioCtx) {
@@ -176,7 +176,7 @@ const Recorder = (props) => {
         e.preventDefault();
         setIsLoading(true);
         // handleClose();
-        console.log('audioFile', recording)
+        // console.log('audioFile', recording)
         if (!recording) return;
 
         const storageRef = ref(storage, `audio/${clipName}`);
@@ -194,7 +194,7 @@ const Recorder = (props) => {
             () => {
                 getDownloadURL(uploadTask.snapshot.ref)
                     .then(async (url) => {
-                        console.log('firebase url', url)
+                        // console.log('firebase url', url)
                         let formData = { mediaUrl: url, userId: userId, comment: clipName, mediaFormat: 'audio' }
                         let response = await axios.post('/recorder', formData, {
                             headers: {
