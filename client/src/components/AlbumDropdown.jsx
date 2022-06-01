@@ -2,13 +2,10 @@ import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import Dropdown from 'react-bootstrap/Dropdown'
 
-const AlbumDropdown = ({props, mediaInfo}) => {
+const AlbumDropdown = ({props}) => {
 
     const { triggerDisplay, setTriggerDisplay, mediaId } = props;
-    console.log('mediaId', mediaId)
-
     const [albums, setAlbums] = useState([]);
-    // const [media, setMedia] = useState([]);
 
     useEffect(() => {
         const getAlbums = async () => {

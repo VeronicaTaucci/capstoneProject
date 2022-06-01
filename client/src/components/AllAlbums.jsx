@@ -8,6 +8,7 @@ import Button from 'react-bootstrap/Button'
 import Figure from 'react-bootstrap/Button'
 import { RiDeleteBin2Line } from 'react-icons/ri';
 import './styles/allAlbums.css'
+
 const AllAlbums = () => {
     const [albums, setAlbums] = useState([])
     const navigate = useNavigate()
@@ -58,10 +59,7 @@ const AllAlbums = () => {
                             <>
                                 <Card className="imgCard"  >
                                     <Card.Body  className="cardBody" onClick={() => handleClick(album)}>
-
-
                                         <h3>{album.name}</h3>
-
                                             <h4>{album.description}</h4>
                                     </Card.Body>
                                         <Button variant="outline-danger" onClick={() => handleDelete(album)}><RiDeleteBin2Line size={30} /></Button>
@@ -71,7 +69,6 @@ const AllAlbums = () => {
                     })
             }
             </div>
-
         </>
     )
 }
