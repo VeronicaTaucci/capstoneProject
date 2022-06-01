@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import Cloudinary from './Cloudinary'
 import Recorder from './Recorder'
 import Comments from './Comment'
@@ -42,7 +42,7 @@ const Home = () => {
           </Col>
         </Row>
       </Container>
-      <Footer />
+      {/* <Footer/> */}
     </>
   )
 }

@@ -7,7 +7,6 @@ import DropdownButton from 'react-bootstrap/DropdownButton'
 import PictureModal from "./PictureModal"
 import Button from 'react-bootstrap/Button'
 import { RiDeleteBin2Line } from 'react-icons/ri';
-import Dropdown from 'react-bootstrap/Dropdown'
 import AlbumDropdown from "./AlbumDropdown";
 
 const DisplayMedia = (props) => {
@@ -49,6 +48,7 @@ const DisplayMedia = (props) => {
         }
     }
 
+
     return (
         <>
             <div className="container-fluid">
@@ -60,6 +60,7 @@ const DisplayMedia = (props) => {
                         const finalDt = localDt.slice(0, 15)
                         const mediaId = media.id
                         const mediaInfo = {triggerDisplay, mediaId, setTriggerDisplay}
+
                         switch (media.mediaFormat) {
                             case 'text':
                                 return (
@@ -98,7 +99,8 @@ const DisplayMedia = (props) => {
                                                 <Button variant="outline-danger" onClick={() => handleDelete(media)}><RiDeleteBin2Line size={30} /></Button>
                                             </Card.Footer>
                                         </Card>
-                                    </>)
+                                    </>
+                                    )
                             case 'audio':
                                 return (
                                     <>
@@ -124,12 +126,12 @@ const DisplayMedia = (props) => {
                                     </>
                                     )
                             default:
-                                break;
+                                return (<><h1>No Media to Show</h1></>)
                         }
                     })}
                 </div>
             </div>
         </>
-    ) //return close
+    )
 }
 export default DisplayMedia

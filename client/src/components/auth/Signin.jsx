@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { signIn } from '../../actions'
-import Footer from '../layout/Footer'
 import { useNavigate } from 'react-router-dom'
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'

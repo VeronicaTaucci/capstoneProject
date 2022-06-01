@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from "react"
-import ListGroup from 'react-bootstrap/ListGroup'
-import Navbar from './layout/Navbar'
 import axios from "axios"
 import { useNavigate } from "react-router-dom";
 import Button from 'react-bootstrap/Button'
@@ -35,6 +33,7 @@ const DisplayAlbums = (props) => {
         const id = e.target.attributes.value.value
         navigate(`/album/${id}`)
     }
+
     const handleDelete = (album) => {
         const id = album.id
         console.log(id);
@@ -50,14 +49,13 @@ const DisplayAlbums = (props) => {
     }
     return (
         <>
-
-                {albums.map((album) => {
-                    // console.log(album)
+                {albums.map((album, index) => {
+                    console.log(album.id)
                     return (
                         <>
-                            <div className="albumList" key={album.id}   type="button">
-                                <tag value={album.id} onClick={(e) => handleClick(e)} className='albumName'>{album.name}</tag>
-                                <tag><Button variant="outline-danger" onClick={() => handleDelete(album)}><RiDeleteBin2Line size={30} /></Button></tag>
+                            <div className="albumList" key={index}>
+                                <div key={album.id} value={album.id} onClick={(e) => handleClick(e)} className='albumName' type='button'>{album.name}</div>
+                                <span><Button variant="outline-danger" onClick={() => handleDelete(album)}><RiDeleteBin2Line size={30} /></Button></span>
                             </div>
                         </>
                     )

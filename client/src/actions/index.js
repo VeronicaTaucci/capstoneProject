@@ -11,7 +11,6 @@ export const addComment = (formData) => async dispatch => { //this is thunk, fun
                 'authorization': localStorage.token
             }
         })
-        // console.log("add comment in index.js", response)
         dispatch({
             type: actionTypes.ADD_MEDIA,
             data: {
