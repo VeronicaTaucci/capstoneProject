@@ -4,26 +4,23 @@ import axios from "axios"
 import Card from 'react-bootstrap/Card'
 import PictureModal from "./PictureModal"
 import { ZonedDate } from "@progress/kendo-date-math";
-
 import Navbar from './layout/Navbar'
-const Album = (props) => {
 
-    const { triggerDisplay, setTriggerDisplay } = props;
+const Album = () => {
+
     const  {id}  = useParams()
     const [medias, setMedias] = useState([])
 
     useEffect(() => {
-        let getData = async () => {
-            console.log(id); //3
-            let getMedia = await axios.get(`/displayalbum/${id}`, {
+            axios.get(`/displayalbum/${id}`, {
                 headers: {
                     'authorization': localStorage.token
-                }} )
-            setMedias(getMedia.data)
-            console.log(getMedia.data);
-        }
-        getData()
-    }, [])
+                }})
+                .then(response => {
+                    setMedias(response.data)
+                    console.log(response.data);
+                })
+    }, [id])
 
     return (
         <>
@@ -37,7 +34,6 @@ const Album = (props) => {
                         const finalDt = localDt.slice(0, 15)
                         switch (media.mediaFormat) {
                             case 'text':
-                                {/* //! TEXT CARD */ }
                                 return (
                                     <>
                                         <Card key={media.createdAt} className="imgCard justify-content-center" style={{ width: '21rem' }} >
@@ -49,7 +45,6 @@ const Album = (props) => {
                                     </>
                                 )
                             case 'image':
-                                {/*//! IMAGE CARD */ }
                                 return (
                                     <>
                                         <Card key={media.createdAt} className="imgCard justify-content-center" style={{ width: '21rem' }} >
@@ -64,7 +59,6 @@ const Album = (props) => {
                                         </Card>
                                     </>)
                             case 'audio':
-                                {/* //! AUDIO CARD */ }
                                 return (
                                     <>
                                         <Card key={media.createdAt} className="imgCard justify-content-center" style={{ width: '21rem' }} >
@@ -80,7 +74,7 @@ const Album = (props) => {
                                         </Card>
                                     </>)
                             default:
-                                break;
+                                return <><h1>No Media to Display</h1></>
                         }
                     })}
                 </ul>

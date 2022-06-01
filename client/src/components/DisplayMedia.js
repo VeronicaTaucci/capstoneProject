@@ -7,7 +7,6 @@ import DropdownButton from 'react-bootstrap/DropdownButton'
 import PictureModal from "./PictureModal"
 import Button from 'react-bootstrap/Button'
 import { RiDeleteBin2Line } from 'react-icons/ri';
-import Dropdown from 'react-bootstrap/Dropdown'
 import AlbumDropdown from "./AlbumDropdown";
 
 const DisplayMedia = (props) => {
@@ -49,6 +48,7 @@ const DisplayMedia = (props) => {
         }
     }
 
+
     return (
         <>
             <div className="container-fluid">
@@ -60,12 +60,12 @@ const DisplayMedia = (props) => {
                         const finalDt = localDt.slice(0, 15)
                         const mediaId = media.id
                         const mediaInfo = {triggerDisplay, mediaId, setTriggerDisplay}
+
                         switch (media.mediaFormat) {
                             case 'text':
-                                {/* //! TEXT CARD */ }
                                 return (
                                     <>
-                                        <Card key={media.createdAt} className="imgCard justify-content-center" style={{ width: '21rem' }} >
+                                        <Card className="imgCard justify-content-center" style={{ width: '21rem' }} >
                                             <Card.Header>{media.comment}</Card.Header><br />
                                             <Card.Text variant="end" >
                                                 Posted by: {media.user.name}<br />
@@ -82,10 +82,9 @@ const DisplayMedia = (props) => {
                                     </>
                                 )
                             case 'image':
-                                {/*//! IMAGE CARD */ }
                                 return (
                                     <>
-                                        <Card key={media.createdAt} className="imgCard justify-content-center" style={{ width: '21rem' }} >
+                                        <Card className="imgCard justify-content-center" style={{ width: '21rem' }} >
                                             <Card.Img className="imgInCard" variant="top" src={media.mediaUrl} />
                                             <Card.Text variant="end" >
                                                 Posted by: {media.user.name}<br />
@@ -100,12 +99,12 @@ const DisplayMedia = (props) => {
                                                 <Button variant="outline-danger" onClick={() => handleDelete(media)}><RiDeleteBin2Line size={30} /></Button>
                                             </Card.Footer>
                                         </Card>
-                                    </>)
+                                    </>
+                                    )
                             case 'audio':
-                                {/* //! AUDIO CARD */ }
                                 return (
                                     <>
-                                        <Card key={media.createdAt} className="imgCard justify-content-center" style={{ width: '21rem' }} >
+                                        <Card className="imgCard justify-content-center" style={{ width: '21rem' }} >
                                             <figure>
                                                 <audio className="audio" controls src={media.mediaUrl}>
                                                     Your browser does not support the <code>audio</code> element.
@@ -127,12 +126,12 @@ const DisplayMedia = (props) => {
                                     </>
                                     )
                             default:
-                                break;
+                                return (<><h1>No Media to Show</h1></>)
                         }
                     })}
                 </div>
             </div>
         </>
-    ) //return close
+    )
 }
 export default DisplayMedia

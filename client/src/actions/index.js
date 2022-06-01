@@ -6,12 +6,11 @@ import axios from 'axios'
 export const addComment = (formData) => async dispatch => { //this is thunk, function returning another function
     try {
         //make api call to backend
-        let response = await axios.post('/comment', formData, {
+        await axios.post('/comment', formData, {
             headers: {
                 'authorization': localStorage.token
             }
         })
-        // console.log("add comment in index.js", response)
         dispatch({
             type: actionTypes.ADD_MEDIA,
             data: {

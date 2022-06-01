@@ -1,12 +1,9 @@
 import React from 'react'
 import '../styles/footerSignIn.css'
-import Container from 'react-bootstrap/Container';
-import Nav from 'react-bootstrap/Nav';
 
 const FooterSignIn = () => {
     return (
         <>
-
             <footer className="footer">
                 <div className='contributors'>
                     Happy Shares © 2022
