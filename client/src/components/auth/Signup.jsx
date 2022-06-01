@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom'
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
 import "../styles/signInPage.css"
+import FooterSignIn from "../layout/Footer02";
 
 const Signup = () => {
 
@@ -27,6 +28,7 @@ const Signup = () => {
         }))
     }
     return (
+        <>
         <Form className="signInForm"
             onSubmit={handleSubmit}>
             <Form.Group className="mb-3" controlId="name">
@@ -48,6 +50,8 @@ const Signup = () => {
             </Button>
             <br/><br/>Already have an account? <Link to="/signin">Log in</Link>
         </Form>
+            <FooterSignIn />
+        </>
 
     );
 };

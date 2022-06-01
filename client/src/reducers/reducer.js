@@ -4,7 +4,8 @@ const initialState = {
     auth: "",
     error: "",
     comments: "",
-    media:""
+    media: "",
+    userId: ""
 
 }
 

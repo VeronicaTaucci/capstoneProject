@@ -102,6 +102,7 @@ export const signIn = (formData, cb) => async dispatch => {
     }
     catch (error) {
 
+        console.log("something wrong here")
         dispatch({
             type: actionTypes.ERROR,
             data: error

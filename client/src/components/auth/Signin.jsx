@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom'
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
 import "../styles/signInPage.css"
+import FooterSignIn from "../layout/Footer02";
 
 const Signin = () => {
 
@@ -18,7 +19,11 @@ const Signin = () => {
   const handleSubmit = (e) => {
 
     e.preventDefault();
-    dispatch(signIn({ email, password }, () => {
+    let formData = {
+      email:email,
+      password:password,
+    }
+    dispatch(signIn(formData, () => {
       navigate('/home')
     }))
   }
@@ -28,7 +33,6 @@ const Signin = () => {
       <Form className="signInForm"
         onSubmit={handleSubmit}>
       <img src="../../logo.png" className="logo"/>
-      {/* <img class="fit-picture" src="../../logo.png" className="logo"/> */}
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Label>Email address</Form.Label>
           <Form.Control className="form-control" type="email" value={email}
@@ -45,7 +49,7 @@ const Signin = () => {
         </Button>
       <br/><br/>Don't have an account? <Link to="/signup">Register Here</Link>
       </Form>
-      <Footer/>
+      <FooterSignIn/>
     </>);
 };
 export default Signin
