@@ -5,13 +5,15 @@ import Accordion from 'react-bootstrap/Accordion'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import DisplayAlbums from "./DisplayAlbums"
-
+import { Alert, AlertTitle } from '@chakra-ui/react'
+import '../components/styles/componentCss.css'
 const CreateAlbum = () => {
     const [name, setName] = useState()
     const [description, setDescription] = useState()
     const userId = useSelector(state => state.userId)
     const [triggerDisplay, setTriggerDisplay] = useState(false)
-
+    const [alert, setAlert] = useState('')
+    
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -27,6 +29,8 @@ const CreateAlbum = () => {
         setTriggerDisplay(true)
         setDescription('')
         setName('')
+        setAlert('Album Created')
+        setTimeout(() => setAlert(''), 3000);
     }
     return (
         <>
@@ -42,6 +46,9 @@ const CreateAlbum = () => {
                             <Form.Control as="textarea" placeholder="description" rows={3} value={description} onChange={(e) => setDescription(e.target.value)} />
                         </Form.Group>
                         <Button type="submit">Create</Button>
+                        <Alert status='error'>
+                            <AlertTitle className="greenAlert">{alert}</AlertTitle>
+                        </Alert>
                     </Form><br />
                     <DisplayAlbums triggerDisplay={triggerDisplay} setTriggerDisplay={setTriggerDisplay} />
                 </Accordion.Body>

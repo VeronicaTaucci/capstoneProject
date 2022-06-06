@@ -8,11 +8,21 @@ import PictureModal from "./PictureModal"
 import Button from 'react-bootstrap/Button'
 import { RiDeleteBin2Line } from 'react-icons/ri';
 import AlbumDropdown from "./AlbumDropdown";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 const DisplayMedia = (props) => {
     const { triggerDisplay, setTriggerDisplay } = props;
     const [sortedMedia, setSortedMedia] = useState([])
 
-
+    const notify = () => toast.success('Media Deleted', {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+    });
     useEffect(() => {
 
         let getData = async () => {
@@ -42,6 +52,9 @@ const DisplayMedia = (props) => {
                     'authorization': localStorage.token
                 }});
             setTriggerDisplay(true)
+            // setAlert('Media Deleted')
+            // setTimeout(() => setAlert(''), 3000);
+            notify()
         } catch (err) {
             console.log(err)
         }
@@ -51,7 +64,21 @@ const DisplayMedia = (props) => {
     return (
         <>
             <div className="container-fluid">
+            
                 <div className="row">
+                    <ToastContainer
+                        position="top-right"
+                        autoClose={5000}
+                        hideProgressBar={false}
+                        newestOnTop={false}
+                        closeOnClick
+                        rtl={false}
+                        pauseOnFocusLoss
+                        draggable
+                        pauseOnHover
+                    />
+                    {/* Same as */}
+                    <ToastContainer />
                     {sortedMedia.map((media, index) => {
                         const date = new Date(media.createdAt);
                         const tzDate = ZonedDate.fromUTCDate(date);

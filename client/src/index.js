@@ -14,7 +14,8 @@ import reduxThunk from 'redux-thunk'
 import RequireAuth from './components/RequireAuth'
 import { checkToken } from './actions'
 import Album from './components/Album'
-import AllAlbums from './components/AllAlbums'
+
+import AllAlbums from './components/AllAlbums';
 
 // initializing redux store
 // requires a reducer. Second argument is for redux dev-tools extension.
@@ -49,7 +50,7 @@ ReactDOM.render(
                     </Routes>
                 </BaseLayout>
             </Router>
-        </Provider>
+            </Provider>
     </React.StrictMode>,
     document.getElementById('root')
 );

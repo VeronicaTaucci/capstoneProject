@@ -2,6 +2,8 @@
     font-family: 'Montserrat', sans-serif;
     font-weight: 600;
 }
+
+
 .col {
     display: flex;
     flex-direction: column;

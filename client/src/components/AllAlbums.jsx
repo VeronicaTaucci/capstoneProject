@@ -8,12 +8,23 @@ import Button from 'react-bootstrap/Button'
 import Figure from 'react-bootstrap/Button'
 import { RiDeleteBin2Line } from 'react-icons/ri';
 import './styles/allAlbums.css'
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 const AllAlbums = () => {
     const [albums, setAlbums] = useState([])
     const navigate = useNavigate()
     const [triggerDisplay, setTriggerDisplay] = useState(false)
 
+
+    const notify = () => toast.success('Album Deleted', {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+    });
     useEffect(() => {
         let getData = async () => {
             let getAlbums = await axios.get(`/displayalbum`, {
@@ -44,6 +55,7 @@ const AllAlbums = () => {
                     'authorization': localStorage.token
                 }});
             setTriggerDisplay(true)
+            notify()
         } catch (err) {
             console.log(err)
         }
@@ -51,7 +63,18 @@ const AllAlbums = () => {
 
     return (
         <>
-            <Navbar/>
+            <Navbar />
+            <ToastContainer
+                position="top-right"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+            />
             <div className="albums">
             {albums.length === 0 ? (<h1>No albums</h1>) :
                     albums.map((album) => {

@@ -7,32 +7,64 @@ import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
 import "../styles/signInPage.css"
 import FooterSignIn from "../layout/FooterSignIn";
+import actionTypes from "../../actions/actionTypes";
+import axios from 'axios';
 
+import { ChakraProvider } from '@chakra-ui/react'
+import {
+  Alert,
+  AlertTitle,
+} from '@chakra-ui/react'
 const Signin = () => {
 
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const dispatch = useDispatch();
   const navigate = useNavigate()
-
-  const handleSubmit = (e) => {
+const [error, setError] = useState('')
+  const handleSubmit = async (e) => {
 
     e.preventDefault();
     let formData = {
       email: email,
       password: password,
     }
-    dispatch(signIn(formData, () => {
-      navigate('/home')
-    }))
+    try {
+      //make an api call to /login
+      let response = await axios.post('/login', formData)
+      if (response.data) {
+        dispatch({
+          type: actionTypes.AUTH_USER,
+          data: response.data.token
+        })
+        //invoke the callback function to navigate to a feature page
+        setError('')
+        navigate('/home')
+        localStorage.setItem('token', response.data.token.JWT)
+      } else {
+        console.log("Email and/or password is incorrect")
+      }
+    } catch (error) {
+
+      setError("Email and/or password is incorrect")
+      console.log(error)
+      dispatch({
+        type: actionTypes.ERROR,
+        data: error
+      })
+    }
   }
 
   return (
     <>
+      
       <Form className="signInForm"
         onSubmit={handleSubmit}>
         <img src="../../Logo.png" className="logo" />
         <Form.Group className="mb-3" controlId="formBasicEmail">
+          <Alert status='error'>
+            <AlertTitle className="alertRed">{error}</AlertTitle>
+          </Alert><br />
           <Form.Label>Email address</Form.Label>
           <Form.Control className="form-control" type="email" value={email}
             onChange={e => setEmail(e.target.value)} placeholder="Enter email" />
@@ -43,11 +75,12 @@ const Signin = () => {
           <Form.Control type="password" value={password}
             onChange={e => setPassword(e.target.value)} placeholder="Password" />
         </Form.Group>
+       
         <Button variant="outline-primary" size="lg" type="submit" value="Log In" >
           Sign in
         </Button>
         <br /><br />Don't have an account? <Link to="/signup">Register Here</Link>
-      </Form>
+        </Form>
       <FooterSignIn />
     </>);
 };
