@@ -1,3 +1,8 @@
+.alertRed{
+    color: #d41e2d;
+    font-size: medium;
+}
+
 .logo{
     border: 2px solid rgb(30, 149, 200);
         border-radius: 25px;

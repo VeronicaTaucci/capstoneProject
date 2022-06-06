@@ -8,12 +8,12 @@ import Form from 'react-bootstrap/Form'
 import "../styles/signInPage.css"
 import FooterSignIn from "../layout/FooterSignIn";
 import actionTypes from "../../actions/actionTypes";
-import axios from 'axios'
+import axios from 'axios';
+
+import { ChakraProvider } from '@chakra-ui/react'
 import {
   Alert,
-  AlertIcon,
   AlertTitle,
-  AlertDescription,
 } from '@chakra-ui/react'
 const Signin = () => {
 
@@ -32,7 +32,6 @@ const [error, setError] = useState('')
     try {
       //make an api call to /login
       let response = await axios.post('/login', formData)
-      console.log("logging in", response.data.token);
       if (response.data) {
         dispatch({
           type: actionTypes.AUTH_USER,
@@ -40,7 +39,7 @@ const [error, setError] = useState('')
         })
         //invoke the callback function to navigate to a feature page
         setError('')
-        navigate('/')
+        navigate('/home')
         localStorage.setItem('token', response.data.token.JWT)
       } else {
         console.log("Email and/or password is incorrect")
@@ -58,14 +57,14 @@ const [error, setError] = useState('')
 
   return (
     <>
-      <Alert status='error'>
-        
-        <AlertTitle>{error}</AlertTitle>
-      </Alert>
+      
       <Form className="signInForm"
         onSubmit={handleSubmit}>
         <img src="../../Logo.png" className="logo" />
         <Form.Group className="mb-3" controlId="formBasicEmail">
+          <Alert status='error'>
+            <AlertTitle className="alertRed">{error}</AlertTitle>
+          </Alert><br />
           <Form.Label>Email address</Form.Label>
           <Form.Control className="form-control" type="email" value={email}
             onChange={e => setEmail(e.target.value)} placeholder="Enter email" />
@@ -76,11 +75,12 @@ const [error, setError] = useState('')
           <Form.Control type="password" value={password}
             onChange={e => setPassword(e.target.value)} placeholder="Password" />
         </Form.Group>
+       
         <Button variant="outline-primary" size="lg" type="submit" value="Log In" >
           Sign in
         </Button>
         <br /><br />Don't have an account? <Link to="/signup">Register Here</Link>
-      </Form>
+        </Form>
       <FooterSignIn />
     </>);
 };

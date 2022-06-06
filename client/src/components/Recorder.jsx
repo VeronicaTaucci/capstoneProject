@@ -5,10 +5,11 @@ import { storage } from '../firebase/firebase';
 import { ref, getDownloadURL, uploadBytesResumable } from "firebase/storage";
 import axios from 'axios'
 import ProgressBar from 'react-bootstrap/ProgressBar'
-import Alert from 'react-bootstrap/Alert'
+// import Alert from 'react-bootstrap/Alert'
 import Accordion from 'react-bootstrap/Accordion'
 import Button from 'react-bootstrap/Button'
-
+import { Alert, AlertTitle } from '@chakra-ui/react'
+import '../components/styles/componentCss.css'
 //Calling the function (You can call it normally then)
 const Recorder = (props) => {
 
@@ -21,6 +22,7 @@ const Recorder = (props) => {
     const [recordingURL, setRecordingURL] = useState()
 
     const userId = useSelector(state => state.userId)
+    const [alert, setAlert] = useState('')
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -33,7 +35,6 @@ const Recorder = (props) => {
         const soundClips = document.querySelector('.sound-clips');
         const canvas = document.querySelector('.visualizer');
         const mainSection = document.querySelector('.main-controls');
-
         // disable stop button while not recording
         stop.disabled = true;
 
@@ -175,6 +176,7 @@ const Recorder = (props) => {
     const handleSubmit = (e) => {
         e.preventDefault();
         setIsLoading(true);
+        setAlert('Audio Submitted')
         // handleClose();
         // console.log('audioFile', recording)
         if (!recording) return;
@@ -199,11 +201,15 @@ const Recorder = (props) => {
                         let response = await axios.post('/recorder', formData, {
                             headers: {
                                 'authorization': localStorage.token
-                            }})
+                            }
+                        })
+                        
                         // console.log('response', response)
                         setRecordingURL(response.data.mediaUrl)
                         setTriggerDisplay(true)
+                        setTimeout(() => setAlert(''), 3000);
                     })
+                    
             }
         )
     }
@@ -222,7 +228,11 @@ const Recorder = (props) => {
                                 <Button className="record">Record</Button>
                                 <Button className="stop">Stop</Button>
                                 <section className="sound-clips"></section>
-                                <Button className='submit' onClick={handleSubmit}>Submit Audio</Button>
+                            <Button className='submit' onClick={handleSubmit}>Submit Audio</Button>
+                            <br/>
+                            <Alert status='error'>
+                                <AlertTitle className="greenAlert">{alert}</AlertTitle>
+                            </Alert><br />
                         </section>
                     </form>
 

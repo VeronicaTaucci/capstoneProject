@@ -1,0 +1,15 @@
+.greenAlert {
+    color: rgb(60, 181, 60);
+    font-size: medium;
+    padding: 10px 150px;
+    margin: auto;
+    margin-top: 10px;
+}
+
+.mediaDeleteAlert{
+    color:white;
+        font-size: large;
+        background-color: red;
+        margin-bottom: 10px;
+        padding: 0px 100px;
+}

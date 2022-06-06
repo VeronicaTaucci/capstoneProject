@@ -15,6 +15,7 @@ import RequireAuth from './components/RequireAuth'
 import { checkToken } from './actions'
 import Album from './components/Album'
 import AllAlbums from './components/AllAlbums';
+
 // import 'bootstrap/dist/css/bootstrap.min.css';
 // initializing redux store
 // requires a reducer. Second argument is for redux dev-tools extension.
@@ -51,7 +52,7 @@ ReactDOM.render(
                     </Routes>
                 </BaseLayout>
             </Router>
-        </Provider>
+            </Provider>
     </React.StrictMode>,
     document.getElementById('root')
 );

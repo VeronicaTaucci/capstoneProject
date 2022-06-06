@@ -6,6 +6,8 @@ import "./styles/signInPage.css"
 import Accordion from 'react-bootstrap/Accordion'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
+import { Alert, AlertTitle } from '@chakra-ui/react'
+import '../components/styles/componentCss.css'
 
 const Comment = (props) => {
     const { triggerDisplay, setTriggerDisplay } = props;
@@ -14,13 +16,16 @@ const Comment = (props) => {
     const dispatch = useDispatch();
     const navigate = useNavigate()
 
+    const [alert, setAlert] = useState('')
     const handleSubmit = (e) => {
         e.preventDefault();
         dispatch(addComment({ comment: comment, userId: userId, mediaFormat: "text" }, () => {
             navigate('/')
         }))
         setComment('')
+        setAlert('Message Added')
         setTriggerDisplay(true)
+        setTimeout(() => setAlert(''), 3000);
     }
     return (
         <>
@@ -33,6 +38,9 @@ const Comment = (props) => {
                             <Form.Control as="textarea" rows={3} value={comment} onChange={(e) => setComment(e.target.value)} />
                         </Form.Group>
                         <Button type="submit" value="Add Comment">Add</Button>
+                        <Alert status='error'>
+                            <AlertTitle className="greenAlert">{alert}</AlertTitle>
+                        </Alert>
                     </Form>
                 </Accordion.Body>
             </Accordion.Item>
