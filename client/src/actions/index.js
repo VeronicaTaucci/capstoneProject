@@ -98,14 +98,11 @@ export const checkToken = () => async dispatch => {
     if (localStorage.token) {
         try {
             let response = await axios.get('/protected', {
-
                 headers: {
                     'authorization': localStorage.token
                 }
             })
-
             //our token is valid
-
             if (response.data.isValid) {
                 dispatch({
                     type: actionTypes.AUTH_USER,
