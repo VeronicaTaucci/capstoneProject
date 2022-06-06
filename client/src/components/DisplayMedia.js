@@ -9,7 +9,6 @@ import Button from 'react-bootstrap/Button'
 import { RiDeleteBin2Line } from 'react-icons/ri';
 import AlbumDropdown from "./AlbumDropdown";
 import { ToastContainer, toast } from 'react-toastify';
-
 import 'react-toastify/dist/ReactToastify.css';
 const DisplayMedia = (props) => {
     const { triggerDisplay, setTriggerDisplay } = props;
