@@ -42,7 +42,7 @@ const Home = () => {
           </Col>
         </Row>
       </Container>
-      {/* <Footer/> */}
+      <Footer/>
     </>
   )
 }
