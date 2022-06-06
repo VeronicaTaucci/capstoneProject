@@ -1,16 +1,12 @@
 .footer {
     display: flex;
-    align-items: flex-start;
     background-color: #0d6efd;
     color: white;
     justify-content: space-between;
-    align-items: center;
     width: 100%;
+position: fixed;
+    left: 0;
     bottom: 0;
-    position: fixed;
-        left: 0;
-        bottom: 0;
-        right: 0;
 }
 
 .contributors a {

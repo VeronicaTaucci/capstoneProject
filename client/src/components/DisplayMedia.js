@@ -8,7 +8,6 @@ import PictureModal from "./PictureModal"
 import Button from 'react-bootstrap/Button'
 import { RiDeleteBin2Line } from 'react-icons/ri';
 import AlbumDropdown from "./AlbumDropdown";
-
 const DisplayMedia = (props) => {
     const { triggerDisplay, setTriggerDisplay } = props;
     const [sortedMedia, setSortedMedia] = useState([])
@@ -36,7 +35,7 @@ const DisplayMedia = (props) => {
     }, [triggerDisplay])
 
     const handleDelete = (deleteMedia) => {
-        console.log(deleteMedia)
+        // console.log(deleteMedia)
         try {
             axios.post('/delete', deleteMedia, {
                 headers: {
@@ -126,7 +125,7 @@ const DisplayMedia = (props) => {
                                     </>
                                     )
                             default:
-                                return (<><h1>No Media to Show</h1></>)
+                                return 
                         }
                     })}
                 </div>

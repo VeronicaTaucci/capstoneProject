@@ -19,8 +19,8 @@ const Signin = () => {
 
     e.preventDefault();
     let formData = {
-      email:email,
-      password:password,
+      email: email,
+      password: password,
     }
     dispatch(signIn(formData, () => {
       navigate('/home')
@@ -31,7 +31,7 @@ const Signin = () => {
     <>
       <Form className="signInForm"
         onSubmit={handleSubmit}>
-      <img src="../../logo.png" className="logo"/>
+        <img src="../../Logo.png" className="logo" />
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Label>Email address</Form.Label>
           <Form.Control className="form-control" type="email" value={email}
@@ -46,9 +46,9 @@ const Signin = () => {
         <Button variant="outline-primary" size="lg" type="submit" value="Log In" >
           Sign in
         </Button>
-      <br/><br/>Don't have an account? <Link to="/signup">Register Here</Link>
+        <br /><br />Don't have an account? <Link to="/signup">Register Here</Link>
       </Form>
-      <FooterSignIn/>
+      <FooterSignIn />
     </>);
 };
 export default Signin
