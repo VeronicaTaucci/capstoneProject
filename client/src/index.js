@@ -14,16 +14,14 @@ import reduxThunk from 'redux-thunk'
 import RequireAuth from './components/RequireAuth'
 import { checkToken } from './actions'
 import Album from './components/Album'
-import AllAlbums from './components/AllAlbums';
-// import 'bootstrap/dist/css/bootstrap.min.css';
+import AllAlbums from './components/AllAlbums'
+
 // initializing redux store
 // requires a reducer. Second argument is for redux dev-tools extension.
 // let store = createStore(reducer,  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 
 //func1(func2(func3(func4))))
 //compose(func1, func2, func3, func4)
-
-
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
