@@ -7,28 +7,61 @@ import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
 import "../styles/signInPage.css"
 import FooterSignIn from "../layout/FooterSignIn";
-
+import actionTypes from "../../actions/actionTypes";
+import axios from 'axios'
+import {
+  Alert,
+  AlertIcon,
+  AlertTitle,
+  AlertDescription,
+} from '@chakra-ui/react'
 const Signin = () => {
 
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const dispatch = useDispatch();
   const navigate = useNavigate()
-
-  const handleSubmit = (e) => {
+const [error, setError] = useState('')
+  const handleSubmit = async (e) => {
 
     e.preventDefault();
     let formData = {
       email: email,
       password: password,
     }
-    dispatch(signIn(formData, () => {
-      navigate('/home')
-    }))
+    try {
+      //make an api call to /login
+      let response = await axios.post('/login', formData)
+      console.log("logging in", response.data.token);
+      if (response.data) {
+        dispatch({
+          type: actionTypes.AUTH_USER,
+          data: response.data.token
+        })
+        //invoke the callback function to navigate to a feature page
+        setError('')
+        navigate('/')
+        localStorage.setItem('token', response.data.token.JWT)
+      } else {
+        console.log("Email and/or password is incorrect")
+      }
+    } catch (error) {
+
+      setError("Email and/or password is incorrect")
+      console.log(error)
+      dispatch({
+        type: actionTypes.ERROR,
+        data: error
+      })
+    }
   }
 
   return (
     <>
+      <Alert status='error'>
+        
+        <AlertTitle>{error}</AlertTitle>
+      </Alert>
       <Form className="signInForm"
         onSubmit={handleSubmit}>
         <img src="../../Logo.png" className="logo" />

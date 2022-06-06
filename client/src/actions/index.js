@@ -82,32 +82,33 @@ export const signUp = (formData, cb) => async dispatch => {
  */
 
 
-export const signIn = (formData, cb) => async dispatch => {
+// export const signIn = (formData, cb) => async dispatch => {
 
-    try {
-        //make an api call to /login
-        let response = await axios.post('/login', formData)
+//     try {
+//         //make an api call to /login
+//         let response = await axios.post('/login', formData)
+//         console.log("logging in", response.data.token);
+//         if (response.data) {
+//             dispatch({
+//                 type: actionTypes.AUTH_USER,
+//                 data: response.data.token
+//             })
+//             //invoke the callback function to navigate to a feature page
+//             cb()
+//             localStorage.setItem('token', response.data.token.JWT)
+//         } else {
+//             console.log("Email and/or password is incorrect")
+//             }
+//         } catch (error) {
 
-        // console.log("logging in", response.data.token);
-        dispatch({
-            type: actionTypes.AUTH_USER,
-            data: response.data.token
-        })
-
-        //invoke the callback function to navigate to a feature page
-        cb()
-
-        localStorage.setItem('token', response.data.token.JWT)
-    }
-    catch (error) {
-
-        console.log(error)
-        dispatch({
-            type: actionTypes.ERROR,
-            data: error
-        })
-    }
-}
+//         alert("Email and/or password is incorrect")
+//         console.log(error)
+//         dispatch({
+//             type: actionTypes.ERROR,
+//             data: error
+//         })
+//     }
+// }
 
 export const signOut = (cb) => dispatch => {
 
