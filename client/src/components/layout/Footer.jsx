@@ -1,10 +1,10 @@
 import React from 'react'
-import '../styles/navandfooter.css'
+import '../styles/footerHome.css'
 
 const Footer = () => {
     return (
         <>
-            <footer className="footer">
+            <footer className="footerHome">
                 <div className='contributors'>
                     Happy Shares © 2022
                 </div>
