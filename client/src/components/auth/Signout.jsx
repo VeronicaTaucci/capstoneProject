@@ -6,7 +6,7 @@ import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
 import "../styles/signInPage.css"
 import Navbar from '../layout/Navbar'
-import FooterSignIn from "../layout/Footer02";
+import FooterSignIn from "../layout/FooterSignIn";
 
 const Signout = () => {
 

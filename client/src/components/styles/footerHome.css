@@ -1,0 +1,12 @@
+.footerHome{
+    display: flex;
+        align-items: flex-start;
+        background-color: #0d6efd;
+        color: white;
+        justify-content: space-between;
+        align-items: center;
+        position: absolute;
+        bottom: auto;
+        margin: auto;
+        width: 100vw;
+}

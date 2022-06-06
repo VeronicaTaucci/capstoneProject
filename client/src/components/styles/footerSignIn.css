@@ -4,7 +4,7 @@
     color: white;
     justify-content: space-between;
     width: 100%;
-position: fixed;
+position: absolute;
     left: 0;
     bottom: 0;
 }
